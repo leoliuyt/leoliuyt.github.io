@@ -2,6 +2,7 @@
 title: 搭建可在不同电脑写作和同步的Hexo博客
 date: 2018-04-03 14:16:04
 tags: 环境搭建
+categories: Objective-C
 ---
 
 ## 搭建可在不同电脑写作和同步的Hexo博客
@@ -52,10 +53,17 @@ hexo clean
 
 `next`主题的配置参考[NexT](https://theme-next.iissnan.com/getting-started.html)
 
+## hexo下新建页面下如何放多个文章？
+
+1. `hexo new page categories` //常见一个新的page
+2. 在主题配置文件`_config.yml`中的menu 添加 `Objective-C: /categories/Objective-C/ || th`
+3. 在博客的markdown文件中添加 `categories: Objective-C`
+
 ## 参考
 
 [Hexo文档](https://hexo.io/zh-cn/docs/index.html)
 [在不同电脑上进行Hexo写作与同步](https://leroyli.github.io/2016/11/07/hexo-more-PC/)
 [GitHub Pages + Hexo搭建博客](http://crazymilk.github.io/2015/12/28/GitHub-Pages-Hexo搭建博客/#more)
 [NexT](https://theme-next.iissnan.com/getting-started.html)
+[hexo下新建页面下如何放多个文章？](https://www.zhihu.com/question/33324071)
 
