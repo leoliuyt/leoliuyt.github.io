@@ -55,9 +55,9 @@ hexo clean
 
 ## hexo下新建页面下如何放多个文章？
 
-1. `hexo new page categories` //常见一个新的page
-2. 在主题配置文件`_config.yml`中的menu 添加 `Objective-C: /categories/Objective-C/ || th`
-3. 在博客的markdown文件中添加 `categories: Objective-C`
+1. `hexo new page categories` //创建一个新的page
+2. 在博客的markdown文件中添加 `categories: Objective-C` //会生成一个`/categories/Objective-C/`路径
+3. 在主题配置文件`_config.yml`中的`menu` 添加 `Objective-C: /categories/Objective-C/ || th` 这个路径与上面的生成的要匹配
 
 ## 参考
 
