@@ -14,11 +14,12 @@ tags: 环境搭建
 7. 依次执行`git add .`、`git commit -m “…”`、`git push origin hexo`提交网站相关的文件；
 8. 执行`hexo generate -d`生成网站并部署到GitHub上。
 
-这样一来，在GitHub上的`leoliuyt.github.io`仓库就有两个分支，一个hexo分支用来存放网站的原始文件，一个master分支用来存放生成的静态网页。完美( •̀ ω •́ )y！
+这样一来，在GitHub上的`leoliuyt.github.io`仓库就有两个分支，一个hexo分支用来存放网站的原始文件，一个master分支用来存放生成的静态网页。
 
 ## 参考
 
 [Hexo文档](https://hexo.io/zh-cn/docs/index.html)
 [在不同电脑上进行Hexo写作与同步](https://leroyli.github.io/2016/11/07/hexo-more-PC/)
+[GitHub Pages + Hexo搭建博客](http://crazymilk.github.io/2015/12/28/GitHub-Pages-Hexo搭建博客/#more)
 
 
