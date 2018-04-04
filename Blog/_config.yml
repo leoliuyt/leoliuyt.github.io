@@ -77,8 +77,36 @@ theme: next #landscape
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
+# deploy:
+#   type: git
+#   repo: https://github.com/leoliuyt/leoliuyt.github.io.git
+#   branch: master
+  
 deploy:
   type: git
-  repo: https://github.com/leoliuyt/leoliuyt.github.io.git
+  repository: 
+      github: git@github.com:leoliuyt/leoliuyt.github.io.git
+      coding: git@git.coding.net:leoliubj/leoliubj.git
   branch: master
+
+# 要启用数学公式支持
+mathjax: true
+
+sitemap:
+  path: sitemap.xml
+baidusitemap:
+   path: baidusitemap.xml
+# 插件  
+## 访问zipperary/sitemap.xml即可看到站点地图
+#plugins:
+#  - hexo-generator-sitemap 
+
+# RSS
+# plugin:
+#   - hexo-generator-feed
   
+# #Feed Atom
+# feed:
+#   type: atom
+#   path: atom.xml
+#   limit: 20
