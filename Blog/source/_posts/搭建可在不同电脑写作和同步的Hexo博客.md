@@ -1,6 +1,6 @@
 ---
 title: 搭建可在不同电脑写作和同步的Hexo博客
-date: 2018-04-03 14:16:04
+date: 2013-04-03 14:16:04
 tags: 环境搭建
 categories: Objective-C
 ---
