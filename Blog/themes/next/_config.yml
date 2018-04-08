@@ -95,6 +95,7 @@ menu:
   home: / || home
   #about: /about/ || user
   Objective-C: /categories/Objective-C/ || th
+  shell: /categories/shell/ || taxi
   tags: /tags/ || tags
   # categories: /categories/ || th
   archives: /archives/ || archive

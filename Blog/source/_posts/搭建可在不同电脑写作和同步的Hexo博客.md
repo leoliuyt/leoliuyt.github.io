@@ -59,6 +59,7 @@ hexo clean
 2. 在博客的markdown文件中添加 `categories: Objective-C` //会生成一个`/categories/Objective-C/`路径
 3. 在主题配置文件`_config.yml`中的`menu` 添加 `Objective-C: /categories/Objective-C/ || th` 这个路径与上面的生成的要匹配
 
+设置分类图标可以从[Font Awesome](https://fontawesome.com)上查找
 ## 参考
 
 [Hexo文档](https://hexo.io/zh-cn/docs/index.html)
