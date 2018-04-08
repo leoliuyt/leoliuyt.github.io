@@ -86,7 +86,7 @@ deploy:
   type: git
   repository: 
       github: git@github.com:leoliuyt/leoliuyt.github.io.git
-      coding: git@git.coding.net:leoliubj/leoliubj.git
+      # coding: git@git.coding.net:leoliubj/leoliubj.git
   branch: master
 
 # 要启用数学公式支持
