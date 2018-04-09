@@ -591,7 +591,7 @@ abc : 字符串不为空
 实例：
 
 ```shell
-file="/var/www/runoob/test.sh"
+file="/Users/lbq/Documents/Code/LL_Workspace/DMShell/param.sh"
 if [ -r $file ]
 then
    echo "文件可读"
@@ -646,4 +646,563 @@ fi
 文件不是个目录
 文件不为空
 文件存在
+```
+
+### 流程控制
+
+和Java、PHP等语言不一样，sh的流程控制不可为空,如果else分支没有语句执行，就不要写这个else。
+#### if else
+
+if 语句语法格式：
+
+```shell
+if condition
+then
+    command1 
+    command2
+    ...
+    commandN 
+fi
+```
+
+写成一行就是：
+
+```shell
+if [ $(ps -ef | grep -c "ssh") -gt 1 ]; then echo "true"; fi
+```
+
+if else 语法格式：
+
+```shell
+if condition
+then 
+command1
+command2
+else
+command3
+fi
+```
+
+if else-if else 语法格式：
+
+```shell
+if condition1
+then
+command1
+elif condition2
+then
+command2
+else
+command3
+fi
+```
+
+#### for循环
+
+for循环一般格式为：
+
+```shell
+for var in item1  item2 ... itemN
+do
+    command1
+    command2
+    ...
+    commandN
+done
+```
+
+#### while语句
+
+while循环用于不断执行一系列命令，也用于从输入文件中读取数据；命令通常为测试条件。其格式为：
+
+```shell
+while condition
+do
+    command
+done
+```
+
+实例：
+
+```shell
+
+int=1
+while(( $int <= 5 ))
+do
+echo $int
+let "int++"
+done
+```
+使用中使用了 Bash let 命令，它用于执行一个或多个表达式，变量计算中不需要加上 $ 来表示变量，具体可查阅：Bash let 命令
+
+>注意:
+>while条件要用两个括号，并且与内容之间有空格
+
+while循环可用于读取键盘信息。下面的例子中，输入信息被设置为变量FILM，按<Ctrl-D>结束循环。
+
+```shell
+echo '按下 <CTRL-D> 退出'
+echo -n '输入你最喜欢的网站名: '
+while read input
+do
+    echo "是的！$input 是一个好网站"
+done
+```
+
+#### 无限循环
+
+无限循环语法格式：
+
+```shell
+while :
+do
+    command1
+done
+```
+
+或
+
+```shell
+while true
+do
+    command1
+done
+```
+
+或
+
+```shell
+for (( ; ; ))
+```
+
+#### until 循环
+
+until 循环执行一系列命令直至条件为 true 时停止。
+until 循环与 while 循环在处理方式上刚好相反。
+一般 while 循环优于 until 循环，但在某些时候—也只是极少数情况下，until 循环更加有用。
+until 语法格式:
+
+```shell
+until condition
+do
+    command
+done
+```
+
+condition 一般为条件表达式，如果返回值为 false，则继续执行循环体内的语句，否则跳出循环。
+以下实例我们使用 until 命令来输出 0 ~ 9 的数字：
+
+```shell
+a=0
+
+until [ ! $a -lt 10 ]
+do
+   echo $a
+   a=`expr $a + 1`
+done
+```
+
+#### case
+
+Shell case语句为多选择语句。可以用case语句匹配一个值与一个模式，如果匹配成功，执行相匹配的命令。case语句格式如下：
+
+```shell
+case 值 in
+模式1)
+    command1
+    command2
+    ...
+    commandN
+    ;;
+模式2）
+    command1
+    command2
+    ...
+    commandN
+    ;;
+esac
+```
+case工作方式如上所示。取值后面必须为单词in，每一模式必须以右括号结束。取值可以为变量或常数。匹配发现取值符合某一模式后，其间所有命令开始执行直至 ;;。
+取值将检测匹配的每一个模式。一旦模式匹配，则执行完匹配模式相应命令后不再继续其他模式。如果无一匹配模式，使用星号 * 捕获该值，再执行后面的命令。
+下面的脚本提示输入1到4，与每一种模式进行匹配：
+
+```shell
+echo '输入 1 到 4 之间的数字:'
+echo '你输入的数字为:'
+read aNum
+case $aNum in
+    1)  echo '你选择了 1'
+    ;;
+    2)  echo '你选择了 2'
+    ;;
+    3)  echo '你选择了 3'
+    ;;
+    4)  echo '你选择了 4'
+    ;;
+    *)  echo '你没有输入 1 到 4 之间的数字'
+    ;;
+esac
+```
+#### 跳出循环
+
+在循环过程中，有时候需要在未达到循环结束条件时强制跳出循环，Shell使用两个命令来实现该功能：break和continue。
+
+##### break命令
+
+break命令允许跳出所有循环（终止执行后面的所有循环）。
+
+```shell
+while :
+do
+    echo -n "输入 1 到 5 之间的数字:"
+    read aNum
+    case $aNum in
+        1|2|3|4|5) echo "你输入的数字为 $aNum!"
+        ;;
+        *) echo "你输入的数字不是 1 到 5 之间的! 游戏结束"
+            break
+        ;;
+    esac
+done
+```
+##### continue命令
+continue命令与break命令类似，只有一点差别，它不会跳出所有循环，仅仅跳出当前循环。
+对上面的例子进行修改：
+
+```shell
+while :
+do
+    echo -n "输入 1 到 5 之间的数字:"
+    read aNum
+    case $aNum in
+        1|2|3|4|5) echo "你输入的数字为 $aNum!"
+        ;;
+        *) echo "你输入的数字不是 1 到 5 之间的!"
+            continue
+            echo "游戏结束"
+        ;;
+    esac
+done
+```
+
+### echo命令
+
+Shell 的 echo 指令与 PHP 的 echo 指令类似，都是用于字符串的输出。命令格式：
+
+```shell
+echo string
+```
+#### 1.显示普通字符串
+
+```shell
+echo "It is a test"
+echo It is a test
+```
+
+#### 2.显示转义字符
+
+```shell
+echo "\"It is a test\""
+```
+结果：
+
+```shell
+"It is a test"
+```
+#### 3.显示变量
+
+```shell
+read name 
+echo "$name It is a test"
+```
+
+#### 4.显示换行
+
+```shell
+echo -e "OK! \n" # -e 开启转义
+echo "It it a test"
+```
+
+#### 5.显示不换行
+```shell
+echo -e "OK! \c" # -e 开启转义 \c 不换行
+echo "It is a test"
+```
+
+#### 6.显示结果定向至文件
+
+```shell
+echo "It is a test" > myfile
+```
+
+#### 7.原样输出字符串，不进行转义或取变量(用单引号)
+
+```shell
+echo '$name\"'
+```
+
+#### 8.显示命令执行结果
+
+```shell
+echo `date`
+```
+
+### test命令
+
+Shell中的 test 命令用于检查某个条件是否成立，它可以进行数值、字符和文件三个方面的测试。
+
+#### 数值测试
+
+参数|说明
+---|---
+-eq|等于则为真
+-ne|不等于则为真
+-gt|大于则为真
+-ge|大于等于则为真
+-lt|小于则为真
+-le|小于等于则为真
+
+实例：
+
+```shell
+num1=100
+num2=100
+if test $[num1] -eq $[num2]
+then
+    echo '两个数相等！'
+else
+    echo '两个数不相等！'
+fi
+```
+
+代码中的`[]`执行基本的算数运算
+
+```shell
+a=5
+b=6
+result=$[a+b]
+```
+
+#### 字符串测试
+
+参数|说明
+---|---
+=|等于则为真
+!=|不相等则为真
+-z 字符串|字符串的长度为零则为真
+-n 字符串|字符串的长度不为零则为真
+
+实例演示：
+
+```shell
+num1="ru1noob"
+num2="runoob"
+if test $num1 = $num2
+then
+    echo '两个字符串相等!'
+else
+    echo '两个字符串不相等!'
+fi
+```
+
+#### 文件测试
+
+参数|说明
+---|---
+-e 文件名|如果文件存在则为真
+-r 文件名|如果文件存在且可读则为真
+-w 文件名|如果文件存在且可写则为真
+-x 文件名|如果文件存在且可执行则为真
+-s 文件名|如果文件存在且至少有一个字符则为真
+-d 文件名|如果文件存在且为目录则为真
+-f 文件名|如果文件存在且为普通文件则为真
+-c 文件名|如果文件存在且为字符型特殊文件则为真
+-b 文件名|如果文件存在且为块特殊文件则为真
+
+实例演示：
+
+```shell
+cd /bin
+if test -e ./bash
+then
+    echo '文件已存在!'
+else
+    echo '文件不存在!'
+fi
+```
+### 函数
+
+shell中函数的定义格式如下：
+
+```shell
+[ function ] funname [()]
+
+{
+
+    action;
+
+    [return int;]
+
+}
+```
+说明：
+1、可以带function fun() 定义，也可以直接fun() 定义,不带任何参数。
+2、参数返回，可以显示加：return 返回，如果不加，将以最后一条命令运行结果，作为返回值。 return后跟数值n(0-255)
+
+### 输入/输出重定向
+
+重定向命令列表如下：
+
+命令	|说明
+---|---
+command > file	|将输出重定向到 file。
+command < file	|将输入重定向到 file。
+command >> file	|将输出以追加的方式重定向到 file。
+n > file	|将文件描述符为 n 的文件重定向到 file。
+n >> file	|将文件描述符为 n 的文件以追加的方式重定向到 file。
+n >& m	|将输出文件 m 和 n 合并。
+n <& m	|将输入文件 m 和 n 合并。
+<< tag	|将开始标记 tag 和结束标记 tag 之间的内容作为输入。
+
+>需要注意的是文件描述符 0 通常是标准输入（STDIN），1 是标准输出（STDOUT），2 是标准错误输出（STDERR）。
+
+#### 输出重定向
+
+实例：
+
+```shell
+who > users.txt
+echo "leoliu" > users.txt
+echo "追加内容" >> users.txt
+```
+
+#### 输入重定向
+
+```shell
+
+wc -l < users.txt
+```
+`wc -l`命令用来统计 users.txt 文件的行数
+
+#### 重定向深入讲解
+一般情况下，每个 Unix/Linux 命令运行时都会打开三个文件：
+
+- 标准输入文件(stdin)：stdin的文件描述符为0，Unix程序默认从stdin读取数据。
+- 标准输出文件(stdout)：stdout 的文件描述符为1，Unix程序默认向stdout输出数据。
+- 标准错误文件(stderr)：stderr的文件描述符为2，Unix程序会向stderr流中写入错误信息。
+
+默认情况下，command > file 将 stdout 重定向到 file，command < file 将stdin 重定向到 file。
+如果希望 stderr 重定向到 file，可以这样写：
+
+```shell
+$ command 2 > file
+```
+
+如果希望将 stdout 和 stderr 合并后重定向到 file，可以这样写：
+
+```shell
+$ command > file 2>&1
+或者
+$ command >> file 2>&1
+```
+如果希望对 stdin 和 stdout 都重定向，可以这样写：
+
+```shell
+$ command < file1 >file2
+```
+
+command 命令将 stdin 重定向到 file1，将 stdout 重定向到 file2。
+
+
+#### Here Document
+Here Document 是 Shell 中的一种特殊的重定向方式，用来将输入重定向到一个交互式 Shell 脚本或程序。
+它的基本的形式如下：
+
+```
+command << delimiter
+    document
+delimiter
+```
+它的作用是将两个 delimiter 之间的内容(document) 作为输入传递给 command。
+
+>注意：
+>结尾的delimiter 一定要顶格写，前面不能有任何字符，后面也不能有任何字符，包括空格和 tab 缩进。
+>开始的delimiter前后的空格会被忽略掉。
+
+实例
+在命令行中通过 wc -l 命令计算 Here Document 的行数：
+
+```shell
+$ wc -l << EOF
+    欢迎来到
+    菜鸟教程
+    www.runoob.com
+EOF
+```
+
+输出结果：
+
+```shell
+3          # 输出结果为 3 行
+```
+
+```shell
+cat << EOF
+欢迎来到
+菜鸟教程
+www.runoob.com
+EOF
+```
+
+#### /dev/null 文件
+
+如果希望执行某个命令，但又不希望在屏幕上显示输出结果，那么可以将输出重定向到 `/dev/null`：
+
+```shell
+$ command > /dev/null
+```
+
+`/dev/null` 是一个特殊的文件，写入到它的内容都会被丢弃；如果尝试从该文件读取内容，那么什么也读不到。但是 /dev/null 文件非常有用，将命令的输出重定向到它，会起到"禁止输出"的效果。
+如果希望屏蔽 stdout 和 stderr，可以这样写：
+
+```shell
+$ command > /dev/null 2>&1
+```
+
+>注意：0 是标准输入（STDIN），1 是标准输出（STDOUT），2 是标准错误输出（STDERR）。
+
+### 文件包含
+
+和其他语言一样，Shell 也可以包含外部脚本。这样可以很方便的封装一些公用的代码作为一个独立的文件。
+Shell 文件包含的语法格式如下：
+
+```shell
+. filename   # 注意点号(.)和文件名中间有一空格
+
+或
+
+source filename
+```
+
+实例
+创建两个 shell 脚本文件。
+test1.sh 代码如下：
+
+```shell
+#!/bin/bash
+
+url="http://www.runoob.com"
+```
+
+test2.sh 代码如下：
+
+```shell
+#!/bin/bash
+#使用 . 号来引用test1.sh 文件
+. ./test1.sh
+
+# 或者使用以下包含文件代码
+# source ./test1.sh
+
+echo "菜鸟教程官网地址：$url"
 ```
