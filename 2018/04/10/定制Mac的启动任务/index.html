@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Mac," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="在Mac上设置启动任务可以通过一下两种方式（我实验成功了这两种）:  通过系统设置界面设置 利用launchd设置   系统设置界面1、创建要运行的脚本 (run.sh) 12#!/bin/shls &amp;gt; ~/a.txt 设置脚本运行权限 1chmod +x run.sh 2、设置 设置脚本打开方式 右击脚本-&amp;gt;显示简介-&amp;gt;打开方式-&amp;gt; 可以选terminal  在系统偏好设">
+<meta name="keywords" content="Mac">
+<meta property="og:type" content="article">
+<meta property="og:title" content="定制Mac的启动任务">
+<meta property="og:url" content="http://leoliuyt.github.io/2018/04/10/定制Mac的启动任务/index.html">
+<meta property="og:site_name" content="Leoliu">
+<meta property="og:description" content="在Mac上设置启动任务可以通过一下两种方式（我实验成功了这两种）:  通过系统设置界面设置 利用launchd设置   系统设置界面1、创建要运行的脚本 (run.sh) 12#!/bin/shls &amp;gt; ~/a.txt 设置脚本运行权限 1chmod +x run.sh 2、设置 设置脚本打开方式 右击脚本-&amp;gt;显示简介-&amp;gt;打开方式-&amp;gt; 可以选terminal  在系统偏好设">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://leoliuyt.github.io/2018/04/10/定制Mac的启动任务/introduce.png">
+<meta property="og:image" content="http://leoliuyt.github.io/2018/04/10/定制Mac的启动任务/launch_config.png">
+<meta property="og:updated_time" content="2018-04-10T14:34:35.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="定制Mac的启动任务">
+<meta name="twitter:description" content="在Mac上设置启动任务可以通过一下两种方式（我实验成功了这两种）:  通过系统设置界面设置 利用launchd设置   系统设置界面1、创建要运行的脚本 (run.sh) 12#!/bin/shls &amp;gt; ~/a.txt 设置脚本运行权限 1chmod +x run.sh 2、设置 设置脚本打开方式 右击脚本-&amp;gt;显示简介-&amp;gt;打开方式-&amp;gt; 可以选terminal  在系统偏好设">
+<meta name="twitter:image" content="http://leoliuyt.github.io/2018/04/10/定制Mac的启动任务/introduce.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://leoliuyt.github.io/2018/04/10/定制Mac的启动任务/"/>
+
+
+
+
+
+  <title>定制Mac的启动任务 | Leoliu</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?39278431666862f9e43bc023abb6c81b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Leoliu</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-objective-c">
+          <a href="/categories/Objective-C/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Objective-C
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-shell">
+          <a href="/categories/shell/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-taxi"></i> <br />
+            
+            shell
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leoliuyt.github.io/2018/04/10/定制Mac的启动任务/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Leoliu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leoliu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">定制Mac的启动任务</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-10T12:29:48+08:00">
+                2018-04-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/shell/" itemprop="url" rel="index">
+                    <span itemprop="name">shell</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在Mac上设置启动任务可以通过一下两种方式（我实验成功了这两种）:</p>
+<ul>
+<li>通过系统设置界面设置</li>
+<li>利用launchd设置</li>
+</ul>
+<!-- Mac下的启动服务主要有三个地方可配置： 
+1，系统偏好设置->帐户->登陆项 
+2，/System/Library/StartupItems 和 /Library/StartupItems/ 
+3，launchd 系统初始化进程配置。  -->
+<h2 id="系统设置界面"><a href="#系统设置界面" class="headerlink" title="系统设置界面"></a>系统设置界面</h2><p>1、创建要运行的脚本 (run.sh)</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/sh</span><br><span class="line">ls &gt; ~/a.txt</span><br></pre></td></tr></table></figure>
+<p>设置脚本运行权限</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x run.sh</span><br></pre></td></tr></table></figure>
+<p>2、设置</p>
+<p>设置脚本打开方式</p>
+<p>右击脚本-&gt;<code>显示简介</code>-&gt;<code>打开方式</code>-&gt; 可以选terminal</p>
+<img src="/2018/04/10/定制Mac的启动任务/introduce.png" title="简介图">
+<p>在<code>系统偏好设置</code>-&gt;<code>用户与群众</code>-&gt;<code>当前用户</code>-&gt;<code>登陆项</code>-&gt;<code>+</code>添加上面所创建的脚本</p>
+<img src="/2018/04/10/定制Mac的启动任务/launch_config.png" title="启动设置图">
+<p>上面操作完成后，系统在每次重新启动后就会自动调用脚本</p>
+<h2 id="利用launchd设置"><a href="#利用launchd设置" class="headerlink" title="利用launchd设置"></a>利用launchd设置</h2><p><code>launchd</code> 是 Mac 下用于初始化操作系统的关键进程。通过启动硬盘指定目录下的配置文件，来完成启动任务。这些文件为 plist，本质上是 XML。</p>
+<h3 id="目录配置"><a href="#目录配置" class="headerlink" title="目录配置"></a>目录配置</h3><p>Mac 下 Launchd 指定目录有：</p>
+<p><code>~/Library/LaunchAgents</code></p>
+<p><code>/Library/LaunchAgents</code></p>
+<p><code>/Library/LaunchDaemons</code></p>
+<p><code>/System/Library/LaunchAgents</code></p>
+<p><code>/System/Library/LaunchDaemons</code></p>
+<p>其中的区别：</p>
+<p><code>/System/Library</code> 目录下存放的是系统文件</p>
+<p><code>/Library</code> 目录是系统管理员存放的第三方软件</p>
+<p><code>~/Library/</code> 目录是用户存放的第三方软件</p>
+<p><code>LaunchDaemons</code> 是用户未登陆前就启动的服务</p>
+<p><code>LaunchAgents</code> 是用户登陆后启动的服务</p>
+<h3 id="Plist-配置"><a href="#Plist-配置" class="headerlink" title="Plist 配置"></a>Plist 配置</h3><p>这里列举几个比较有用的配置关键字：</p>
+<p><code>Label</code> - 标识符，用来表示该任务的唯一性(与plist名称一致)</p>
+<p><code>Program</code> - 程序名称，用来说明运行哪个程序、脚本</p>
+<p><code>ProgramArguments</code> - 数组程序名，同上，只是可以运行多个程序</p>
+<p><code>WatchPaths</code> - 监控路径，当路径文件有变化是运行程序，也是数组</p>
+<p><code>RunAtLoad</code> - 是否在加载的同时</p>
+<p><code>StartInterval</code> - 间隔执行的时间，单位是秒</p>
+<p><code>StartCalendarInterval</code> - 运行的时间，单个时间点使用字典，多个时间点使用数组中包含字典的形式</p>
+<p><code>AbandonProcessGroup</code> - 在<code>job</code>结束时，launchd将杀死所有与这个<code>job</code>相同<code>group ID</code>的所有进程。将这个值设置为<code>true</code>后这个功能将失效</p>
+<p>更多配置可以查看<a href="https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man5/launchd.plist.5.html#//apple_ref/doc/man/5/launchd.plist" target="_blank" rel="noopener">苹果文档</a></p>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><ol>
+<li>设置定时任务</li>
+</ol>
+<p>进入 <code>~/Library/LaunchAgents</code>创建一个plist文件<code>com.leoliu.launch.awake.plist</code>,</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="meta">&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">plist</span> <span class="attr">version</span>=<span class="string">"1.0"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dict</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>Label<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">string</span>&gt;</span>com.leoliu.launch.awake<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>ProgramArguments<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">array</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">string</span>&gt;</span>/Users/lbq/Documents/Code/LL_Workspace/DMShell/awake.sh<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">array</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>RunAtLoad<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>StartInterval<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">integer</span>&gt;</span>5<span class="tag">&lt;/<span class="name">integer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dict</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plist</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>执行下面的<code>load</code>和<code>start</code>命令就可以了</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">cd ~/Library/LaunchAgents</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 加载任务, -w选项会将plist文件中无效的key覆盖掉，建议加上</span><br><span class="line"><span class="meta">$</span> launchctl load -w com.leoliu.launch.awake.plist</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 删除任务</span><br><span class="line"><span class="meta">$</span> launchctl unload -w com.leoliu.launch.awake.plist</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 查看任务列表, 使用 grep '任务部分名字' 过滤</span><br><span class="line"><span class="meta">$</span> launchctl list | grep 'com.leoliu'</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 开始任务</span><br><span class="line"><span class="meta">$</span> launchctl start  com.leoliu.launch.awake.plist</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 结束任务</span><br><span class="line"><span class="meta">$</span> launchctl stop   com.leoliu.launch.awake.plist</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>用户唤醒屏幕后自动运行脚本</li>
+</ol>
+<p><code>awake.sh</code>这个脚本的功能是发送一封邮件，如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">day=$(date +"%u")</span><br><span class="line">if [ $day -eq 2 ]</span><br><span class="line">then</span><br><span class="line"></span><br><span class="line">say 你好，欢迎登录</span><br><span class="line">email_date=$(date "+%Y-%m-%d_%H:%M:%S")  </span><br><span class="line">email_body="周天有人在$&#123;email_date&#125; 登陆了你的电脑"</span><br><span class="line">email_subject="入侵警告!!!"</span><br><span class="line">email_to="liubaoqiu@meishubao.com"</span><br><span class="line">echo "leoliu1033" | (sudo echo $email_body | mail -s $email_subject $email_to) </span><br><span class="line"></span><br><span class="line">if [ $? == 0 ]</span><br><span class="line">then </span><br><span class="line">user=$(whoami)</span><br><span class="line">echo -e "邮件发送成功\n $email_body $email_to $user" &gt; ~/Documents/Code/LL_Workspace/DMShell/1aa.txt</span><br><span class="line"><span class="meta">#</span> ls &gt; /Users/lbq/Documents/Code/LL_Workspace/DMShell/1aa.txt</span><br><span class="line">else </span><br><span class="line">echo -e "发送失败\n" &gt; ~/Documents/Code/LL_Workspace/DMShell/1aa.txt</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">else </span><br><span class="line">echo -e "失败\n" &gt; ~/Documents/Code/LL_Workspace/DMShell/1aa.txt</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
+<p>因为每次由睡眠到唤醒(屏幕亮起)后，<code>/Library/Preferences/SystemConfiguration/com.apple.airport.preferences.plist</code>文件会发生变化，所以可以通过观察该文件的变化，来确定是否唤起。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="meta">&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">plist</span> <span class="attr">version</span>=<span class="string">"1.0"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dict</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>Label<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">string</span>&gt;</span>com.leoliu.launch.awake<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>ProgramArguments<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">array</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">string</span>&gt;</span>/Users/lbq/Documents/Code/LL_Workspace/DMShell/awake.sh<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">array</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>RunAtLoad<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>WatchPaths<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">array</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">string</span>&gt;</span>/Library/Preferences/SystemConfiguration/com.apple.airport.preferences.plist<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">array</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dict</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plist</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>然后执行：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> launchctl load -w com.leoliu.launch.awake.plist</span><br><span class="line"><span class="meta">$</span> launchctl start  com.leoliu.launch.awake.plist</span><br></pre></td></tr></table></figure>
+<p>执行之后，发现并没有收到邮件，那是因为脚本执行结束后，<code>launchd</code>将杀死所有与当前脚本拥有相同<code>group ID</code>的所有进程。我们需要在<code>com.leoliu.launch.awake.plist</code>文件中加入下面内容：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">key</span>&gt;</span>AbandonProcessGroup<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<p>按快捷键<code>option+command+关机键</code>休眠后，在重新唤起，输入密码就会看到结果</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://makaiqian.com/setting-boot/" target="_blank" rel="noopener">mac环境下开机自启动Shell脚本</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/25049770" target="_blank" rel="noopener">利用 Launchd 定制 Mac 启动任务</a></p>
+<p><a href="https://developer.apple.com/library/content/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/Introduction.html#//apple_ref/doc/uid/10000172i-SW1-SW1" target="_blank" rel="noopener">Daemons and Services Programming Guide</a></p>
+<p><a href="https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man5/launchd.plist.5.html#//apple_ref/doc/man/5/launchd.plist" target="_blank" rel="noopener">launchd.plist说明</a></p>
+<p><a href="https://support.apple.com/de-at/HT2420" target="_blank" rel="noopener">Mac OS X: Creating a login hook</a></p>
+<p><a href="https://stackoverflow.com/questions/6442364/running-script-upon-login-mac" target="_blank" rel="noopener">Running script upon login mac [closed]</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Mac/" rel="tag"># Mac</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/09/Linux-命令/" rel="next" title="Linux 命令">
+                <i class="fa fa-chevron-left"></i> Linux 命令
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.png"
+                alt="Leoliu" />
+            
+              <p class="site-author-name" itemprop="name">Leoliu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/leoliuyt" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:leoliuyt@sina.cn" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://plus.google.com/u/0/113639913270953856300" target="_blank" title="Google">
+                      
+                        <i class="fa fa-fw fa-google"></i>Google</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/p/1005053266784037/home" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Weibo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#系统设置界面"><span class="nav-number">1.</span> <span class="nav-text">系统设置界面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用launchd设置"><span class="nav-number">2.</span> <span class="nav-text">利用launchd设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#目录配置"><span class="nav-number">2.1.</span> <span class="nav-text">目录配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Plist-配置"><span class="nav-number">2.2.</span> <span class="nav-text">Plist 配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实例"><span class="nav-number">2.3.</span> <span class="nav-text">实例</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Leoliu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
