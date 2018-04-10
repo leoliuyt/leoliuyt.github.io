@@ -6,8 +6,10 @@ categories: shell
 ---
 
 在Mac上设置启动任务可以通过一下两种方式（我实验成功了这两种）:
+
 - 通过系统设置界面设置
 - 利用launchd设置
+
 <!-- Mac下的启动服务主要有三个地方可配置： 
 1，系统偏好设置->帐户->登陆项 
 2，/System/Library/StartupItems 和 /Library/StartupItems/ 
@@ -21,6 +23,7 @@ categories: shell
 #!/bin/sh
 ls > ~/a.txt
 ```
+
 设置脚本运行权限
 
 ```shell
@@ -85,9 +88,11 @@ Mac 下 Launchd 指定目录有：
 
 `RunAtLoad` - 是否在加载的同时
 
-`StartInterval `间隔执行的时间，单位是秒
+`StartInterval` - 间隔执行的时间，单位是秒
 
-`StartCalendarInterval`：运行的时间，单个时间点使用`<dic>`，多个时间点使用 `<array> <dict></dict><array>`
+`StartCalendarInterval` - 运行的时间，单个时间点使用字典，多个时间点使用数组中包含字典的形式
+
+`AbandonProcessGroup` - 在`job`结束时，launchd将杀死所有与这个`job`相同`group ID`的所有进程。将这个值设置为`true`后这个功能将失效
 
 更多配置可以查看[苹果文档](https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man5/launchd.plist.5.html#//apple_ref/doc/man/5/launchd.plist)
 
@@ -96,6 +101,7 @@ Mac 下 Launchd 指定目录有：
 1. 设置定时任务
 
 进入 `~/Library/LaunchAgents`创建一个plist文件`com.leoliu.launch.awake.plist`,
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
@@ -114,6 +120,7 @@ Mac 下 Launchd 指定目录有：
 </dict>
 </plist>
 ```
+
 执行下面的`load`和`start`命令就可以了
 
 ```shell
@@ -134,9 +141,38 @@ $ launchctl start  com.leoliu.launch.awake.plist
 # 结束任务
 $ launchctl stop   com.leoliu.launch.awake.plist
 ```
-2. 用户输入密码登录成功后自动脚本
 
-因为每次登录成功后，`/Library/Preferences/SystemConfiguration/com.apple.airport.preferences.plist`文件会发生变化，所有可以通过观察该文件的变化，来确定是否是输入密码后登陆进来的。
+2. 用户唤醒屏幕后自动运行脚本
+
+`awake.sh`这个脚本的功能是发送一封邮件，如下：
+
+```shell
+day=$(date +"%u")
+if [ $day -eq 2 ]
+then
+
+say 你好，欢迎登录
+email_date=$(date "+%Y-%m-%d_%H:%M:%S")  
+email_body="周天有人在${email_date} 登陆了你的电脑"
+email_subject="入侵警告!!!"
+email_to="liubaoqiu@meishubao.com"
+echo "leoliu1033" | (sudo echo $email_body | mail -s $email_subject $email_to) 
+
+if [ $? == 0 ]
+then 
+user=$(whoami)
+echo -e "邮件发送成功\n $email_body $email_to $user" > ~/Documents/Code/LL_Workspace/DMShell/1aa.txt
+# ls > /Users/lbq/Documents/Code/LL_Workspace/DMShell/1aa.txt
+else 
+echo -e "发送失败\n" > ~/Documents/Code/LL_Workspace/DMShell/1aa.txt
+fi
+
+else 
+echo -e "失败\n" > ~/Documents/Code/LL_Workspace/DMShell/1aa.txt
+fi
+```
+
+因为每次由睡眠到唤醒(屏幕亮起)后，`/Library/Preferences/SystemConfiguration/com.apple.airport.preferences.plist`文件会发生变化，所以可以通过观察该文件的变化，来确定是否唤起。
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -158,12 +194,21 @@ $ launchctl stop   com.leoliu.launch.awake.plist
 </dict>
 </plist>
 ```
+
 然后执行：
 
 ```shell
 $ launchctl load -w com.leoliu.launch.awake.plist
 $ launchctl start  com.leoliu.launch.awake.plist
 ```
+
+执行之后，发现并没有收到邮件，那是因为脚本执行结束后，`launchd`将杀死所有与当前脚本拥有相同`group ID`的所有进程。我们需要在`com.leoliu.launch.awake.plist`文件中加入下面内容：
+
+```xml
+<key>AbandonProcessGroup</key>
+	<true/>
+```
+
 按快捷键`option+command+关机键`休眠后，在重新唤起，输入密码就会看到结果
 
 ## 参考
