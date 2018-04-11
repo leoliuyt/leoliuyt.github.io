@@ -123,3 +123,5 @@ gem install fastlane -NV
 [fastlane官网](https://docs.fastlane.tools)
 
 [iOS中fastlane的使用](http://blog.devzeng.com/blog/ios-fastlane-in-action.html)
+
+[小团队的自动化发布－Fastlane带来的全自动化发布](https://whlsxl.github.io/fastlane1/)
