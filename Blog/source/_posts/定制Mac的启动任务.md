@@ -155,8 +155,9 @@ say 你好，欢迎登录
 email_date=$(date "+%Y-%m-%d_%H:%M:%S")  
 email_body="周天有人在${email_date} 登陆了你的电脑"
 email_subject="入侵警告!!!"
-email_to="liubaoqiu@meishubao.com"
-echo "leoliu1033" | (sudo echo $email_body | mail -s $email_subject $email_to) 
+# 接收放的邮箱
+email_to="xxxx@xxx"
+echo "xx密码不能让你们看xx" | (sudo echo $email_body | mail -s $email_subject $email_to) 
 
 if [ $? == 0 ]
 then 
