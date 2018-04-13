@@ -97,6 +97,7 @@ menu:
   Objective-C: /categories/Objective-C/ || th
   shell: /categories/shell/ || taxi
   tool: /categories/tool/ || wrench
+  Cocoa: /categories/Cocoa  || apple
   tags: /tags/ || tags
   # categories: /categories/ || th
   archives: /archives/ || archive
