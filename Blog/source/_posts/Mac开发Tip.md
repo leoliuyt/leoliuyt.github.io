@@ -121,3 +121,31 @@ Mac应用要想访问网络，必须要手动配置一下才可以，配置如�
     return YES;
 }
 ```
+
+## NSView的动画
+
+要实现NSView从底部出现的动画，要注意必须设置两个神奇属性，否则根本没有动画效果：
+
+```objc
+    self.oneView = [[CustomView alloc] init];
+    self.oneView.wantsLayer = YES;
+    [self.view addSubview:self.oneView];
+    __block MASConstraint *bottomContraint = nil;
+    [self.oneView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.view);
+        bottomContraint=make.bottom.equalTo(self.view).offset(60.);
+        make.height.equalTo(@60.);
+    }];
+    //保证初始状态正确
+    [self.view layoutSubtreeIfNeeded];
+    
+    bottomContraint.offset(0.);
+
+    [NSAnimationContext runAnimationGroup:^(NSAnimationContext * _Nonnull context) {
+        context.duration = 5;
+        context.allowsImplicitAnimation=YES;
+        [self.view layoutSubtreeIfNeeded];
+    } completionHandler:nil];
+```
+
+其中`NSView`的`wantsLayer`和 `NSAnimationContext`的`allowsImplicitAnimation`这两个属性是必须要设置的！
