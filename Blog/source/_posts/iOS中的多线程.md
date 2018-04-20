@@ -390,6 +390,206 @@ void dispatch_async_limit(dispatch_queue_t queue,NSUInteger limitSemaphoreCount,
 
 ```
 
+ #### Dispatch Source
+
+`Dispatch Source` 是BSD系内核惯有功能`kqueue`的包装。`kqueue` 是在 XNU 内核中发生各种事件时，在应用程序编程方执行处理的技术。其 CPU 负荷非常小，尽量不占用资源。kqueue 可以说是应用程序处理 XNU 内核中发生的各种事件的方法中最优秀的一种。
+
+`Dispatch Source` 也使用在了 Core Foundation 框架的用于异步网络的API CFSocket 中。因为Foundation 框架的异步网络 API 是通过`CFSocket`实现的，所以可享受到仅使用 Foundation 框架的 `Dispatch Source` 带来的好处。
+
+那么优势何在？使用的 `Dispatch Source` 而不使用 `dispatch_async` 的唯一原因就是利用`联结`的优势。
+
+##### 创建dispatch_source_t
+
+```objc
+dispatch_source_t source = dispatch_source_create(DISPATCH_SOURCE_TYPE_DATA_ADD, 0, 0, dispatch_get_main_queue());
+```
+
+参数:
+
+参数|意义
+--------|--------
+type	|dispatch源可处理的事件类型
+handle	|可以理解为索引、id或句柄，假如要监听进程，需要传入进程的ID
+mask	|可以理解为描述，提供更详细的描述，让它知道具体要监听什么
+queue	|自定义源需要的一个队列，用来处理所有的响应句柄（block）
+
+
+Dispatch Source可处理的所有事件:
+
+名称	|意义
+--------------------------------|--------------------------------
+DISPATCH_SOURCE_TYPE_DATA_ADD	|自定义的事件，变量增加
+DISPATCH_SOURCE_TYPE_DATA_OR	|自定义的事件，变量OR
+DISPATCH_SOURCE_TYPE_MACH_SEND	|MACH端口发送
+DISPATCH_SOURCE_TYPE_MACH_RECV	|MACH端口接收
+DISPATCH_SOURCE_TYPE_PROC	    |进程监听,如进程的退出、创建一个或更多的子线程、进程收到UNIX信号
+DISPATCH_SOURCE_TYPE_READ	    |IO操作，如对文件的操作、socket操作的读响应
+DISPATCH_SOURCE_TYPE_SIGNAL	    |接收到UNIX信号时响应
+DISPATCH_SOURCE_TYPE_TIMER	    |定时器
+DISPATCH_SOURCE_TYPE_VNODE	    |文件状态监听，文件被删除、移动、重命名
+DISPATCH_SOURCE_TYPE_WRITE	    |IO操作，如对文件的操作、socket操作的写响应
+DISPATCH_SOURCE_TYPE_MEMORYPRESSURE|内存压力监听
+
+##### 自定义事件
+
+上面类型中可以使用自定时间的类型只有`DISPATCH_SOURCE_TYPE_DATA_ADD`和`DISPATCH_SOURCE_TYPE_DATA_OR`
+
+实例：
+
+当我们更新进度条时，可能在多个线程上同时做很多任务，每个任务完成后，刷新界面，更新一点进度条的进度，因为每个任务都更新一次进度条，造成界面刷新次数太多，可能会导致界面卡顿，所以此时利用Dispatch Source能很好的解决这种情况，因为Dispatch Source在刷新太频繁的时候会自动联结起来，下面就用代码实现一下这个场景。
+
+```objc
+
+- (void)dispatch_source_5
+{
+    dispatch_source_t source = dispatch_source_create(DISPATCH_SOURCE_TYPE_DATA_ADD, 0, 0, dispatch_get_main_queue());
+    //在主线程繁忙的时候将操作联结起来，等主线程空闲时 刷新UI 避免频繁的在主线程刷新UI
+    dispatch_source_set_event_handler(source, ^{
+        //当处理事件被最终执行时，计算后的数据可以通过dispatch_source_get_data来获取。这个数据的值在每次响应事件执行后会被重置，所以totalComplete的值是最终累积的值。
+        NSUInteger value = dispatch_source_get_data(source);
+        
+        NSLog(@"value：%@", @(value));
+        value = value == 100 ? 0 : value;
+        self.progressView.progress = value/10.;
+        
+        NSLog(@"线程号：%@", [NSThread currentThread]);
+    });
+    
+    dispatch_resume(source);
+    
+    self.progressView.progress = 1.0;
+    __block NSInteger timeout = 10;
+    dispatch_queue_t queue = dispatch_queue_create("com.yiqi.dmgcd", DISPATCH_QUEUE_SERIAL);
+    dispatch_source_t timerSource = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    dispatch_time_t time = dispatch_walltime(NULL, 0);
+    dispatch_source_set_timer(timerSource, time, 1.0*NSEC_PER_SEC, 0);
+    
+    dispatch_source_set_event_handler(timerSource, ^{
+        if (timeout <= 0) {
+            dispatch_source_cancel(timerSource);
+            NSLog(@"cancel");
+        } else {
+            timeout--;
+            NSLog(@"timeout = %tu  %f",timeout,timeout/10.);
+            NSInteger a = timeout == 0 ? 100 : timeout;
+            dispatch_source_merge_data(source,  a);//timeout == 0 时不会触发事件
+        }
+    });
+    
+    //开始执行
+    dispatch_resume(timerSource);
+}
+
+```
+
+联结方式为OR时
+
+```objc
+- (void)dispatch_source_6
+{
+    dispatch_source_t source = dispatch_source_create(DISPATCH_SOURCE_TYPE_DATA_OR, 0, 0, dispatch_get_main_queue());
+    dispatch_source_set_event_handler(source, ^{
+         NSLog(@"监听函数：%lu",dispatch_source_get_data(source));
+    });
+    dispatch_resume(source);
+    
+    for (int i = 1; i < 5 ; i++) {
+        dispatch_source_merge_data(source, i);
+        usleep(2000);
+    }
+}
+```
+
+`DISPATCH_SOURCE_TYPE_DATA_ADD` 与 `DISPATCH_SOURCE_TYPE_DATA_OR` 的区别：
+
+DISPATCH_SOURCE_TYPE_DATA_ADD 带别的方式为将`dispatch_source_merge_data`联结进来的数据进行加运算
+
+DISPATCH_SOURCE_TYPE_DATA_OR 带别的方式为将`dispatch_source_merge_data`联结进来的数据进行或运算
+
+比如上面的那个例子，先将`usleep(2000);`这段代码注释掉以后，通过`DISPATCH_SOURCE_TYPE_DATA_ADD`方式运行的到的结果会是 10（1+2+3+4），通过`DISPATCH_SOURCE_TYPE_DATA_OR`方式运行得到的结果是7 （1|2|3|4）
+
+如果将这段代码`usleep(2000);`放开，不管是用ADD还是OR会打印四次结果为下面所示,这正是联结的作用
+
+```
+监听函数：1
+监听函数：2
+监听函数：3
+监听函数：4
+```
+
+##### DISPATCH_SOURCE_TYPE_VNODE
+
+通过这种类型，可以监听文件状态
+
+状态类型|状态
+--|--
+DISPATCH_VNODE_DELETE	|文件被删除
+DISPATCH_VNODE_WRITE	|文件数据发生变化
+DISPATCH_VNODE_EXTEND	|文件size发生变化
+DISPATCH_VNODE_ATTRIB	|文件metadata发生变化
+DISPATCH_VNODE_LINK		|文件链接数发生变化
+DISPATCH_VNODE_RENAME	|文件被重命名
+DISPATCH_VNODE_REVOKE	|文件被revoked
+DISPATCH_VNODE_FUNLOCK	|文件被unlocked
+
+通过这个属性我们可以实现一个监听指定目录下文件内容是否发生变化，如果变化，我们可以来做一些操作,这里有一个我写工具[LLDirWatchDog](https://github.com/leoliuyt/LLDirWatchDog)欢迎star
+
+```objc
+
+- (void)start {
+    NSString* docPath = self.path;
+    if (!docPath) return;
+    
+    int dirFD = open([docPath fileSystemRepresentation], O_EVTONLY);
+    if (dirFD < 0) {return;}
+    
+    _dirQueueSource = dispatch_source_create(DISPATCH_SOURCE_TYPE_VNODE, dirFD, DISPATCH_VNODE_WRITE, dispatch_get_main_queue());
+    
+    if (!_dirQueueSource)
+    {
+        close(dirFD);
+    }
+    _dirFD = dirFD;
+    __weak typeof(self) weakSelf = self;
+    dispatch_source_set_event_handler(_dirQueueSource, ^{
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+        if (strongSelf.update) {
+            strongSelf.update();
+        }
+    });
+    dispatch_source_set_cancel_handler(_dirQueueSource, ^{close(dirFD);});
+    dispatch_resume(_dirQueueSource);
+}
+```
+
+
+##### DISPATCH_SOURCE_TYPE_MEMORYPRESSURE
+
+```objc
+//内存压力情况变化.
+- (void)dispatch_source_3
+{
+    dispatch_source_t source = dispatch_source_create(DISPATCH_SOURCE_TYPE_MEMORYPRESSURE, 0, DISPATCH_MEMORYPRESSURE_WARN|DISPATCH_MEMORYPRESSURE_CRITICAL, dispatch_get_main_queue());
+    dispatch_source_set_event_handler(source, ^{
+        dispatch_source_memorypressure_flags_t pressureLevel = dispatch_source_get_data(source);
+        if (pressureLevel & DISPATCH_MEMORYPRESSURE_WARN) {
+            NSLog(@"memeory warn");
+        }
+        
+        if (pressureLevel & DISPATCH_MEMORYPRESSURE_CRITICAL) {
+            NSLog(@"memeory critical");
+        }
+    });
+    dispatch_resume(source);
+}
+```
 
 ##参考
+
 [Parse的底层多线程处理思路](https://github.com/ChenYilong/ParseSourceCodeStudy/blob/master/01_Parse的多线程处理思路/Parse的底层多线程处理思路.md#parse-ios-sdk介绍)
+
+[IOS dispatch source 学习篇](https://www.jianshu.com/p/2f6eed90bb9d)
+
+[Dispatch Source的自定义事件](https://www.jianshu.com/p/89943e91bee9)
+
+[IOS Dispatch Source 笔记](https://www.jianshu.com/p/83c3b7e4af28)
