@@ -42,6 +42,51 @@ iOS中的三种多线程技术：
 
 ### NSOperation/NSOperationQueue
 
+`NSOperation`、`NSOperationQueue` 是基于 GCD 更高一层的封装，完全面向对象。但是比 GCD 更简单易用、代码可读性也更高。
+
+使用`NSOperation`、`NSOperationQueue`有一下几种优势：
+
+- 可添加完成的代码块，在操作完成后执行。
+- 添加操作之间的依赖关系，方便的控制执行顺序。
+- 设定操作执行的优先级。
+- 可以很方便的取消一个操作的执行。
+- 使用 KVO 观察对操作执行状态的更改：isExecuteing、isFinished、isCancelled。
+
+一般来说，`NSOperation` 需要配合 `NSOperationQueue` 来实现多线程。
+
+`NSOperation` 实现多线程的使用步骤分为三步：
+
+- 创建操作：先将需要执行的操作封装到一个 NSOperation 对象中。
+- 创建队列：创建 NSOperationQueue 对象。
+- 将操作加入到队列中：将 NSOperation 对象添加到 NSOperationQueue 对象中。
+
+但也有几种情况可以简化处理，下面会介绍到。
+
+#### NSOperation
+
+NSOperation 是个抽象类，不能用来封装操作。我们只有使用它的子类来封装操作。我们有三种方式来封装操作。
+
+使用子类 NSInvocationOperation
+使用子类 NSBlockOperation
+自定义继承自 NSOperation 的子类，通过实现内部相应的方法来封装操作。
+
+```objc
+ NSInvocationOperation *invocation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(invokeAction:) object:nil];
+[invocation start];
+
+__weak typeof(self) weakSelf = self;
+    NSBlockOperation *op = [NSBlockOperation blockOperationWithBlock:^{
+        [weakSelf invokeAction:nil];
+    }];
+    [op start];
+```
+`NSInvocationOperation` 这种通过start 方式开启的任务，会运行在当前线程中。
+`NSBlockOperation` 没调用`addExecutionBlock`并用start方式开启任务的效果跟`NSInvocationOperation`相同，也是回运行在当前线程，但当调用`addExecutionBlock`后，就可能会开启多个线程来运行任务。
+
+#### NSOperationQueue
+
+
+
 ### GCD(Grand Central Dispatch)
 
 #### barrier
@@ -593,3 +638,5 @@ DISPATCH_VNODE_FUNLOCK	|文件被unlocked
 [Dispatch Source的自定义事件](https://www.jianshu.com/p/89943e91bee9)
 
 [IOS Dispatch Source 笔记](https://www.jianshu.com/p/83c3b7e4af28)
+
+[iOS多线程：『NSOperation、NSOperationQueue』详尽总结](https://www.jianshu.com/p/4b1d77054b35)
