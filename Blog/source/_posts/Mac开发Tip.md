@@ -70,6 +70,24 @@ int main(int argc, const char * argv[]) {
     self.view.layer.backgroundColor = [NSColor orangeColor].CGColor;
 ```
 
+## 给NSScrollView设置背景颜色
+
+`NSScrollView`有`backgroundColor`这个属性，可以通过设置这个属性和`drawsBackground`来设置`NSScrollView`的背景颜色,`drawsBackground`不设置的话也是无法显示背景颜色的
+```objc
+_scrollView.backgroundColor = [NSColor redColor];
+_scrollView.drawsBackground = YES;
+
+//clear color 要设置为NO
+_scrollView.backgroundColor = [NSColor clearColor];
+_scrollView.drawsBackground = NO;
+```
+
+## 给NSCollectionView设置透明背景
+
+```objc
+[_collectionView setBackgroundColors:@[[NSColor clearColor]]];
+```
+
 ## 访问网络
 
 Mac应用要想访问网络，必须要手动配置一下才可以，配置如图：
