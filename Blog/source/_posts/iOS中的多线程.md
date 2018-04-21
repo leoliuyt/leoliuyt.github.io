@@ -50,42 +50,160 @@ iOS中的三种多线程技术：
 - 添加操作之间的依赖关系，方便的控制执行顺序。
 - 设定操作执行的优先级。
 - 可以很方便的取消一个操作的执行。
-- 使用 KVO 观察对操作执行状态的更改：isExecuteing、isFinished、isCancelled。
+- 使用 KVO 观察对操作执行状态的更改：isExecuteing、isFinished、isCancelled、isReady。
 
-一般来说，`NSOperation` 需要配合 `NSOperationQueue` 来实现多线程。
+`NSOperation`表示了一个独立的计算单元。作为一个抽象类，它给了它的子类一个十分有用而且线程安全的方式来建立状态、优先级、依赖性和取消等的模型。或者，你不是很喜欢再自己继承`NSOperation`的话，框架还提供`NSInvocationOperation`、`NSBlockOperation`两个继承自`NSOperation`的类。
 
-`NSOperation` 实现多线程的使用步骤分为三步：
+所以我们有三种方式来封装操作：
 
-- 创建操作：先将需要执行的操作封装到一个 NSOperation 对象中。
-- 创建队列：创建 NSOperationQueue 对象。
-- 将操作加入到队列中：将 NSOperation 对象添加到 NSOperationQueue 对象中。
+- 使用子类 NSInvocationOperation
+- 使用子类 NSBlockOperation
+- 自定义继承自 NSOperation 的子类，通过实现内部相应的方法来封装操作。
 
-但也有几种情况可以简化处理，下面会介绍到。
+但是仅仅把计算封装进一个对象而不做其他处理显然没有多大用处，我们还需要`NSOperationQueue`来大显身手。
+`NSOperationQueue`控制着这些并行操作的执行，它扮演者优先级队列的角色，让它管理的高优先级操作(`NSOperation -queuePriority`)能优先于低优先级的操作运行的情况下，使它管理的操作能基本遵循先进先出的原则执行。此外，在你设置了能并行运行的操作的最大值(`maxConcurrentOperationCount`)之后，`NSOperationQueue`还能并行执行操作。
 
-#### NSOperation
+让一个`NSOperation`操作开始，你可以直接调用`-start`，或者将它添加到`NSOperationQueue`中，添加之后，它会在队列排到它以后自动执行。
 
-NSOperation 是个抽象类，不能用来封装操作。我们只有使用它的子类来封装操作。我们有三种方式来封装操作。
+现在让我们通过怎样使用和怎样通过继承实现功能来看看`NSOperation`稍微复杂的部分。
 
-使用子类 NSInvocationOperation
-使用子类 NSBlockOperation
-自定义继承自 NSOperation 的子类，通过实现内部相应的方法来封装操作。
+#### 状态
+
+`NSOperation`包含了一个十分优雅的状态机来描述每一个操作的执行。
 
 ```objc
- NSInvocationOperation *invocation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(invokeAction:) object:nil];
-[invocation start];
-
-__weak typeof(self) weakSelf = self;
-    NSBlockOperation *op = [NSBlockOperation blockOperationWithBlock:^{
-        [weakSelf invokeAction:nil];
-    }];
-    [op start];
+isReady → isExecuting → isFinished
 ```
-`NSInvocationOperation` 这种通过start 方式开启的任务，会运行在当前线程中。
-`NSBlockOperation` 没调用`addExecutionBlock`并用start方式开启任务的效果跟`NSInvocationOperation`相同，也是回运行在当前线程，但当调用`addExecutionBlock`后，就可能会开启多个线程来运行任务。
 
-#### NSOperationQueue
+为了替代不那么清晰的state属性，状态直接由上面那些keypath的KVO通知决定，也就是说，当一个操作在准备好被执行的时候，它发送了一个KVO通知给`isReady`的keypath，让这个keypath对应的属性`isReady`在被访问的时候返回YES。
 
+每一个属性对于其他的属性必须是互相独立不同的，也就是同时只可能有一个属性返回YES，从而才能维护一个连续的状态：`- isReady`: 返回 YES 表示操作已经准备好被执行, 如果返回NO则说明还有其他没有先前的相关步骤没有完成。 `- isExecuting`: 返回YES表示操作正在执行，反之则没在执行。 `- isFinished` : 返回YES表示操作执行成功或者被取消了，`NSOperationQueue`只有当它管理的所有操作的`isFinished`属性全标为YES以后操作才停止出列，也就是队列停止运行，所以正确实现这个方法对于避免死锁很关键。
 
+#### 取消
+
+早些取消那些没必要的操作是十分有用的。取消的原因可能包括用户的明确操作或者某个相关的操作失败。
+
+与之前的执行状态类似，当`NSOperation`的`-cancel`状态调用的时候会通过KVO通知`isCancelled`的keypath来修改`isCancelled`属性的返回值，`NSOperation`需要尽快地清理一些内部细节，而后到达一个合适的最终状态。特别的，这个时候`isCancelled`和`isFinished`的值将是YES，而`isExecuting`的值则为NO。
+
+#### 优先级
+
+不可能所有的操作都是一样重要，通过以下的顺序设置queuePriority属性可以加快或者推迟操作的执行：
+
+```objc
+NSOperationQueuePriorityVeryHigh
+NSOperationQueuePriorityHigh
+NSOperationQueuePriorityNormal
+NSOperationQueuePriorityLow
+NSOperationQueuePriorityVeryLow
+```
+
+此外，有些操作还可以指定`threadPriority`的值，它的取值范围可以从0.0到1.0，1.0代表最高的优先级。鉴于`queuePriority`属性决定了操作执行的顺序，`threadPriority`则指定了当操作开始执行以后的CPU计算能力的分配，如果你不知道这是什么，好吧，你可能根本没必要知道这是什么。
+
+#### 依赖性
+
+根据你应用的复杂度不同，将大任务再分成一系列子任务一般都是很有意义的，而你能通过NSOperation的依赖性实现。
+
+比如说，对于服务器下载并压缩一张图片的整个过程，你可能会将这个整个过程分为两个操作（可能你还会用到这个网络子过程再去下载另一张图片，然后用压缩子过程去压缩磁盘上的图片）。显然图片需要等到下载完成之后才能被调整尺寸，所以我们定义网络子操作是压缩子操作的依赖，通过代码来说就是：
+
+```Objective-C
+[resizingOperation addDependency:networkingOperation];
+[operationQueue addOperation:networkingOperation];
+[operationQueue addOperation:resizingOperation];
+```
+
+除非一个操作的依赖的isFinished返回YES，不然这个操作不会开始。时时牢记将所有的依赖关系添加到操作队列很重要!!!
+
+此外，确保不要意外地创建依赖循环，像A依赖B，B又依赖A，这也会导致死锁。
+
+#### completionBlock
+
+每当一个`NSOperation`执行完毕，它就会调用它的`completionBlock`属性一次，这提供了一个非常好的方式让你能在视图控制器(View Controller)里或者模型(Model)里加入自己更多自己的代码逻辑。比如说，你可以在一个网络请求操作的`completionBlock`来处理操作执行完以后从服务器下载下来的数据。
+
+#### 自定义NSOperation
+
+自定义`NSOperation`时，思路都是大同小异，大致可以分为一下几步：
+
+创建一个集成自NSOperation的类
+重写NSOperation的main()方法，在main()方法中实现耗时操作
+然后使用时创建自定义的NNSOperation对象，把它添加到NSOperationQueue中，这样就可以自动执行了
+其实，这只是自定义NSOperation的一种方法，而且是比较简单的一种方法，不需要自己去控制NSOperation的完成，取消等。另外一种方式是重写NSOperation的start方法，这种方法就需要你自己去控制NSOperation的完成，取消，执行等，而且有许多需要注意的地方。下面着重介绍一些第二种方法。
+
+第一种方式像下面那样就可以了，执行完耗时操作后，这个operation会被自动`dealloc`
+
+```objc
+- (void)main
+{
+    NSLog(@"%s",__func__);
+    [NSThread sleepForTimeInterval:3.0];
+    NSLog(@"%@-耗时操作执行结束",[NSThread currentThread]);
+}
+
+- (void)dealloc
+{
+    NSLog(@"%s",__func__);
+}
+
+/**
+结果：
+ -[DMOperation main]
+ <NSThread: 0x60c000263dc0>{number = 3, name = (null)}-执行结束
+ -[DMOperation dealloc]
+*/
+```
+
+如果第二种方式就需要自己控制状态
+
+```objc
+@interface DMOperation ()
+@property (assign, nonatomic, getter = isExecuting) BOOL executing;
+@property (assign, nonatomic, getter = isFinished) BOOL finished;
+@end
+@implementation DMOperation
+
+@synthesize finished = _finished;
+@synthesize executing = _executing;
+- (void)main
+{
+    NSLog(@"%s",__func__);
+}
+
+- (void)start
+{
+    NSLog(@"%s",__func__);
+    @synchronized(self){
+        if (self.isCancelled) {
+            self.finished = YES;
+            return;
+        }
+    }
+    self.executing = YES;
+    [NSThread sleepForTimeInterval:3.0];
+    self.executing = NO;
+    self.finished = YES;//不讲finished设置为YES 是不会被dealloc的
+    NSLog(@"%@-执行结束",[NSThread currentThread]);
+}
+
+- (void)setFinished:(BOOL)finished {
+    [self willChangeValueForKey:@"isFinished"];
+    _finished = finished;
+    [self didChangeValueForKey:@"isFinished"];
+}
+
+- (void)setExecuting:(BOOL)executing {
+    [self willChangeValueForKey:@"isExecuting"];
+    _executing = executing;
+    [self didChangeValueForKey:@"isExecuting"];
+}
+
+- (void)dealloc
+{
+    NSLog(@"%s",__func__);
+}
+```
+
+重写了`- (void)start`方法后，`- (void)main`方法不会被调用
+
+`finished` 设置为YES后才会调用`dealloc`,这是只有`finished`后，才会从`NSOperationQueue`队列中移除。
 
 ### GCD(Grand Central Dispatch)
 
@@ -629,7 +747,7 @@ DISPATCH_VNODE_FUNLOCK	|文件被unlocked
 }
 ```
 
-##参考
+## 参考
 
 [Parse的底层多线程处理思路](https://github.com/ChenYilong/ParseSourceCodeStudy/blob/master/01_Parse的多线程处理思路/Parse的底层多线程处理思路.md#parse-ios-sdk介绍)
 
@@ -640,3 +758,7 @@ DISPATCH_VNODE_FUNLOCK	|文件被unlocked
 [IOS Dispatch Source 笔记](https://www.jianshu.com/p/83c3b7e4af28)
 
 [iOS多线程：『NSOperation、NSOperationQueue』详尽总结](https://www.jianshu.com/p/4b1d77054b35)
+
+[NSHipster-NSOperation](http://nshipster.cn/nsoperation/)
+
+[iOS多线程篇：NSThread](http://www.cocoachina.com/ios/20160412/15903.html)
