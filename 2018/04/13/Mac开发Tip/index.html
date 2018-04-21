@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Mac," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="删除Main.Storyboard,纯代码开发如果想纯代码开发Mac应用，删除Main.Storyboard,用代码构建初始化窗口，步骤如下： 1、删除Main.Storyboard,修改info.plist  2、修改main.m中代码如下： 12345678#import &quot;AppDelegate.h&quot;int main(int argc, const char * argv[]) &amp;#123">
+<meta name="keywords" content="Mac">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mac开发Tip">
+<meta property="og:url" content="http://leoliuyt.github.io/2018/04/13/Mac开发Tip/index.html">
+<meta property="og:site_name" content="Leoliu">
+<meta property="og:description" content="删除Main.Storyboard,纯代码开发如果想纯代码开发Mac应用，删除Main.Storyboard,用代码构建初始化窗口，步骤如下： 1、删除Main.Storyboard,修改info.plist  2、修改main.m中代码如下： 12345678#import &quot;AppDelegate.h&quot;int main(int argc, const char * argv[]) &amp;#123">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://leoliuyt.github.io/2018/04/13/Mac开发Tip/Cocoa@2x.png">
+<meta property="og:image" content="http://leoliuyt.github.io/2018/04/13/Mac开发Tip/network@2x.png">
+<meta property="og:updated_time" content="2018-04-20T12:42:29.861Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mac开发Tip">
+<meta name="twitter:description" content="删除Main.Storyboard,纯代码开发如果想纯代码开发Mac应用，删除Main.Storyboard,用代码构建初始化窗口，步骤如下： 1、删除Main.Storyboard,修改info.plist  2、修改main.m中代码如下： 12345678#import &quot;AppDelegate.h&quot;int main(int argc, const char * argv[]) &amp;#123">
+<meta name="twitter:image" content="http://leoliuyt.github.io/2018/04/13/Mac开发Tip/Cocoa@2x.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://leoliuyt.github.io/2018/04/13/Mac开发Tip/"/>
+
+
+
+
+
+  <title>Mac开发Tip | Leoliu</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?39278431666862f9e43bc023abb6c81b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Leoliu</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-objective-c">
+          <a href="/categories/Objective-C/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Objective-C
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-shell">
+          <a href="/categories/shell/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-taxi"></i> <br />
+            
+            shell
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tool">
+          <a href="/categories/tool/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-wrench"></i> <br />
+            
+            工具
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-cocoa">
+          <a href="/categories/Cocoa" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-apple"></i> <br />
+            
+            Cocoa
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leoliuyt.github.io/2018/04/13/Mac开发Tip/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Leoliu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leoliu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Mac开发Tip</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-13T09:38:16+08:00">
+                2018-04-13
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Cocoa/" itemprop="url" rel="index">
+                    <span itemprop="name">Cocoa</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <img src="/2018/04/13/Mac开发Tip/Cocoa@2x.png" title="Cocoa">
+<h2 id="删除Main-Storyboard-纯代码开发"><a href="#删除Main-Storyboard-纯代码开发" class="headerlink" title="删除Main.Storyboard,纯代码开发"></a>删除<code>Main.Storyboard</code>,纯代码开发</h2><p>如果想纯代码开发Mac应用，删除<code>Main.Storyboard</code>,用代码构建初始化窗口，步骤如下：</p>
+<p>1、删除<code>Main.Storyboard</code>,修改<code>info.plist</code></p>
+
+<p>2、修改<code>main.m</code>中代码如下：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"AppDelegate.h"</span></span></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line">    <span class="built_in">NSApplication</span>*applicaton = [<span class="built_in">NSApplication</span> sharedApplication];</span><br><span class="line">    <span class="keyword">id</span> delegete = [[AppDelegate alloc]init];</span><br><span class="line">    </span><br><span class="line">    applicaton.delegate= delegete;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">NSApplicationMain</span>(argc, argv);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3、修改<code>AppDelegate.m</code>中代码如下:</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)applicationDidFinishLaunching:(<span class="built_in">NSNotification</span> *)aNotification &#123;</span><br><span class="line">    <span class="comment">// Insert code here to initialize your application</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//创建Window的两种方式</span></span><br><span class="line">    DMRootViewController *vc = [[DMRootViewController alloc] init];</span><br><span class="line">    <span class="comment">//创建Window方式一：</span></span><br><span class="line"><span class="comment">//    self.window = [NSWindow windowWithContentViewController:vc];</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//创建Window方式二：</span></span><br><span class="line">    <span class="keyword">self</span>.window = [[<span class="built_in">NSWindow</span> alloc] initWithContentRect:<span class="built_in">CGRectMake</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">800</span>,<span class="number">600</span>)</span><br><span class="line">                                              styleMask:<span class="built_in">NSWindowStyleMaskTitled</span>|<span class="built_in">NSWindowStyleMaskMiniaturizable</span>|<span class="built_in">NSWindowStyleMaskResizable</span>|<span class="built_in">NSWindowStyleMaskClosable</span></span><br><span class="line">                                                backing:<span class="built_in">NSBackingStoreRetained</span></span><br><span class="line">                                                  defer:<span class="literal">NO</span>];</span><br><span class="line">    <span class="keyword">self</span>.window.contentViewController = vc;</span><br><span class="line">  </span><br><span class="line">    </span><br><span class="line">    <span class="comment">//window 显示出来也有两种方式：</span></span><br><span class="line">    </span><br><span class="line">    [<span class="keyword">self</span>.window center];</span><br><span class="line">    <span class="comment">//window显示方式一：</span></span><br><span class="line"><span class="comment">//    [self.window makeKeyAndOrderFront:nil];</span></span><br><span class="line">    <span class="comment">//window显示方式二：</span></span><br><span class="line">    [<span class="keyword">self</span>.window makeKeyWindow];</span><br><span class="line">    <span class="comment">//将window与APP绑定，如果不绑定，无法显示Window。</span></span><br><span class="line">    [<span class="built_in">NSApp</span> beginModalSessionForWindow:<span class="keyword">self</span>.window];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里要注意<code>DMRootViewController</code>中再没使用nib的情况下，要通过实现<code>loadView</code>来加载<code>Controller</code>中的View</p>
+<h2 id="给NSView设置背景颜色"><a href="#给NSView设置背景颜色" class="headerlink" title="给NSView设置背景颜色"></a>给NSView设置背景颜色</h2><p><code>NSView</code>没有<code>backgroudColor</code>这个属性，要设置背景色要通过layer来设置，并且要开开启<code>wantsLayer</code>这个属性，代码如下：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span>.view.wantsLayer = <span class="literal">YES</span>;</span><br><span class="line"><span class="keyword">self</span>.view.layer.backgroundColor = [<span class="built_in">NSColor</span> orangeColor].CGColor;</span><br></pre></td></tr></table></figure>
+<h2 id="给NSScrollView设置背景颜色"><a href="#给NSScrollView设置背景颜色" class="headerlink" title="给NSScrollView设置背景颜色"></a>给NSScrollView设置背景颜色</h2><p><code>NSScrollView</code>有<code>backgroundColor</code>这个属性，可以通过设置这个属性和<code>drawsBackground</code>来设置<code>NSScrollView</code>的背景颜色,<code>drawsBackground</code>不设置的话也是无法显示背景颜色的<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">_scrollView.backgroundColor = [<span class="built_in">NSColor</span> redColor];</span><br><span class="line">_scrollView.drawsBackground = <span class="literal">YES</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//clear color 要设置为NO</span></span><br><span class="line">_scrollView.backgroundColor = [<span class="built_in">NSColor</span> clearColor];</span><br><span class="line">_scrollView.drawsBackground = <span class="literal">NO</span>;</span><br></pre></td></tr></table></figure></p>
+<h2 id="给NSCollectionView设置透明背景"><a href="#给NSCollectionView设置透明背景" class="headerlink" title="给NSCollectionView设置透明背景"></a>给NSCollectionView设置透明背景</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[_collectionView setBackgroundColors:@[[<span class="built_in">NSColor</span> clearColor]]];</span><br></pre></td></tr></table></figure>
+<h2 id="访问网络"><a href="#访问网络" class="headerlink" title="访问网络"></a>访问网络</h2><p>Mac应用要想访问网络，必须要手动配置一下才可以，配置如图：</p>
+<img src="/2018/04/13/Mac开发Tip/network@2x.png" title="访问网络配置">
+<p>勾选上<code>Outgoing Connections(tClien)</code>就可以访问网络了，如有想要使用摄像头、麦克风等硬件设备，那么可以勾选上<code>Camera</code>、<code>Microphone</code>等配置项</p>
+<h2 id="window被close后，点击Dock重新显示出来"><a href="#window被close后，点击Dock重新显示出来" class="headerlink" title="window被close后，点击Dock重新显示出来"></a>window被close后，点击<code>Dock</code>重新显示出来</h2><p>当你的界面被关闭后，想点击<code>Dock</code>重新显示(类似QQ、微信的效果)，可以分两种情况实现：</p>
+<p>1、使用<code>Main.Storyboard</code>的情况</p>
+<p>实现<code>AppDelegate</code>中的方法，如下：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">-(<span class="built_in">BOOL</span>)applicationShouldHandleReopen:(<span class="built_in">NSApplication</span> *)theApplication hasVisibleWindows:(<span class="built_in">BOOL</span>)flag</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (!flag)&#123;<span class="comment">//为了让close后的window，点dock中应用图标显示出来</span></span><br><span class="line">        <span class="built_in">NSStoryboard</span> *sb = [<span class="built_in">NSStoryboard</span> mainStoryboard];</span><br><span class="line">        <span class="built_in">NSWindowController</span> *windowController = [sb instantiateInitialController];</span><br><span class="line">        [windowController.window makeKeyAndOrderFront:<span class="keyword">self</span>];</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NO</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2、使用纯代码的情况</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-(<span class="built_in">BOOL</span>)applicationShouldHandleReopen:(<span class="built_in">NSApplication</span> *)theApplication hasVisibleWindows:(<span class="built_in">BOOL</span>)flag</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (!flag)&#123;<span class="comment">//为了让close后的window，点dock中应用图标显示出来</span></span><br><span class="line">        [<span class="keyword">self</span>.window makeKeyAndOrderFront:<span class="keyword">self</span>];</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NO</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如果想点击<code>x</code>直接退出程序,可以通过实现<code>NSWindowDelegate</code>的代理来处理</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">BOOL</span>)windowShouldClose:(<span class="built_in">NSWindow</span> *)sender</span><br><span class="line">&#123;</span><br><span class="line">    [<span class="built_in">NSApp</span> terminate:<span class="literal">nil</span>];</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="NSView的动画"><a href="#NSView的动画" class="headerlink" title="NSView的动画"></a>NSView的动画</h2><p>要实现NSView从底部出现的动画，要注意必须设置两个神奇属性，否则根本没有动画效果：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span>.oneView = [[CustomView alloc] init];</span><br><span class="line"><span class="keyword">self</span>.oneView.wantsLayer = <span class="literal">YES</span>;</span><br><span class="line">[<span class="keyword">self</span>.view addSubview:<span class="keyword">self</span>.oneView];</span><br><span class="line">__block MASConstraint *bottomContraint = <span class="literal">nil</span>;</span><br><span class="line">[<span class="keyword">self</span>.oneView mas_makeConstraints:^(MASConstraintMaker *make) &#123;</span><br><span class="line">    make.left.right.equalTo(<span class="keyword">self</span>.view);</span><br><span class="line">    bottomContraint=make.bottom.equalTo(<span class="keyword">self</span>.view).offset(<span class="number">60.</span>);</span><br><span class="line">    make.height.equalTo(@<span class="number">60.</span>);</span><br><span class="line">&#125;];</span><br><span class="line"><span class="comment">//保证初始状态正确</span></span><br><span class="line">[<span class="keyword">self</span>.view layoutSubtreeIfNeeded];</span><br><span class="line"></span><br><span class="line">bottomContraint.offset(<span class="number">0.</span>);</span><br><span class="line"></span><br><span class="line">[<span class="built_in">NSAnimationContext</span> runAnimationGroup:^(<span class="built_in">NSAnimationContext</span> * _Nonnull context) &#123;</span><br><span class="line">    context.duration = <span class="number">5</span>;</span><br><span class="line">    context.allowsImplicitAnimation=<span class="literal">YES</span>;</span><br><span class="line">    [<span class="keyword">self</span>.view layoutSubtreeIfNeeded];</span><br><span class="line">&#125; completionHandler:<span class="literal">nil</span>];</span><br></pre></td></tr></table></figure>
+<p>其中<code>NSView</code>的<code>wantsLayer</code>和 <code>NSAnimationContext</code>的<code>allowsImplicitAnimation</code>这两个属性是必须要设置的！</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Mac/" rel="tag"># Mac</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/11/fastlane在iOS中的使用/" rel="next" title="fastlane在iOS中的使用">
+                <i class="fa fa-chevron-left"></i> fastlane在iOS中的使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/19/iOS中的多线程/" rel="prev" title="iOS中的多线程">
+                iOS中的多线程 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.png"
+                alt="Leoliu" />
+            
+              <p class="site-author-name" itemprop="name">Leoliu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/leoliuyt" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:leoliuyt@sina.cn" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://plus.google.com/u/0/113639913270953856300" target="_blank" title="Google">
+                      
+                        <i class="fa fa-fw fa-google"></i>Google</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/p/1005053266784037/home" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Weibo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#删除Main-Storyboard-纯代码开发"><span class="nav-number">1.</span> <span class="nav-text">删除Main.Storyboard,纯代码开发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#给NSView设置背景颜色"><span class="nav-number">2.</span> <span class="nav-text">给NSView设置背景颜色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#给NSScrollView设置背景颜色"><span class="nav-number">3.</span> <span class="nav-text">给NSScrollView设置背景颜色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#给NSCollectionView设置透明背景"><span class="nav-number">4.</span> <span class="nav-text">给NSCollectionView设置透明背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#访问网络"><span class="nav-number">5.</span> <span class="nav-text">访问网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#window被close后，点击Dock重新显示出来"><span class="nav-number">6.</span> <span class="nav-text">window被close后，点击Dock重新显示出来</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NSView的动画"><span class="nav-number">7.</span> <span class="nav-text">NSView的动画</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Leoliu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="环境搭建," />
+  <meta name="keywords" content="fastlane," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="搭建可在不同电脑写作和同步的Hexo博客 安装Node.js 和 git环境，具体参照Hexo文档 在Github上创建仓库 leoliuyt.github.io 创建两个分支：master 与 hexo 设置hexo为默认分支（因为我们只需要手动管理这个分支上的Hexo网站文件） 使用git clone https://github.com/leoliuyt/leoliuyt.github.io">
-<meta name="keywords" content="环境搭建">
+<meta name="description" content="fastlane是部署和发布app的最简单的一种方式。它能处理像生成截图、处理签名、发布应用这些枯燥的任务。 fastlane的安装1、确保Xcode的命令行工具已安装 1xcode-select --install 2、安装fastlane 123gem install fastlane -NV或者brew cask install fastlane 3、在项目中创建fastlane 1fast">
+<meta name="keywords" content="fastlane">
 <meta property="og:type" content="article">
-<meta property="og:title" content="搭建可在不同电脑写作和同步的Hexo博客">
-<meta property="og:url" content="http://leoliuyt.github.io/2013/04/03/搭建可在不同电脑写作和同步的Hexo博客/index.html">
+<meta property="og:title" content="fastlane在iOS中的使用">
+<meta property="og:url" content="http://leoliuyt.github.io/2018/04/11/fastlane在iOS中的使用/index.html">
 <meta property="og:site_name" content="Leoliu">
-<meta property="og:description" content="搭建可在不同电脑写作和同步的Hexo博客 安装Node.js 和 git环境，具体参照Hexo文档 在Github上创建仓库 leoliuyt.github.io 创建两个分支：master 与 hexo 设置hexo为默认分支（因为我们只需要手动管理这个分支上的Hexo网站文件） 使用git clone https://github.com/leoliuyt/leoliuyt.github.io">
+<meta property="og:description" content="fastlane是部署和发布app的最简单的一种方式。它能处理像生成截图、处理签名、发布应用这些枯燥的任务。 fastlane的安装1、确保Xcode的命令行工具已安装 1xcode-select --install 2、安装fastlane 123gem install fastlane -NV或者brew cask install fastlane 3、在项目中创建fastlane 1fast">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-11T13:06:10.371Z">
+<meta property="og:updated_time" content="2018-04-11T14:14:29.846Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="搭建可在不同电脑写作和同步的Hexo博客">
-<meta name="twitter:description" content="搭建可在不同电脑写作和同步的Hexo博客 安装Node.js 和 git环境，具体参照Hexo文档 在Github上创建仓库 leoliuyt.github.io 创建两个分支：master 与 hexo 设置hexo为默认分支（因为我们只需要手动管理这个分支上的Hexo网站文件） 使用git clone https://github.com/leoliuyt/leoliuyt.github.io">
+<meta name="twitter:title" content="fastlane在iOS中的使用">
+<meta name="twitter:description" content="fastlane是部署和发布app的最简单的一种方式。它能处理像生成截图、处理签名、发布应用这些枯燥的任务。 fastlane的安装1、确保Xcode的命令行工具已安装 1xcode-select --install 2、安装fastlane 123gem install fastlane -NV或者brew cask install fastlane 3、在项目中创建fastlane 1fast">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://leoliuyt.github.io/2013/04/03/搭建可在不同电脑写作和同步的Hexo博客/"/>
+  <link rel="canonical" href="http://leoliuyt.github.io/2018/04/11/fastlane在iOS中的使用/"/>
 
 
 
 
 
-  <title>搭建可在不同电脑写作和同步的Hexo博客 | Leoliu</title>
+  <title>fastlane在iOS中的使用 | Leoliu</title>
   
 
 
@@ -293,7 +293,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://leoliuyt.github.io/2013/04/03/搭建可在不同电脑写作和同步的Hexo博客/">
+    <link itemprop="mainEntityOfPage" href="http://leoliuyt.github.io/2018/04/11/fastlane在iOS中的使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Leoliu">
@@ -310,7 +310,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">搭建可在不同电脑写作和同步的Hexo博客</h1>
+          <h1 class="post-title" itemprop="name headline">fastlane在iOS中的使用</h1>
         
 
         <div class="post-meta">
@@ -322,8 +322,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-04-03T14:16:04+08:00">
-                2013-04-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-11T15:11:54+08:00">
+                2018-04-11
               </time>
             
 
@@ -382,28 +382,36 @@
       
 
       
-        <h2 id="搭建可在不同电脑写作和同步的Hexo博客"><a href="#搭建可在不同电脑写作和同步的Hexo博客" class="headerlink" title="搭建可在不同电脑写作和同步的Hexo博客"></a>搭建可在不同电脑写作和同步的Hexo博客</h2><ol>
-<li>安装<code>Node.js</code> 和 <code>git</code>环境，具体参照<a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">Hexo文档</a></li>
-<li>在Github上创建仓库 <code>leoliuyt.github.io</code></li>
-<li>创建两个分支：<code>master</code> 与 <code>hexo</code></li>
-<li>设置<code>hexo</code>为默认分支（因为我们只需要手动管理这个分支上的Hexo网站文件）</li>
-<li>使用<code>git clone https://github.com/leoliuyt/leoliuyt.github.io.git</code>拷贝仓库</li>
-<li>在本地<code>leoliuyt.github.io</code>文件夹下通过 依次执行<code>hexo init Blog</code>、<code>cd Blog</code>、<code>npm install</code> 和 <code>npm install hexo-deployer-git --save</code>（此时当前分支应显示为hexo）</li>
-<li>修改<code>_config.yml</code>中的<code>deploy</code>参数，分支应为<code>master</code></li>
-<li>依次执行<code>git add .</code>、<code>git commit -m “…”</code>、<code>git push origin hexo</code>提交网站相关的文件；</li>
-<li>执行<code>hexo generate -d</code>生成网站并部署到GitHub上。</li>
-</ol>
-<p>这样一来，在GitHub上的<code>leoliuyt.github.io</code>仓库就有两个分支，一个hexo分支用来存放网站的原始文件，一个master分支用来存放生成的静态网页。</p>
-<h2 id="写博客及发布同步"><a href="#写博客及发布同步" class="headerlink" title="写博客及发布同步"></a>写博客及发布同步</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">//首先进入Blog 目录</span><br><span class="line">cd /Users/lbq/Documents/Code/LL_Workspace/leoliuyt.github.io/Blog</span><br><span class="line"></span><br><span class="line">//创建博客</span><br><span class="line">hexo new 搭建可在不同电脑写作和同步的Hexo博客</span><br><span class="line"></span><br><span class="line">//生成博客及发布</span><br><span class="line">hexo g -d</span><br><span class="line"></span><br><span class="line">//本地测试使用</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br><span class="line"></span><br><span class="line">//发布成功后返回到git目录</span><br><span class="line">cd ..</span><br><span class="line"></span><br><span class="line">//git提交</span><br><span class="line">git add .</span><br><span class="line">git commit -m &quot;提交&quot;</span><br><span class="line">git push origin hexo</span><br><span class="line"></span><br><span class="line">//清除缓存使用</span><br><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
-<h2 id="主题配置"><a href="#主题配置" class="headerlink" title="主题配置"></a>主题配置</h2><p>修改站点目录下<code>_config.yml</code> 中的 <code>theme: next</code></p>
-<p><code>next</code>主题的配置参考<a href="https://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">NexT</a></p>
-<h2 id="hexo下新建页面下如何放多个文章？"><a href="#hexo下新建页面下如何放多个文章？" class="headerlink" title="hexo下新建页面下如何放多个文章？"></a>hexo下新建页面下如何放多个文章？</h2><ol>
-<li><code>hexo new page categories</code> //创建一个新的page</li>
-<li>在博客的markdown文件中添加 <code>categories: Objective-C</code> //会生成一个<code>/categories/Objective-C/</code>路径</li>
-<li>在主题配置文件<code>_config.yml</code>中的<code>menu</code> 添加 <code>Objective-C: /categories/Objective-C/ || th</code> 这个路径与上面的生成的要匹配</li>
-</ol>
-<p>设置分类图标可以从<a href="https://fontawesome.com" target="_blank" rel="noopener">Font Awesome</a>上查找</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">Hexo文档</a><br><a href="https://leroyli.github.io/2016/11/07/hexo-more-PC/" target="_blank" rel="noopener">在不同电脑上进行Hexo写作与同步</a><br><a href="http://crazymilk.github.io/2015/12/28/GitHub-Pages-Hexo搭建博客/#more" target="_blank" rel="noopener">GitHub Pages + Hexo搭建博客</a><br><a href="https://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">NexT</a><br><a href="https://www.zhihu.com/question/33324071" target="_blank" rel="noopener">hexo下新建页面下如何放多个文章？</a></p>
+        <p><code>fastlane</code>是部署和发布app的最简单的一种方式。它能处理像生成截图、处理签名、发布应用这些枯燥的任务。</p>
+<h2 id="fastlane的安装"><a href="#fastlane的安装" class="headerlink" title="fastlane的安装"></a>fastlane的安装</h2><p>1、确保Xcode的命令行工具已安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xcode-select --install</span><br></pre></td></tr></table></figure>
+<p>2、安装fastlane</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gem install fastlane -NV</span><br><span class="line">或者</span><br><span class="line">brew cask install fastlane</span><br></pre></td></tr></table></figure>
+<p>3、在项目中创建fastlane</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastlane init</span><br></pre></td></tr></table></figure>
+<h2 id="fastlane初体验"><a href="#fastlane初体验" class="headerlink" title="fastlane初体验"></a>fastlane初体验</h2><p>1、进入工程目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ~/Documents/Code/LL_Workspace/DMFastlane/DMFastlane</span><br></pre></td></tr></table></figure>
+<p>2、创建fastlane</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastlane init</span><br></pre></td></tr></table></figure>
+<p>执行上面命令后，会出现一个选择菜单如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[18:20:51]: What would you like to use fastlane for?</span><br><span class="line">1. 📸  Automate screenshots</span><br><span class="line">2. 👩‍✈️  Automate beta distribution to TestFlight</span><br><span class="line">3. 🚀  Automate App Store distribution</span><br><span class="line">4. 🛠  Manual setup - manually setup your project to automate your tasks</span><br><span class="line">?  4</span><br></pre></td></tr></table></figure>
+<p>选择不用的选项，<code>fastlane</code>会为你创建不同功能对应的 <code>lane</code>。</p>
+<p>比如我选择<code>1</code>，自动生成的<code>Fastfile</code>文件中会出现如下代码:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">default_platform(<span class="symbol">:ios</span>)</span><br><span class="line"></span><br><span class="line">platform <span class="symbol">:ios</span> <span class="keyword">do</span></span><br><span class="line">  desc <span class="string">"Generate new localized screenshots"</span></span><br><span class="line">  lane <span class="symbol">:screenshots</span> <span class="keyword">do</span></span><br><span class="line">    capture_screenshots(<span class="symbol">workspace:</span> <span class="string">"DMFastlane.xcworkspace"</span>, <span class="symbol">scheme:</span> <span class="string">"DMFastlane"</span>)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p><code>screenshots</code>这个<code>lane</code>的功能就是自动生成截图。</p>
+<p>如果我选<code>4</code>,就会生成一个供我们自定<code>lane</code>,如下:</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">default_platform(<span class="symbol">:ios</span>)</span><br><span class="line"></span><br><span class="line">platform <span class="symbol">:ios</span> <span class="keyword">do</span></span><br><span class="line">  desc <span class="string">"Description of what the lane does"</span></span><br><span class="line">  lane <span class="symbol">:custom_lane</span> <span class="keyword">do</span></span><br><span class="line">    <span class="comment"># add actions here: https://docs.fastlane.tools/actions</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>我们可以把我们想要实现的功能写在这个<code>custom_lane</code>中，比如我们想build工程生成ipa，可以调用<code>fastlane</code>提供的一个工具<code>build_ios_app</code>,这样实现：</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">lane <span class="symbol">:custom_lane</span> <span class="keyword">do</span></span><br><span class="line">    <span class="comment"># add actions here: https://docs.fastlane.tools/actions</span></span><br><span class="line">    build_ios_app(<span class="symbol">scheme:</span> <span class="string">"DMFastlane"</span>,</span><br><span class="line">            <span class="symbol">workspace:</span> <span class="string">"DMFastlane.xcworkspace"</span>,</span><br><span class="line">            <span class="symbol">configuration:</span> <span class="string">"Debug"</span>,</span><br><span class="line">            <span class="symbol">export_method:</span> <span class="string">"development"</span>,</span><br><span class="line">            <span class="symbol">output_directory:</span> <span class="string">"~/Desktop/"</span>, <span class="comment"># Destination directory. Defaults to current directory.</span></span><br><span class="line">            <span class="symbol">output_name:</span> <span class="string">"DMFastlane.ipa"</span>       <span class="comment"># specify the name of the .ipa file to generate (including file extension)</span></span><br><span class="line">            )</span><br><span class="line">  <span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<p>然后再工程目录下，运行如下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastlane custom_lane</span><br></pre></td></tr></table></figure>
+<p>就会在<code>output_directory</code>指定的目录下生成<code>output_name</code>指定的<code>ipa</code>包</p>
+<p>这样fastlane的初次体验就完成了，以后生成ipa执行一个命令就可以了。</p>
+<h2 id="QA"><a href="#QA" class="headerlink" title="QA"></a>QA</h2><p>Q: <code>Error: fastlane gym produces error: method &#39;to_plist&#39; not defined in Array</code></p>
+<p>A:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 先卸载</span><br><span class="line">rvm @global do gem uninstall fastlane </span><br><span class="line">rvm all do gem uninstall fastlane</span><br><span class="line">gem uninstall fastlane</span><br><span class="line"></span><br><span class="line"># 从新安装</span><br><span class="line">gem install fastlane -NV</span><br></pre></td></tr></table></figure></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://docs.fastlane.tools" target="_blank" rel="noopener">fastlane官网</a></p>
+<p><a href="http://blog.devzeng.com/blog/ios-fastlane-in-action.html" target="_blank" rel="noopener">iOS中fastlane的使用</a></p>
+<p><a href="https://whlsxl.github.io/fastlane1/" target="_blank" rel="noopener">小团队的自动化发布－Fastlane带来的全自动化发布</a></p>
 
       
     </div>
@@ -421,7 +429,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/环境搭建/" rel="tag"># 环境搭建</a>
+            <a href="/tags/fastlane/" rel="tag"># fastlane</a>
           
         </div>
       
@@ -434,14 +442,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/04/10/shell时间处理/" rel="next" title="shell时间处理">
+                <i class="fa fa-chevron-left"></i> shell时间处理
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/04/04/运行时之一：类与对象/" rel="prev" title="运行时之一：类与对象">
-                运行时之一：类与对象 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/04/13/Mac开发Tip/" rel="prev" title="Mac开发Tip">
+                Mac开发Tip <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -606,7 +618,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建可在不同电脑写作和同步的Hexo博客"><span class="nav-number">1.</span> <span class="nav-text">搭建可在不同电脑写作和同步的Hexo博客</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写博客及发布同步"><span class="nav-number">2.</span> <span class="nav-text">写博客及发布同步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主题配置"><span class="nav-number">3.</span> <span class="nav-text">主题配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo下新建页面下如何放多个文章？"><span class="nav-number">4.</span> <span class="nav-text">hexo下新建页面下如何放多个文章？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#fastlane的安装"><span class="nav-number">1.</span> <span class="nav-text">fastlane的安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fastlane初体验"><span class="nav-number">2.</span> <span class="nav-text">fastlane初体验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#QA"><span class="nav-number">3.</span> <span class="nav-text">QA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
