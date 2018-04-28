@@ -98,6 +98,8 @@ menu:
   shell: /categories/shell/ || taxi
   tool: /categories/tool/ || wrench
   Cocoa: /categories/Cocoa  || apple
+  Python: /categories/Python  || python
+  Javascript: /categories/Javascript  || js-square
   tags: /tags/ || tags
   # categories: /categories/ || th
   archives: /archives/ || archive
