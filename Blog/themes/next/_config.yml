@@ -97,9 +97,9 @@ menu:
   Objective-C: /categories/Objective-C/ || th
   shell: /categories/shell/ || taxi
   tool: /categories/tool/ || wrench
-  Cocoa: /categories/Cocoa  || apple
-  Python: /categories/Python  || python
-  Javascript: /categories/Javascript  || js-square
+  Cocoa: /categories/Cocoa/  || apple
+  Python: /categories/Python/  || bar-chart
+  Javascript: /categories/Javascript/  || space-shuttle
   tags: /tags/ || tags
   # categories: /categories/ || th
   archives: /archives/ || archive
