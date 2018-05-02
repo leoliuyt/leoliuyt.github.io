@@ -245,5 +245,123 @@ for key,value in dic.items():
 for x, y in [(1, 1), (2, 4), (3, 9)]:
     print(x, y)
 ```
+
 ## 列表生成式
 
+```python
+import os
+ds = [d for d in os.listdir('.')]
+print(ds)
+
+l = [x * x for x in range(1,5) if x % 2 == 0]#[4, 16]
+print(l)
+
+l = [m + n for m in 'ABC' for n in 'XYZ']
+print(l)
+
+d = {'x':'A','y':'B','z':'C'}
+kvs = [k + '=' + v for k,v in d.items()]
+print(kvs)
+```
+
+## generator
+
+如果列表元素可以按照某种算法推算出来，那我们是否可以在循环的过程中不断推算出后续的元素呢？这样就不必创建完整的list，从而节省大量的空间。在Python中，这种一边循环一边计算的机制，称为生成器：`generator`
+
+要创建一个`generator`，有很多种方法。第一种方法很简单，只要把一个列表生成式的`[]`改成`()`，就创建了一个generator：
+
+```python
+g = (x*x for x in range(10))
+nextValue = next(g)
+for n in g:
+    print(n)
+```
+
+斐波拉契数列用列表生成式写不出来，但是，用函数把它打印出来却很容易：
+
+```python
+def fib(max):
+    n, a, b = 0, 0, 1
+    while n < max:
+        print(b)
+        a, b = b, a + b
+        n = n + 1
+    return 'done'
+```
+
+fib函数实际上是定义了斐波拉契数列的推算规则，可以从第一个元素开始，推算出后续任意的元素，这种逻辑其实非常类似generator。
+
+也就是说，上面的函数和generator仅一步之遥。要把fib函数变成generator，只需要把print(b)改为`yield` b就可以了：
+
+```python
+def fib(max):
+    n, a, b = 0, 0, 1
+    while n < max:
+        yield b
+        a, b = b, a + b
+        n = n + 1
+    return 'done'
+```
+
+```
+杨辉三角
+          1
+         / \
+        1   1
+       / \ / \
+      1   2   1
+     / \ / \ / \
+    1   3   3   1
+   / \ / \ / \ / \
+  1   4   6   4   1
+ / \ / \ / \ / \ / \
+1   5   10  10  5   1
+```
+
+```python
+def triangles():
+    N = [1]
+    while True:
+        yield N
+        N.append(0)
+        N = [N[i-1] + N[i] for i in range(len(N))]
+
+n = 0
+for x in triangles():
+    print(x)
+    n += 1
+    if n == 10:
+        break
+```
+
+## Iterator
+
+可以被`next()`函数调用并不断返回下一个值的对象称为迭代器：`Iterator`
+
+生成器都是`Iterator`对象，但`list`、`dict`、`str`虽然是`Iterable`，却不是`Iterator`。
+
+把`list`、`dict`、`str`等`Iterable`变成`Iterator`可以使用`iter()`函数：
+
+凡是可作用于for循环的对象都是Iterable类型；
+
+凡是可作用于`next()`函数的对象都是`Iterator`类型，它们表示一个惰性计算的序列；
+
+集合数据类型如`list`、`dict`、`str`等是`Iterable`但不是`Iterator`，不过可以通过`iter()`函数获得一个`Iterator`对象。
+
+Python的for循环本质上就是通过不断调用`next()`函数实现的。
+
+```python
+from collections import Iterable,Iterator
+isinstance([],Iterable)#True
+isinstance({},Iterable)#True
+isinstance('abc',Iterable)#True
+isinstance((x for x in range(10)),Iterable)#True
+
+isinstance((x for x in range(10)),Iterator)#True
+isinstance([],Iterator)#False
+isinstance({},Iterator)#False
+isinstance('abc',Iterator)#False
+
+isinstance(iter([]),Iterator)#True
+isinstance(iter('abc'),Iterator)#True
+```
