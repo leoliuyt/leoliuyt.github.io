@@ -309,6 +309,157 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leoliuyt.github.io/2018/05/20/运行时之二：分类/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Leoliu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leoliu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/20/运行时之二：分类/" itemprop="url">运行时之二：分类</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-20T09:23:22+08:00">
+                2018-05-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Objective-C/" itemprop="url" rel="index">
+                    <span itemprop="name">Objective-C</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          由于需求的变化，要为原有类扩展新功能，我们一般有两个方法：继承和组合。而category就是组合的一种具体实现技术。在Objective-C 2.0中，提供了category这个语言特性，可以动态地为已有类添加新行为。
+分类功能及特点我们使用分类可以做哪些事情呢？
+
+扩展已有类（为已存在的类添加方法
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/05/20/运行时之二：分类/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://leoliuyt.github.io/2018/04/28/JS基本语法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -402,8 +553,15 @@
       
         
           
-            
           
+          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/28/JS基本语法/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -543,86 +701,16 @@
       
         
           
-            <h2 id="Python-工具"><a href="#Python-工具" class="headerlink" title="Python 工具"></a>Python 工具</h2><h3 id="Pylint"><a href="#Pylint" class="headerlink" title="Pylint"></a>Pylint</h3><p><code>Pylint</code> 是一个 <code>Python</code> 代码分析工具，它分析 <code>Python</code> 代码中的错误，查找不符合代码风格标准（<code>Pylint</code> 默认使用的代码风格是 <code>PEP 8</code>，具体信息，请参阅参考资料）和有潜在问题的代码。</p>
-<h2 id="pip"><a href="#pip" class="headerlink" title="pip"></a>pip</h2><p><code>pip</code> 是一个现代的，通用的 <code>Python</code> 包管理工具。提供了对 <code>Python</code> 包的查找、下载、安装、卸载的功能。</p>
-<h2 id="Python-基本数据类型"><a href="#Python-基本数据类型" class="headerlink" title="Python 基本数据类型"></a>Python 基本数据类型</h2><p>Python3中有六个标准的数据类型：</p>
-<ul>
-<li>Number（数字）<ul>
-<li>int</li>
-<li>float</li>
-<li>bool</li>
-<li>complex</li>
-</ul>
-</li>
-<li>String (字符串)</li>
-<li>List (列表)</li>
-<li>Tuple（元组）</li>
-<li>Sets（集合）</li>
-<li>Dictionary（字典）</li>
-</ul>
-<p>其中不可变数据类型有四个：Number、String、Tuple、Sets<br>不可变数据（两个）：List、Dictionary</p>
-<h3 id="Number"><a href="#Number" class="headerlink" title="Number"></a>Number</h3><p><code>//</code> 向下取整</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">intDivide = <span class="number">1</span> // <span class="number">2</span></span><br><span class="line">print(intDivide) </span><br><span class="line">// <span class="number">0</span></span><br></pre></td></tr></table></figure>
-<p><code>**</code> 操作来进行幂运算</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">powerInt = <span class="number">5</span> ** <span class="number">2</span></span><br><span class="line">print(powerInt)</span><br><span class="line">// <span class="number">25</span></span><br></pre></td></tr></table></figure>
-<p>在交互模式中，最后被输出的表达式结果被赋值给变量 <code>_</code> </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>tax = <span class="number">12.5</span> / <span class="number">100</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>price = <span class="number">100.50</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>price * tax</span><br><span class="line"><span class="number">12.5625</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>price + _</span><br><span class="line"><span class="number">113.0625</span></span><br></pre></td></tr></table></figure>
-<p>数字相关函数</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 函数</span></span><br><span class="line">print(<span class="string">"绝对值：abs(-10) = %s"</span> % abs(<span class="number">-10</span>))<span class="comment">#10</span></span><br><span class="line">print(<span class="string">"绝对值：fabs(-10) = %s"</span> % math.fabs(<span class="number">-10</span>))<span class="comment">#10.0</span></span><br><span class="line">print(<span class="string">"向上取整：ceil(4.1) = %s"</span> % math.ceil(<span class="number">4.1</span>))<span class="comment">#5</span></span><br><span class="line">print(<span class="string">"向下取整：ceil(4.9) = %s"</span> % math.floor(<span class="number">4.9</span>))<span class="comment">#4</span></span><br><span class="line">print(<span class="string">"返回浮点数x的四舍五入值 round(4.9164,2) = %s"</span> % round(<span class="number">4.9164</span>,<span class="number">2</span>))<span class="comment">#4.92</span></span><br><span class="line">print(<span class="string">"最大值：max(10,11,9) = %s"</span> % max(<span class="number">10</span>,<span class="number">11</span>,<span class="number">9</span>))<span class="comment">#11</span></span><br><span class="line">print(<span class="string">"最小值：min(10,11,9) = %s"</span> % min(<span class="number">10</span>,<span class="number">11</span>,<span class="number">9</span>))<span class="comment">#9</span></span><br><span class="line">print(<span class="string">"返回x的整数部分与小数部分modf(9.12) = "</span> , math.modf(<span class="number">9.12</span>))<span class="comment">#(0.11999999999999922, 9.0)</span></span><br><span class="line">print(<span class="string">"x**y 运算后的值pow(2,3) = %s"</span> % pow(<span class="number">2</span>,<span class="number">3</span>))<span class="comment">#8</span></span><br><span class="line">print(<span class="string">"e的x次幂：exp(1) = %s"</span> % math.exp(<span class="number">1</span>))<span class="comment">#2.718281828459045</span></span><br><span class="line">print(<span class="string">"x的平方根：sqrt(x) = %s"</span> % math.sqrt(<span class="number">9</span>))<span class="comment">#3.0</span></span><br><span class="line">print(<span class="string">"log(x) = %s"</span> % math.log(<span class="number">100</span>,<span class="number">10</span>))<span class="comment">#2.0</span></span><br><span class="line">print(<span class="string">"log10(x) = %s"</span> % math.log10(<span class="number">100</span>))<span class="comment">#2.0</span></span><br></pre></td></tr></table></figure>
-<h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><h3 id="Tuple"><a href="#Tuple" class="headerlink" title="Tuple"></a>Tuple</h3><p>list和tuple是Python内置的有序集合，一个可变，一个不可变。</p>
-<h3 id="Dictionary"><a href="#Dictionary" class="headerlink" title="Dictionary"></a>Dictionary</h3><h3 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h3><p>函数名其实就是指向一个函数对象的引用，完全可以把函数名赋给一个变量，相当于给这个函数起了一个“别名”</p>
-<p>定义函数时，需要确定函数名和参数个数；</p>
-<p>如果有必要，可以先对参数的数据类型做检查；</p>
-<p>函数体内部可以用return随时返回函数结果；</p>
-<p>函数执行完毕也没有return语句时，自动return None。</p>
-<p>函数可以同时返回多个值，但其实就是一个tuple。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = abs</span><br><span class="line">a(<span class="number">-10</span>)<span class="comment">#10</span></span><br></pre></td></tr></table></figure>
-<p><code>pass</code>语句什么都不做，那有什么用？实际上pass可以用来作为占位符，比如现在还没想好怎么写函数的代码，就可以先放一个<code>pass</code>，让代码能运行起来。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> age &gt;= <span class="number">18</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
-<h4 id="位置参数"><a href="#位置参数" class="headerlink" title="位置参数"></a>位置参数</h4><h4 id="默认参数"><a href="#默认参数" class="headerlink" title="默认参数"></a>默认参数</h4><p>可以不按顺序提供部分默认参数。当不按顺序提供部分默认参数时，需要把参数名写上。比如调用enroll(‘Adam’, ‘M’, city=’Tianjin’)，意思是，city参数用传进去的值，其他默认参数继续使用默认值。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">enroll</span><span class="params">(name,gender,age=<span class="number">6</span>,city=<span class="string">'Beijing'</span>)</span>:</span></span><br><span class="line">    print(<span class="string">"name:"</span>,name)</span><br><span class="line">    print(<span class="string">"gender:"</span>,gender)</span><br><span class="line">    print(<span class="string">"age:"</span>,age)</span><br><span class="line">    print(<span class="string">"city:"</span>,city)</span><br><span class="line"></span><br><span class="line">enroll(<span class="string">"Jack"</span>,<span class="string">"男"</span>,city=<span class="string">"Shanghai"</span>)</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注意：<br>定义默认参数要牢记一点：默认参数必须指向不变对象！</p>
-</blockquote>
-<h4 id="可变参数"><a href="#可变参数" class="headerlink" title="可变参数"></a>可变参数</h4><p>可变参数允许你传入0个或任意个参数，这些可变参数在函数调用时自动组装为一个tuple。而关键字参数允许你传入0个或任意个含参数名的参数，这些关键字参数在函数内部自动组装为一个dict。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#可变参数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">calc</span><span class="params">(*numbers)</span>:</span></span><br><span class="line">    print(type(numbers))<span class="comment">#&lt;class 'tuple'&gt;</span></span><br><span class="line">    sum = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> numbers:</span><br><span class="line">        sum += x</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line"></span><br><span class="line">sum = calc(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>)</span><br><span class="line">print(<span class="string">"sum = "</span>,sum)</span><br></pre></td></tr></table></figure>
-<h4 id="关键字参数"><a href="#关键字参数" class="headerlink" title="关键字参数"></a>关键字参数</h4><p>对于关键字参数，函数的调用者可以传入任意不受限制的关键字参数</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment"># 关键字参数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">person</span><span class="params">(name,age,**kw)</span>:</span></span><br><span class="line">    print(type(kw))</span><br><span class="line">    print(<span class="string">'name:'</span>, name, <span class="string">'age:'</span>, age, <span class="string">'other:'</span>, kw)</span><br><span class="line"></span><br><span class="line">person(<span class="string">'leo'</span>,<span class="string">'18'</span>,city=<span class="string">'Beijing'</span>)</span><br><span class="line"></span><br><span class="line">extra = &#123;<span class="string">'city'</span>:<span class="string">'Beijing'</span>,<span class="string">'job'</span>:<span class="string">'Engineer'</span>&#125;</span><br><span class="line"></span><br><span class="line">person(<span class="string">'leo'</span>,<span class="string">'18'</span>,**extra)</span><br></pre></td></tr></table></figure>
-<h4 id="命名关键字参数"><a href="#命名关键字参数" class="headerlink" title="命名关键字参数"></a>命名关键字参数</h4><p>如果要限制关键字参数的名字，就可以用命名关键字参数</p>
-<p>例如，只接收city和job作为关键字参数。这种方式定义的函数如下：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">nameKeyword</span><span class="params">(name,age,*,city,job)</span>:</span></span><br><span class="line">    print(<span class="string">'name: '</span>, name, <span class="string">'age: '</span>, age, <span class="string">'city: '</span>, city,<span class="string">'job: '</span>,job)</span><br><span class="line">nameKeyword(<span class="string">'leo'</span>,<span class="string">'20'</span>,city=<span class="string">'Shanghai'</span>,job=<span class="string">'Engineer'</span>)</span><br><span class="line"></span><br><span class="line">extraDic = &#123;<span class="string">'city'</span>:<span class="string">'Beijing'</span>,<span class="string">'job'</span>:<span class="string">'Engineer'</span>&#125;</span><br><span class="line">nameKeyword(<span class="string">'leoliuyt'</span>,<span class="number">18</span>,**extraDic)</span><br></pre></td></tr></table></figure>
-<p>命名关键字参数需要一个特殊分隔符<code>*</code>，<code>*</code>后面的参数被视为命名关键字参数。</p>
-<p>命名关键字参数必须传入参数名，这和位置参数不同</p>
-<p>如果函数定义中已经有了一个可变参数，后面跟着的命名关键字参数就不再需要一个特殊分隔符*了：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#如果函数定义中已经有了一个可变参数，后面跟着的命名关键字参数就不再需要一个特殊分隔符*了：</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">nameKWWithArgs</span><span class="params">(name,age,*args,city,job)</span>:</span></span><br><span class="line">    print(type(args))</span><br><span class="line">    print(<span class="string">'name: '</span>, name, <span class="string">'age: '</span>, age, <span class="string">'city: '</span>, city,<span class="string">'job: '</span>,job)</span><br><span class="line"></span><br><span class="line">extraArr = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line">nameKWWithArgs(<span class="string">'leoliu'</span>,<span class="string">'18'</span>,*extraArr,city = <span class="string">'Yantai'</span>,job = <span class="string">'Engineer'</span>)</span><br></pre></td></tr></table></figure>
-<h4 id="参数组合"><a href="#参数组合" class="headerlink" title="参数组合"></a>参数组合</h4><p>在Python中定义函数，可以用必选参数、默认参数、可变参数、关键字参数和命名关键字参数，这5种参数都可以组合使用。但是请注意，参数定义的顺序必须是：必选参数、默认参数、可变参数、命名关键字参数和关键字参数。</p>
-<p>对于任意函数，都可以通过类似func(*args, **kw)的形式调用它，无论它的参数是如何定义的</p>
-<h2 id="高级特性"><a href="#高级特性" class="headerlink" title="高级特性"></a>高级特性</h2><h3 id="切片"><a href="#切片" class="headerlink" title="切片"></a>切片</h3><p>L[0:3]表示，从索引0开始取，直到索引3为止，但不包括索引3。即索引0，1，2</p>
-<p>只写<code>[:]</code>就可以原样复制一个list</p>
-<p>前10个数，每2个取一个：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>L[:<span class="number">10</span>:<span class="number">2</span>]</span><br><span class="line">[<span class="number">0</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>, <span class="number">8</span>]</span><br><span class="line">所有数，每<span class="number">5</span>个取一个：</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>L[::<span class="number">5</span>]</span><br><span class="line">[<span class="number">0</span>, <span class="number">5</span>, <span class="number">10</span>, <span class="number">15</span>, <span class="number">20</span>, <span class="number">25</span>, <span class="number">30</span>, <span class="number">35</span>, <span class="number">40</span>, <span class="number">45</span>, <span class="number">50</span>, <span class="number">55</span>, <span class="number">60</span>, <span class="number">65</span>, <span class="number">70</span>, <span class="number">75</span>, <span class="number">80</span>, <span class="number">85</span>, <span class="number">90</span>, <span class="number">95</span>]</span><br></pre></td></tr></table></figure>
-<h3 id="迭代"><a href="#迭代" class="headerlink" title="迭代"></a>迭代</h3><p>只要是可迭代对象，无论有无下标，都可以迭代</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">dic = &#123;<span class="string">'name'</span>:<span class="string">'leoliu'</span>,<span class="string">'age'</span>:<span class="number">18</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> key <span class="keyword">in</span> dic:</span><br><span class="line">    print(key)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> value <span class="keyword">in</span> dic.values():</span><br><span class="line">    print(value)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> key,value <span class="keyword">in</span> dic.items():</span><br><span class="line">    print(<span class="string">"key:"</span>,key,<span class="string">"value:"</span>,value)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> x, y <span class="keyword">in</span> [(<span class="number">1</span>, <span class="number">1</span>), (<span class="number">2</span>, <span class="number">4</span>), (<span class="number">3</span>, <span class="number">9</span>)]:</span><br><span class="line">    print(x, y)</span><br></pre></td></tr></table></figure>
-<h2 id="列表生成式"><a href="#列表生成式" class="headerlink" title="列表生成式"></a>列表生成式</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">ds = [d <span class="keyword">for</span> d <span class="keyword">in</span> os.listdir(<span class="string">'.'</span>)]</span><br><span class="line">print(ds)</span><br><span class="line"></span><br><span class="line">l = [x * x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">1</span>,<span class="number">5</span>) <span class="keyword">if</span> x % <span class="number">2</span> == <span class="number">0</span>]<span class="comment">#[4, 16]</span></span><br><span class="line">print(l)</span><br><span class="line"></span><br><span class="line">l = [m + n <span class="keyword">for</span> m <span class="keyword">in</span> <span class="string">'ABC'</span> <span class="keyword">for</span> n <span class="keyword">in</span> <span class="string">'XYZ'</span>]</span><br><span class="line">print(l)</span><br><span class="line"></span><br><span class="line">d = &#123;<span class="string">'x'</span>:<span class="string">'A'</span>,<span class="string">'y'</span>:<span class="string">'B'</span>,<span class="string">'z'</span>:<span class="string">'C'</span>&#125;</span><br><span class="line">kvs = [k + <span class="string">'='</span> + v <span class="keyword">for</span> k,v <span class="keyword">in</span> d.items()]</span><br><span class="line">print(kvs)</span><br></pre></td></tr></table></figure>
-<h2 id="generator"><a href="#generator" class="headerlink" title="generator"></a>generator</h2><p>如果列表元素可以按照某种算法推算出来，那我们是否可以在循环的过程中不断推算出后续的元素呢？这样就不必创建完整的list，从而节省大量的空间。在Python中，这种一边循环一边计算的机制，称为生成器：<code>generator</code></p>
-<p>要创建一个<code>generator</code>，有很多种方法。第一种方法很简单，只要把一个列表生成式的<code>[]</code>改成<code>()</code>，就创建了一个generator：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">g = (x*x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>))</span><br><span class="line">nextValue = next(g)</span><br><span class="line"><span class="keyword">for</span> n <span class="keyword">in</span> g:</span><br><span class="line">    print(n)</span><br></pre></td></tr></table></figure>
-<p>斐波拉契数列用列表生成式写不出来，但是，用函数把它打印出来却很容易：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fib</span><span class="params">(max)</span>:</span></span><br><span class="line">    n, a, b = <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> n &lt; max:</span><br><span class="line">        print(b)</span><br><span class="line">        a, b = b, a + b</span><br><span class="line">        n = n + <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">'done'</span></span><br></pre></td></tr></table></figure>
-<p>fib函数实际上是定义了斐波拉契数列的推算规则，可以从第一个元素开始，推算出后续任意的元素，这种逻辑其实非常类似generator。</p>
-<p>也就是说，上面的函数和generator仅一步之遥。要把fib函数变成generator，只需要把print(b)改为<code>yield</code> b就可以了：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fib</span><span class="params">(max)</span>:</span></span><br><span class="line">    n, a, b = <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> n &lt; max:</span><br><span class="line">        <span class="keyword">yield</span> b</span><br><span class="line">        a, b = b, a + b</span><br><span class="line">        n = n + <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">'done'</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">杨辉三角</span><br><span class="line">          1</span><br><span class="line">         / \</span><br><span class="line">        1   1</span><br><span class="line">       / \ / \</span><br><span class="line">      1   2   1</span><br><span class="line">     / \ / \ / \</span><br><span class="line">    1   3   3   1</span><br><span class="line">   / \ / \ / \ / \</span><br><span class="line">  1   4   6   4   1</span><br><span class="line"> / \ / \ / \ / \ / \</span><br><span class="line">1   5   10  10  5   1</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">triangles</span><span class="params">()</span>:</span></span><br><span class="line">    N = [<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">        <span class="keyword">yield</span> N</span><br><span class="line">        N.append(<span class="number">0</span>)</span><br><span class="line">        N = [N[i<span class="number">-1</span>] + N[i] <span class="keyword">for</span> i <span class="keyword">in</span> range(len(N))]</span><br><span class="line"></span><br><span class="line">n = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> triangles():</span><br><span class="line">    print(x)</span><br><span class="line">    n += <span class="number">1</span></span><br><span class="line">    <span class="keyword">if</span> n == <span class="number">10</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
-<h2 id="Iterator"><a href="#Iterator" class="headerlink" title="Iterator"></a>Iterator</h2><p>可以被<code>next()</code>函数调用并不断返回下一个值的对象称为迭代器：<code>Iterator</code></p>
-<p>生成器都是<code>Iterator</code>对象，但<code>list</code>、<code>dict</code>、<code>str</code>虽然是<code>Iterable</code>，却不是<code>Iterator</code>。</p>
-<p>把<code>list</code>、<code>dict</code>、<code>str</code>等<code>Iterable</code>变成<code>Iterator</code>可以使用<code>iter()</code>函数：</p>
-<p>凡是可作用于for循环的对象都是Iterable类型；</p>
-<p>凡是可作用于<code>next()</code>函数的对象都是<code>Iterator</code>类型，它们表示一个惰性计算的序列；</p>
-<p>集合数据类型如<code>list</code>、<code>dict</code>、<code>str</code>等是<code>Iterable</code>但不是<code>Iterator</code>，不过可以通过<code>iter()</code>函数获得一个<code>Iterator</code>对象。</p>
-<p>Python的for循环本质上就是通过不断调用<code>next()</code>函数实现的。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Iterable,Iterator</span><br><span class="line">isinstance([],Iterable)<span class="comment">#True</span></span><br><span class="line">isinstance(&#123;&#125;,Iterable)<span class="comment">#True</span></span><br><span class="line">isinstance(<span class="string">'abc'</span>,Iterable)<span class="comment">#True</span></span><br><span class="line">isinstance((x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>)),Iterable)<span class="comment">#True</span></span><br><span class="line"></span><br><span class="line">isinstance((x <span class="keyword">for</span> x <span class="keyword">in</span> range(<span class="number">10</span>)),Iterator)<span class="comment">#True</span></span><br><span class="line">isinstance([],Iterator)<span class="comment">#False</span></span><br><span class="line">isinstance(&#123;&#125;,Iterator)<span class="comment">#False</span></span><br><span class="line">isinstance(<span class="string">'abc'</span>,Iterator)<span class="comment">#False</span></span><br><span class="line"></span><br><span class="line">isinstance(iter([]),Iterator)<span class="comment">#True</span></span><br><span class="line">isinstance(iter(<span class="string">'abc'</span>),Iterator)<span class="comment">#True</span></span><br></pre></td></tr></table></figure>
-          
+          Python 工具PylintPylint 是一个 Python 代码分析工具，它分析 Python 代码中的错误，查找不符合代码风格标准（Pylint 默认使用的代码风格是 PEP 8，具体信息，请参阅参考资料）和有潜在问题的代码。
+pippip 是一个现代的，通用的 Python 包管理工具。提
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/28/Python基本语法/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -762,39 +850,29 @@
       
         
           
-            <h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><p>显示<code>Layer List</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmd + opt + 1</span><br></pre></td></tr></table></figure>
-<p>显示 <code>Inspector</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmd + opt + 2</span><br></pre></td></tr></table></figure>
-<p>显示<code>Toolbar</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmd + opt + t</span><br></pre></td></tr></table></figure>
-<p>显示<code>Canvas</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmd + .</span><br></pre></td></tr></table></figure>
-<p>打开配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmd + ,</span><br></pre></td></tr></table></figure>
-<p>显示尺标</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctrl + R</span><br></pre></td></tr></table></figure>
-<p>显示网格</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctrl + G</span><br></pre></td></tr></table></figure>
-<p>使用辅助线</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">当我们在Ruler上移动鼠标的时候，辅助线的最小移动单位是1像素，大多数情况下，我们不需要这样的精度。这时，我们就可以按住shift，辅助线就会以10像素为单位移动了。</span><br></pre></td></tr></table></figure>
-<h2 id="使用ArtBoards"><a href="#使用ArtBoards" class="headerlink" title="使用ArtBoards"></a>使用ArtBoards</h2><p><code>Artboard</code>是<code>Sketch</code>中的一个组织内容的工具，它可以在画布上先定一个指定大小的区域，我们可以把这个区域理解为我们设计时使用的屏幕。</p>
-<p>按快捷键A，Sketch指针会变成一个十字，我们就可以在画布中创建Artboards了。此时，Inspector的部分会如下图所示</p>
-
-<p>Sketch内置了常用操作系统上使用的常用尺寸，我们可以直接点击这些方案，就可以创建对应大小的artboard了。每一个artboard都由两部分组成，分别是标题和背景色：</p>
-<p>一般情况下，我们用一个artboard来显示一个功能页，或者一屏UI，因此我们可以用artboards展示的功能来命名它们。而artboard的背景色则显示在Inspector部分，这里需要注意的是，虽然在画布中artboard显示为白色，但是默认情况下，artboard是没有背景色的，我们把artboard导出成png的时候，就会是透明背景。因此，如果你需要使用背景色，要记得选中Background color，然后设置成需要的颜色。</p>
-<p>这里，给大家推荐一个Sketch插件，叫<code>Artboard Manager</code>。当我们有多个artboards的时候，默认情况下，拖动artboard会让它们彼此重叠覆盖在一起，我们得手工去处理它们的位置。但有了<code>Artboard Manager</code>就方便多了，我们直接选择一个或多个artboard，然后拖动到目标位置。它总是能依据我们对内容的直觉，帮我们自动排列好所有artboards。</p>
-<h2 id="使用Pages"><a href="#使用Pages" class="headerlink" title="使用Pages"></a>使用Pages</h2><p><code>Pages</code>是<code>Sketch</code>中第二个组织内容的工具，它位于Layer List的顶部：</p>
-
-<p>我们可以点击顶部的加号新建<code>Page</code>，也可以点击下面的箭头图标收起<code>Pages</code>列表。简单来说，<code>Page</code>就是不同的画布，在<code>Sketch</code>里，通常我们用<code>Pages</code>管理逻辑上相关，但是维度不同的内容。</p>
-<h2 id="使用Sketch-UI模板"><a href="#使用Sketch-UI模板" class="headerlink" title="使用Sketch UI模板"></a>使用Sketch UI模板</h2><p>选择<code>File -&gt; New from Template</code>：</p>
-<p>可以看到Sketch默认带了5个模板，分别是：</p>
-<p>Android Icon Design<br>Web Design<br>iOS App Icon<br>Material Design<br>Prototyping Tutorial</p>
-<p>添加其他模板的方法是 下载以<code>.sketch</code>结尾的模板文件，直接用Sketch打开之后，选择<code>File -&gt; Save as Template...</code>，给它起个名字。下次再新建项目的时候，就可以把它当作模板使用了。</p>
-<p>从这里可以下载<a href="https://iosdesignkit.io" target="_blank" rel="noopener">iOS的模板文件</a></p>
-<h2 id="DP"><a href="#DP" class="headerlink" title="DP"></a>DP</h2><p>Pixel Density(PD、像素密度)的概念，它指的是一英寸屏幕上的物理像素个数。显然，这个数值越大，屏幕就越精细。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp = (width in pixels * 160) / screen density</span><br></pre></td></tr></table></figure>
-          
+          快捷键显示Layer List
+1cmd + opt + 1
+显示 Inspector
+1cmd + opt + 2
+显示Toolbar
+1cmd + opt + t
+显示Canvas
+1cmd + .
+打开配置
+1cmd + ,
+显示尺标
+1ctrl + R
+显示网格
+1ctrl + G
+使用辅助
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/21/Sketch的使用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -934,263 +1012,17 @@
       
         
           
-            <h2 id="多线程相关概念"><a href="#多线程相关概念" class="headerlink" title="多线程相关概念"></a>多线程相关概念</h2><h3 id="同步、异步"><a href="#同步、异步" class="headerlink" title="同步、异步"></a>同步、异步</h3><p>同步：完成需要做的任务后才会返回，进行下一任务。不会开新的线程，会在当前线程中执行任务。</p>
-<p>异步：不会等待任务完成才返回，会立即返回。必定会开启新的线程，线程的申请是由异步负责，起到开分支的作用。</p>
-<h3 id="串、并行、全局、主队列"><a href="#串、并行、全局、主队列" class="headerlink" title="串、并行、全局、主队列"></a>串、并行、全局、主队列</h3><p>串行队列： 任务依次执行，同一时间队列中只有一个任务在执行，每个任务只有在前一个任务执行完成后才能开始执行。</p>
-<p>并行队列：任务并发执行，你唯一能保证的是，这些任务会按照被添加的顺序开始执行。但是任务可以以任何顺序完成。</p>
-<p>全局队列：隶属于并行队列</p>
-<p>主队列：隶属于串行队列，不能与 sync 同步方法搭配使用，会造成死循环</p>
-<h3 id="交叉关系"><a href="#交叉关系" class="headerlink" title="交叉关系"></a>交叉关系</h3><table>
-<thead>
-<tr>
-<th>—</th>
-<th>同步</th>
-<th>异步 </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>串行队列</td>
-<td>不会新建线程，依然在当前线程上<p></p>类似同步锁，是同步锁的替代方案<p></p>✅ 常用</td>
-<td>会新建线程，只开一条线程<p></p>一条线程就够了<p></p> 每次使用 createDispatch 方法就会新建一条线程，多次调用该方法，会创建多条线程，多条线程间会并行执行</td>
-</tr>
-<tr>
-<td>并行队列</td>
-<td>不会新建线程，依然在当前线程上<p></p></td>
-<td>会新建线程，可以开多条线程<p></p> iOS7-SDK 时代一般是5、6条， iOS8-SDK 以后可以50、60条 <p></p> ✅ 常用</td>
-</tr>
-</tbody>
-</table>
-<h2 id="iOS中的多线程技术"><a href="#iOS中的多线程技术" class="headerlink" title="iOS中的多线程技术"></a>iOS中的多线程技术</h2><p>iOS中的三种多线程技术：</p>
-<ul>
-<li>NSThread</li>
-<li>NSOperation/NSOperationQueue</li>
-<li>GCD(Grand Central Dispatch)</li>
-</ul>
-<h3 id="NSThead"><a href="#NSThead" class="headerlink" title="NSThead"></a>NSThead</h3><h3 id="NSOperation-NSOperationQueue"><a href="#NSOperation-NSOperationQueue" class="headerlink" title="NSOperation/NSOperationQueue"></a>NSOperation/NSOperationQueue</h3><p><code>NSOperation</code>、<code>NSOperationQueue</code> 是基于 GCD 更高一层的封装，完全面向对象。但是比 GCD 更简单易用、代码可读性也更高。</p>
-<p>使用<code>NSOperation</code>、<code>NSOperationQueue</code>有一下几种优势：</p>
-<ul>
-<li>可添加完成的代码块，在操作完成后执行。</li>
-<li>添加操作之间的依赖关系，方便的控制执行顺序。</li>
-<li>设定操作执行的优先级。</li>
-<li>可以很方便的取消一个操作的执行。</li>
-<li>使用 KVO 观察对操作执行状态的更改：isExecuteing、isFinished、isCancelled、isReady。</li>
-</ul>
-<p><code>NSOperation</code>表示了一个独立的计算单元。作为一个抽象类，它给了它的子类一个十分有用而且线程安全的方式来建立状态、优先级、依赖性和取消等的模型。或者，你不是很喜欢再自己继承<code>NSOperation</code>的话，框架还提供<code>NSInvocationOperation</code>、<code>NSBlockOperation</code>两个继承自<code>NSOperation</code>的类。</p>
-<p>所以我们有三种方式来封装操作：</p>
-<ul>
-<li>使用子类 NSInvocationOperation</li>
-<li>使用子类 NSBlockOperation</li>
-<li>自定义继承自 NSOperation 的子类，通过实现内部相应的方法来封装操作。</li>
-</ul>
-<p>但是仅仅把计算封装进一个对象而不做其他处理显然没有多大用处，我们还需要<code>NSOperationQueue</code>来大显身手。<br><code>NSOperationQueue</code>控制着这些并行操作的执行，它扮演者优先级队列的角色，让它管理的高优先级操作(<code>NSOperation -queuePriority</code>)能优先于低优先级的操作运行的情况下，使它管理的操作能基本遵循先进先出的原则执行。此外，在你设置了能并行运行的操作的最大值(<code>maxConcurrentOperationCount</code>)之后，<code>NSOperationQueue</code>还能并行执行操作。</p>
-<p>让一个<code>NSOperation</code>操作开始，你可以直接调用<code>-start</code>，或者将它添加到<code>NSOperationQueue</code>中，添加之后，它会在队列排到它以后自动执行。</p>
-<p>现在让我们通过怎样使用和怎样通过继承实现功能来看看<code>NSOperation</code>稍微复杂的部分。</p>
-<h4 id="状态"><a href="#状态" class="headerlink" title="状态"></a>状态</h4><p><code>NSOperation</code>包含了一个十分优雅的状态机来描述每一个操作的执行。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">isReady → isExecuting → isFinished</span><br></pre></td></tr></table></figure>
-<p>为了替代不那么清晰的state属性，状态直接由上面那些keypath的KVO通知决定，也就是说，当一个操作在准备好被执行的时候，它发送了一个KVO通知给<code>isReady</code>的keypath，让这个keypath对应的属性<code>isReady</code>在被访问的时候返回YES。</p>
-<p>每一个属性对于其他的属性必须是互相独立不同的，也就是同时只可能有一个属性返回YES，从而才能维护一个连续的状态：<code>- isReady</code>: 返回 YES 表示操作已经准备好被执行, 如果返回NO则说明还有其他没有先前的相关步骤没有完成。 <code>- isExecuting</code>: 返回YES表示操作正在执行，反之则没在执行。 <code>- isFinished</code> : 返回YES表示操作执行成功或者被取消了，<code>NSOperationQueue</code>只有当它管理的所有操作的<code>isFinished</code>属性全标为YES以后操作才停止出列，也就是队列停止运行，所以正确实现这个方法对于避免死锁很关键。</p>
-<h4 id="取消"><a href="#取消" class="headerlink" title="取消"></a>取消</h4><p>早些取消那些没必要的操作是十分有用的。取消的原因可能包括用户的明确操作或者某个相关的操作失败。</p>
-<p>与之前的执行状态类似，当<code>NSOperation</code>的<code>-cancel</code>状态调用的时候会通过KVO通知<code>isCancelled</code>的keypath来修改<code>isCancelled</code>属性的返回值，<code>NSOperation</code>需要尽快地清理一些内部细节，而后到达一个合适的最终状态。特别的，这个时候<code>isCancelled</code>和<code>isFinished</code>的值将是YES，而<code>isExecuting</code>的值则为NO。</p>
-<h4 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h4><p>不可能所有的操作都是一样重要，通过以下的顺序设置queuePriority属性可以加快或者推迟操作的执行：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSOperationQueuePriorityVeryHigh</span></span><br><span class="line"><span class="built_in">NSOperationQueuePriorityHigh</span></span><br><span class="line"><span class="built_in">NSOperationQueuePriorityNormal</span></span><br><span class="line"><span class="built_in">NSOperationQueuePriorityLow</span></span><br><span class="line"><span class="built_in">NSOperationQueuePriorityVeryLow</span></span><br></pre></td></tr></table></figure>
-<p>此外，有些操作还可以指定<code>threadPriority</code>的值，它的取值范围可以从0.0到1.0，1.0代表最高的优先级。鉴于<code>queuePriority</code>属性决定了操作执行的顺序，<code>threadPriority</code>则指定了当操作开始执行以后的CPU计算能力的分配，如果你不知道这是什么，好吧，你可能根本没必要知道这是什么。</p>
-<h4 id="依赖性"><a href="#依赖性" class="headerlink" title="依赖性"></a>依赖性</h4><p>根据你应用的复杂度不同，将大任务再分成一系列子任务一般都是很有意义的，而你能通过NSOperation的依赖性实现。</p>
-<p>比如说，对于服务器下载并压缩一张图片的整个过程，你可能会将这个整个过程分为两个操作（可能你还会用到这个网络子过程再去下载另一张图片，然后用压缩子过程去压缩磁盘上的图片）。显然图片需要等到下载完成之后才能被调整尺寸，所以我们定义网络子操作是压缩子操作的依赖，通过代码来说就是：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[resizingOperation addDependency:networkingOperation];</span><br><span class="line">[operationQueue addOperation:networkingOperation];</span><br><span class="line">[operationQueue addOperation:resizingOperation];</span><br></pre></td></tr></table></figure>
-<p>除非一个操作的依赖的isFinished返回YES，不然这个操作不会开始。时时牢记将所有的依赖关系添加到操作队列很重要!!!</p>
-<p>此外，确保不要意外地创建依赖循环，像A依赖B，B又依赖A，这也会导致死锁。</p>
-<h4 id="completionBlock"><a href="#completionBlock" class="headerlink" title="completionBlock"></a>completionBlock</h4><p>每当一个<code>NSOperation</code>执行完毕，它就会调用它的<code>completionBlock</code>属性一次，这提供了一个非常好的方式让你能在视图控制器(View Controller)里或者模型(Model)里加入自己更多自己的代码逻辑。比如说，你可以在一个网络请求操作的<code>completionBlock</code>来处理操作执行完以后从服务器下载下来的数据。</p>
-<h4 id="自定义NSOperation"><a href="#自定义NSOperation" class="headerlink" title="自定义NSOperation"></a>自定义NSOperation</h4><p>自定义<code>NSOperation</code>时，思路都是大同小异，大致可以分为一下几步：</p>
-<p>创建一个集成自NSOperation的类<br>重写NSOperation的main()方法，在main()方法中实现耗时操作<br>然后使用时创建自定义的NNSOperation对象，把它添加到NSOperationQueue中，这样就可以自动执行了<br>其实，这只是自定义NSOperation的一种方法，而且是比较简单的一种方法，不需要自己去控制NSOperation的完成，取消等。另外一种方式是重写NSOperation的start方法，这种方法就需要你自己去控制NSOperation的完成，取消，执行等，而且有许多需要注意的地方。下面着重介绍一些第二种方法。</p>
-<p>第一种方式像下面那样就可以了，执行完耗时操作后，这个operation会被自动<code>dealloc</code></p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)main</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%s"</span>,__func__);</span><br><span class="line">    [<span class="built_in">NSThread</span> sleepForTimeInterval:<span class="number">3.0</span>];</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%@-耗时操作执行结束"</span>,[<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)dealloc</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%s"</span>,__func__);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">结果：</span></span><br><span class="line"><span class="comment"> -[DMOperation main]</span></span><br><span class="line"><span class="comment"> &lt;NSThread: 0x60c000263dc0&gt;&#123;number = 3, name = (null)&#125;-执行结束</span></span><br><span class="line"><span class="comment"> -[DMOperation dealloc]</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
-<p>如果第二种方式就需要自己控制状态</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">DMOperation</span> ()</span></span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">assign</span>, <span class="keyword">nonatomic</span>, <span class="keyword">getter</span> = isExecuting) <span class="built_in">BOOL</span> executing;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">assign</span>, <span class="keyword">nonatomic</span>, <span class="keyword">getter</span> = isFinished) <span class="built_in">BOOL</span> finished;</span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">DMOperation</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">@synthesize</span> finished = _finished;</span><br><span class="line"><span class="keyword">@synthesize</span> executing = _executing;</span><br><span class="line">- (<span class="keyword">void</span>)main</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%s"</span>,__func__);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)start</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%s"</span>,__func__);</span><br><span class="line">    <span class="keyword">@synchronized</span>(<span class="keyword">self</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">self</span>.isCancelled) &#123;</span><br><span class="line">            <span class="keyword">self</span>.finished = <span class="literal">YES</span>;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">self</span>.executing = <span class="literal">YES</span>;</span><br><span class="line">    [<span class="built_in">NSThread</span> sleepForTimeInterval:<span class="number">3.0</span>];</span><br><span class="line">    <span class="keyword">self</span>.executing = <span class="literal">NO</span>;</span><br><span class="line">    <span class="keyword">self</span>.finished = <span class="literal">YES</span>;<span class="comment">//不讲finished设置为YES 是不会被dealloc的</span></span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%@-执行结束"</span>,[<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)setFinished:(<span class="built_in">BOOL</span>)finished &#123;</span><br><span class="line">    [<span class="keyword">self</span> willChangeValueForKey:<span class="string">@"isFinished"</span>];</span><br><span class="line">    _finished = finished;</span><br><span class="line">    [<span class="keyword">self</span> didChangeValueForKey:<span class="string">@"isFinished"</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)setExecuting:(<span class="built_in">BOOL</span>)executing &#123;</span><br><span class="line">    [<span class="keyword">self</span> willChangeValueForKey:<span class="string">@"isExecuting"</span>];</span><br><span class="line">    _executing = executing;</span><br><span class="line">    [<span class="keyword">self</span> didChangeValueForKey:<span class="string">@"isExecuting"</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)dealloc</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%s"</span>,__func__);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>重写了<code>- (void)start</code>方法后，<code>- (void)main</code>方法不会被调用</p>
-<p><code>finished</code> 设置为YES后才会调用<code>dealloc</code>,这是只有<code>finished</code>后，才会从<code>NSOperationQueue</code>队列中移除。</p>
-<h3 id="GCD-Grand-Central-Dispatch"><a href="#GCD-Grand-Central-Dispatch" class="headerlink" title="GCD(Grand Central Dispatch)"></a>GCD(Grand Central Dispatch)</h3><h4 id="barrier"><a href="#barrier" class="headerlink" title="barrier"></a>barrier</h4><p><code>dispatch_barrier_asyn</code>的作用是将加入并发队列中的任务，分成三部分，保证这三部分是按顺序执行的，每一部分内部可能是无序的。</p>
-<p>实例代码如下：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)dispatch_barrier_1</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">"com.leoliu.concurrent"</span>,DISPATCH_QUEUE_CONCURRENT);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"1"</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">        sleep(<span class="number">5</span>);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"2"</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"3"</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    dispatch_barrier_async(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"barrier"</span>);</span><br><span class="line">        sleep(<span class="number">5</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">        sleep(<span class="number">1</span>);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"4"</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">        sleep(<span class="number">2</span>);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"5"</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"6"</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"7"</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"over"</span>);</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     结果：</span></span><br><span class="line"><span class="comment">     1</span></span><br><span class="line"><span class="comment">     3</span></span><br><span class="line"><span class="comment">     2</span></span><br><span class="line"><span class="comment">     barrier</span></span><br><span class="line"><span class="comment">     6</span></span><br><span class="line"><span class="comment">     4</span></span><br><span class="line"><span class="comment">     7</span></span><br><span class="line"><span class="comment">     5</span></span><br><span class="line"><span class="comment">     结论：</span></span><br><span class="line"><span class="comment">     barrier：之前的执行完成之后 才会执行barrier中的代码，barrier中的代码执行完后才会执行后面的代码</span></span><br><span class="line"><span class="comment">     barrier函数之前和之后的操作执行顺序都不固定</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注意：<br>dispatch_barrier_asyn使用时对队列的类型有要求，只能是通过dispatch_queue_create方法创建的并发队列才后有上面提到的功能，否则，相当于普通的dispatch_asyn。对于dispatch_barrier_syn也是一样的</p>
-</blockquote>
-<h5 id="dispatch-barrier-sync与dispatch-barrier-async"><a href="#dispatch-barrier-sync与dispatch-barrier-async" class="headerlink" title="dispatch_barrier_sync与dispatch_barrier_async"></a>dispatch_barrier_sync与dispatch_barrier_async</h5><p> 1、等待在它前面插入队列的任务先执行完</p>
-<p> 2、等待他们自己的任务执行完再执行后面的任务</p>
-<p> 不同点：</p>
-<p> 1、dispatch_barrier_sync将自己的任务插入到队列的时候，需要等待自己的任务结束之后才会继续插入被写在它后面的任务，然后执行它们</p>
-<p> 2、dispatch_barrier_async将自己的任务插入到队列之后，不会等待自己的任务结束，它会继续把后面的任务插入到队列，然后等待自己的任务结束后才执行后面任务。</p>
-<h6 id="dispatch-barrier-asyn的应用"><a href="#dispatch-barrier-asyn的应用" class="headerlink" title="dispatch_barrier_asyn的应用"></a>dispatch_barrier_asyn的应用</h6><p>利用dispatch_barrier_asyn我们可以实现一个读写安全的模型,这样可以保证写的过程中不能被读，以免数据不对，但是读与读之间并没有任何的冲突</p>
-<p>代码如下:</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">DMCache</span>()</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> _queue;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@property</span> (<span class="keyword">nonatomic</span>, <span class="keyword">strong</span>) <span class="built_in">NSMutableDictionary</span> *cache;</span><br><span class="line"><span class="keyword">@end</span></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">DMCache</span></span></span><br><span class="line">+ (<span class="keyword">instancetype</span>)shared</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">static</span> DMCache *share;</span><br><span class="line">    <span class="keyword">static</span> <span class="built_in">dispatch_once_t</span> onceToken;</span><br><span class="line">    <span class="built_in">dispatch_once</span>(&amp;onceToken, ^&#123;</span><br><span class="line">        share = [[DMCache alloc] init];</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> share;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">instancetype</span>)init</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">self</span> = [<span class="keyword">super</span> init];</span><br><span class="line">    <span class="keyword">self</span>.cache = [<span class="built_in">NSMutableDictionary</span> dictionary];</span><br><span class="line">    _queue = dispatch_queue_create(<span class="string">"com.cache.concurrent"</span>, DISPATCH_QUEUE_CONCURRENT);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">id</span>)cacheWithKey:(<span class="keyword">id</span>)key</span><br><span class="line">&#123;</span><br><span class="line">    __block <span class="keyword">id</span> obj;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 任意线程都可以'读'</span></span><br><span class="line">    <span class="built_in">dispatch_sync</span>(_queue, ^&#123;</span><br><span class="line">        obj = [<span class="keyword">self</span>.cache objectForKey:key];</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)setCacheObject:(<span class="keyword">id</span>)obj withKey:(<span class="keyword">id</span>)key</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 保证同时'写'的的只有一个</span></span><br><span class="line">    dispatch_barrier_async(_queue, ^&#123;</span><br><span class="line">        [<span class="keyword">self</span>.cache setObject:obj forKey:key];</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="group"><a href="#group" class="headerlink" title="group"></a>group</h4><p> dispatch_group_async 用来阻塞一个线程，直到一个或多个任务完成执行。进行线程同步。</p>
-<p> 代码如下：</p>
- <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"> - (<span class="keyword">void</span>)dispatch_group_1</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>);</span><br><span class="line">    dispatch_group_t group = dispatch_group_create();</span><br><span class="line">    <span class="comment">// 把 queue 加入到 group</span></span><br><span class="line">    dispatch_group_async(group, queue, ^&#123;</span><br><span class="line">        <span class="comment">// 一些异步操作任务</span></span><br><span class="line">        sleep(<span class="number">5</span>);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@:group task one"</span>,[<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    dispatch_group_async(group, queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@:group task two"</span>,[<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// code 你可以在这里写代码做一些不必等待 group 内任务的操作</span></span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%@:outer"</span>,[<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    <span class="comment">// 当你在 group 的任务没有完成的情况下不能做更多的事时，阻塞当前线程等待 group 完工</span></span><br><span class="line">    dispatch_group_wait(group, DISPATCH_TIME_FOREVER);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"finish"</span>);</span><br><span class="line">    </span><br><span class="line"><span class="comment">//        dispatch_group_notify(group, queue, ^&#123;</span></span><br><span class="line"><span class="comment">//            NSLog(@"%@:notify group finish",[NSThread currentThread]);</span></span><br><span class="line"><span class="comment">//        &#125;);</span></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     2018-04-19 17:17:22.706349+0800 DMGCD[349:54561] outer</span></span><br><span class="line"><span class="comment">     2018-04-19 17:17:22.710449+0800 DMGCD[349:54592] group task two</span></span><br><span class="line"><span class="comment">     2018-04-19 17:17:27.715335+0800 DMGCD[349:54590] group task one</span></span><br><span class="line"><span class="comment">     2018-04-19 17:17:27.715601+0800 DMGCD[349:54561] finish</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p> <code>dispatch_group_enter</code>和<code>dispatch_group_leave</code>成对出现，可以实现异步任务的同步</p>
- <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)dispatch_group_2</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> concurrentQueue = dispatch_queue_create(<span class="string">"my.concurrent.queue"</span>, DISPATCH_QUEUE_SERIAL);</span><br><span class="line">    dispatch_group_t group = dispatch_group_create();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">        dispatch_group_enter(group);</span><br><span class="line">        <span class="built_in">dispatch_async</span>(concurrentQueue, ^&#123;</span><br><span class="line">            <span class="keyword">if</span> (i == <span class="number">5</span>) &#123;</span><br><span class="line">                sleep(i+<span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"%@:task = %tu"</span>,[<span class="built_in">NSThread</span> currentThread],i);</span><br><span class="line">            dispatch_group_leave(group);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"outter"</span>);</span><br><span class="line">    </span><br><span class="line">    dispatch_group_notify(group, dispatch_get_main_queue(), ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"finished"</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">      outter</span></span><br><span class="line"><span class="comment">      &lt;NSThread: 0x17026ce80&gt;&#123;number = 4, name = (null)&#125;:task = 0</span></span><br><span class="line"><span class="comment">      &lt;NSThread: 0x17026ce80&gt;&#123;number = 4, name = (null)&#125;:task = 1</span></span><br><span class="line"><span class="comment">      &lt;NSThread: 0x17026ce80&gt;&#123;number = 4, name = (null)&#125;:task = 2</span></span><br><span class="line"><span class="comment">      &lt;NSThread: 0x17026ce80&gt;&#123;number = 4, name = (null)&#125;:task = 3</span></span><br><span class="line"><span class="comment">      &lt;NSThread: 0x17026ce80&gt;&#123;number = 4, name = (null)&#125;:task = 4</span></span><br><span class="line"><span class="comment">      &lt;NSThread: 0x17026ce80&gt;&#123;number = 4, name = (null)&#125;:task = 5</span></span><br><span class="line"><span class="comment">      &lt;NSThread: 0x17026ce80&gt;&#123;number = 4, name = (null)&#125;:task = 6</span></span><br><span class="line"><span class="comment">      &lt;NSThread: 0x17026ce80&gt;&#123;number = 4, name = (null)&#125;:task = 7</span></span><br><span class="line"><span class="comment">      &lt;NSThread: 0x17026ce80&gt;&#123;number = 4, name = (null)&#125;:task = 8</span></span><br><span class="line"><span class="comment">      &lt;NSThread: 0x17026ce80&gt;&#123;number = 4, name = (null)&#125;:task = 9</span></span><br><span class="line"><span class="comment">      finished</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="dispatch-apply"><a href="#dispatch-apply" class="headerlink" title="dispatch_apply"></a>dispatch_apply</h4><p> <code>dispatch_apply</code>函数是<code>dispatch_sync</code>函数和Dispatch Group的关联API,该函数按指定的次数将指定的Block追加到指定的Dispatch Queue中,并等到全部的处理执行结束</p>
- <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"> - (<span class="keyword">void</span>)dispatch_apply_1</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">NSArray</span> *arr = @[<span class="string">@"a"</span>,<span class="string">@"b"</span>,<span class="string">@"c"</span>,<span class="string">@"d"</span>,<span class="string">@"e"</span>,<span class="string">@"f"</span>,<span class="string">@"g"</span>,<span class="string">@"h"</span>,<span class="string">@"i"</span>,<span class="string">@"j"</span>];</span><br><span class="line">    dispatch_apply(arr.count, queue, ^(size_t i) &#123;</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"%@:%@"</span>,[arr objectAtIndex:i],[<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"--over"</span>);</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">      a:&lt;NSThread: 0x170067580&gt;&#123;number = 1, name = main&#125;</span></span><br><span class="line"><span class="comment">      b:&lt;NSThread: 0x170067580&gt;&#123;number = 1, name = main&#125;</span></span><br><span class="line"><span class="comment">      c:&lt;NSThread: 0x170067580&gt;&#123;number = 1, name = main&#125;</span></span><br><span class="line"><span class="comment">      d:&lt;NSThread: 0x170067580&gt;&#123;number = 1, name = main&#125;</span></span><br><span class="line"><span class="comment">      e:&lt;NSThread: 0x170067580&gt;&#123;number = 1, name = main&#125;</span></span><br><span class="line"><span class="comment">      f:&lt;NSThread: 0x170067580&gt;&#123;number = 1, name = main&#125;</span></span><br><span class="line"><span class="comment">      g:&lt;NSThread: 0x170067580&gt;&#123;number = 1, name = main&#125;</span></span><br><span class="line"><span class="comment">      h:&lt;NSThread: 0x170067580&gt;&#123;number = 1, name = main&#125;</span></span><br><span class="line"><span class="comment">      i:&lt;NSThread: 0x170067580&gt;&#123;number = 1, name = main&#125;</span></span><br><span class="line"><span class="comment">      j:&lt;NSThread: 0x170067580&gt;&#123;number = 1, name = main&#125;</span></span><br><span class="line"><span class="comment">      --over</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="semaphore"><a href="#semaphore" class="headerlink" title="semaphore"></a>semaphore</h4><p> 关于信号量，一般可以用停车来比喻：</p>
-<p> 停车场剩余4个车位，那么即使同时来了四辆车也能停的下。如果此时来了五辆车，那么就有一辆需要等待。<br> 信号量的值就相当于剩余车位的数目，<code>dispatch_semaphore_wait</code>函数就相当于来了一辆车，<code>dispatch_semaphore_signal</code><br> 就相当于走了一辆车。停车位的剩余数目在初始化的时候就已经指明了（<code>dispatch_semaphore_create（long value）</code>），<br> 调用一次<code>dispatch_semaphore_signal</code>，剩余的车位就增加一个；调用一次<code>dispatch_semaphore_wait</code>剩余车位就减少一个；<br> 当剩余车位为0时，再来车（即调用<code>dispatch_semaphore_wait</code>）就只能等待。有可能同时有几辆车等待一个停车位。有些车主<br> 没有耐心，给自己设定了一段等待时间，这段时间内等不到停车位就走了，如果等到了就开进去停车。而有些车主就像把车停在这，<br> 所以就一直等下去。</p>
-<p> 可以使用<code>semaphore</code>进行线程同步,将异步操作转换为同步操作</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)dispatch_semaphore_1</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>);</span><br><span class="line">    dispatch_semaphore_t semaphore = dispatch_semaphore_create(<span class="number">0</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"请求中……"</span>);</span><br><span class="line">        sleep(<span class="number">5</span>);</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"请求回调中……"</span>);</span><br><span class="line">        dispatch_semaphore_signal(semaphore);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"over"</span>);</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">      DMGCD[388:60678] 请求中……</span></span><br><span class="line"><span class="comment">      DMGCD[388:60678] 请求回调中……</span></span><br><span class="line"><span class="comment">      DMGCD[388:60602] over</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>也可以加锁</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//为线程加锁</span></span><br><span class="line">- (<span class="keyword">void</span>)dispatch_semaphore_2</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>);</span><br><span class="line">    dispatch_semaphore_t semaphore = dispatch_semaphore_create(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++) &#123;</span><br><span class="line">        <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">            <span class="keyword">long</span> semaphorecount = dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"i = %tu, count = %ld"</span>,i,semaphorecount);</span><br><span class="line">            dispatch_semaphore_signal(semaphore);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     当线程1执行到dispatch_semaphore_wait这一行时，semaphore的信号量为1，所以使信号量-1变为0，并且线程1继续往下执行；如果当在线程1NSLog这一行代码还没执行完的时候，又有线程2来访问</span></span><br><span class="line"><span class="comment">     执行dispatch_semaphore_wait时由于此时信号量为0，且时间为DISPATCH_TIME_FOREVER,所以会一直阻塞线程2（此时线程2处于等待状态），直到线程1执行完NSLog并执行</span></span><br><span class="line"><span class="comment">     dispatch_semaphore_signal使信号量为1后，线程2才能解除阻塞继续住下执行。以上可以保证同时只有一个线程执行NSLog这一行代码。</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>还可以控制线程并发数</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//使用 Dispatch Semaphore 控制并发线程数量</span></span><br><span class="line">- (<span class="keyword">void</span>)dispatch_semaphore_3</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">"com.limit.queue"</span>, DISPATCH_QUEUE_CONCURRENT);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">1000</span>; i++) &#123;</span><br><span class="line">        dispatch_async_limit(queue, <span class="number">5</span>, ^&#123;</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"%tu = %@"</span>,i,[<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">void</span> dispatch_async_limit(<span class="built_in">dispatch_queue_t</span> queue,<span class="built_in">NSUInteger</span> limitSemaphoreCount, dispatch_block_t block) &#123;</span><br><span class="line">    <span class="comment">//控制并发数的信号量</span></span><br><span class="line">    <span class="keyword">static</span> dispatch_semaphore_t limitSemaphore;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//专门控制并发等待的线程</span></span><br><span class="line">    <span class="keyword">static</span> <span class="built_in">dispatch_queue_t</span> receiverQueue;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//使用 dispatch_once而非 lazy 模式，防止可能的多线程抢占问题</span></span><br><span class="line">    <span class="keyword">static</span> <span class="built_in">dispatch_once_t</span> onceToken;</span><br><span class="line">    <span class="built_in">dispatch_once</span>(&amp;onceToken, ^&#123;</span><br><span class="line">        limitSemaphore = dispatch_semaphore_create(limitSemaphoreCount);</span><br><span class="line">        receiverQueue = dispatch_queue_create(<span class="string">"receiver"</span>, DISPATCH_QUEUE_SERIAL);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">// 如不加 receiverQueue 放在主线程会阻塞主线程</span></span><br><span class="line">    <span class="built_in">dispatch_async</span>(receiverQueue, ^&#123;</span><br><span class="line">        <span class="comment">//可用信号量后才能继续，否则等待</span></span><br><span class="line">        dispatch_semaphore_wait(limitSemaphore, DISPATCH_TIME_FOREVER);</span><br><span class="line">        <span class="built_in">dispatch_async</span>(queue, ^&#123;</span><br><span class="line">            !block ? : block();</span><br><span class="line">            <span class="comment">//在该工作线程执行完成后释放信号量</span></span><br><span class="line">            dispatch_semaphore_signal(limitSemaphore);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="Dispatch-Source"><a href="#Dispatch-Source" class="headerlink" title="Dispatch Source"></a>Dispatch Source</h4><p><code>Dispatch Source</code> 是BSD系内核惯有功能<code>kqueue</code>的包装。<code>kqueue</code> 是在 XNU 内核中发生各种事件时，在应用程序编程方执行处理的技术。其 CPU 负荷非常小，尽量不占用资源。kqueue 可以说是应用程序处理 XNU 内核中发生的各种事件的方法中最优秀的一种。</p>
-<p><code>Dispatch Source</code> 也使用在了 Core Foundation 框架的用于异步网络的API CFSocket 中。因为Foundation 框架的异步网络 API 是通过<code>CFSocket</code>实现的，所以可享受到仅使用 Foundation 框架的 <code>Dispatch Source</code> 带来的好处。</p>
-<p>那么优势何在？使用的 <code>Dispatch Source</code> 而不使用 <code>dispatch_async</code> 的唯一原因就是利用<code>联结</code>的优势。</p>
-<h5 id="创建dispatch-source-t"><a href="#创建dispatch-source-t" class="headerlink" title="创建dispatch_source_t"></a>创建dispatch_source_t</h5><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dispatch_source_t source = dispatch_source_create(DISPATCH_SOURCE_TYPE_DATA_ADD, <span class="number">0</span>, <span class="number">0</span>, dispatch_get_main_queue());</span><br></pre></td></tr></table></figure>
-<p>参数:</p>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th>意义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>type</td>
-<td>dispatch源可处理的事件类型</td>
-</tr>
-<tr>
-<td>handle</td>
-<td>可以理解为索引、id或句柄，假如要监听进程，需要传入进程的ID</td>
-</tr>
-<tr>
-<td>mask</td>
-<td>可以理解为描述，提供更详细的描述，让它知道具体要监听什么</td>
-</tr>
-<tr>
-<td>queue</td>
-<td>自定义源需要的一个队列，用来处理所有的响应句柄（block）</td>
-</tr>
-</tbody>
-</table>
-<p>Dispatch Source可处理的所有事件:</p>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>意义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>DISPATCH_SOURCE_TYPE_DATA_ADD</td>
-<td>自定义的事件，变量增加</td>
-</tr>
-<tr>
-<td>DISPATCH_SOURCE_TYPE_DATA_OR</td>
-<td>自定义的事件，变量OR</td>
-</tr>
-<tr>
-<td>DISPATCH_SOURCE_TYPE_MACH_SEND</td>
-<td>MACH端口发送</td>
-</tr>
-<tr>
-<td>DISPATCH_SOURCE_TYPE_MACH_RECV</td>
-<td>MACH端口接收</td>
-</tr>
-<tr>
-<td>DISPATCH_SOURCE_TYPE_PROC</td>
-<td>进程监听,如进程的退出、创建一个或更多的子线程、进程收到UNIX信号</td>
-</tr>
-<tr>
-<td>DISPATCH_SOURCE_TYPE_READ</td>
-<td>IO操作，如对文件的操作、socket操作的读响应</td>
-</tr>
-<tr>
-<td>DISPATCH_SOURCE_TYPE_SIGNAL</td>
-<td>接收到UNIX信号时响应</td>
-</tr>
-<tr>
-<td>DISPATCH_SOURCE_TYPE_TIMER</td>
-<td>定时器</td>
-</tr>
-<tr>
-<td>DISPATCH_SOURCE_TYPE_VNODE</td>
-<td>文件状态监听，文件被删除、移动、重命名</td>
-</tr>
-<tr>
-<td>DISPATCH_SOURCE_TYPE_WRITE</td>
-<td>IO操作，如对文件的操作、socket操作的写响应</td>
-</tr>
-<tr>
-<td>DISPATCH_SOURCE_TYPE_MEMORYPRESSURE</td>
-<td>内存压力监听</td>
-</tr>
-</tbody>
-</table>
-<h5 id="自定义事件"><a href="#自定义事件" class="headerlink" title="自定义事件"></a>自定义事件</h5><p>上面类型中可以使用自定时间的类型只有<code>DISPATCH_SOURCE_TYPE_DATA_ADD</code>和<code>DISPATCH_SOURCE_TYPE_DATA_OR</code></p>
-<p>实例：</p>
-<p>当我们更新进度条时，可能在多个线程上同时做很多任务，每个任务完成后，刷新界面，更新一点进度条的进度，因为每个任务都更新一次进度条，造成界面刷新次数太多，可能会导致界面卡顿，所以此时利用Dispatch Source能很好的解决这种情况，因为Dispatch Source在刷新太频繁的时候会自动联结起来，下面就用代码实现一下这个场景。</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)dispatch_source_5</span><br><span class="line">&#123;</span><br><span class="line">    dispatch_source_t source = dispatch_source_create(DISPATCH_SOURCE_TYPE_DATA_ADD, <span class="number">0</span>, <span class="number">0</span>, dispatch_get_main_queue());</span><br><span class="line">    <span class="comment">//在主线程繁忙的时候将操作联结起来，等主线程空闲时 刷新UI 避免频繁的在主线程刷新UI</span></span><br><span class="line">    dispatch_source_set_event_handler(source, ^&#123;</span><br><span class="line">        <span class="comment">//当处理事件被最终执行时，计算后的数据可以通过dispatch_source_get_data来获取。这个数据的值在每次响应事件执行后会被重置，所以totalComplete的值是最终累积的值。</span></span><br><span class="line">        <span class="built_in">NSUInteger</span> value = dispatch_source_get_data(source);</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"value：%@"</span>, @(value));</span><br><span class="line">        value = value == <span class="number">100</span> ? <span class="number">0</span> : value;</span><br><span class="line">        <span class="keyword">self</span>.progressView.progress = value/<span class="number">10.</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@"线程号：%@"</span>, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    dispatch_resume(source);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">self</span>.progressView.progress = <span class="number">1.0</span>;</span><br><span class="line">    __block <span class="built_in">NSInteger</span> timeout = <span class="number">10</span>;</span><br><span class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">"com.yiqi.dmgcd"</span>, DISPATCH_QUEUE_SERIAL);</span><br><span class="line">    dispatch_source_t timerSource = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, <span class="number">0</span>, <span class="number">0</span>, queue);</span><br><span class="line">    dispatch_time_t time = dispatch_walltime(<span class="literal">NULL</span>, <span class="number">0</span>);</span><br><span class="line">    dispatch_source_set_timer(timerSource, time, <span class="number">1.0</span>*<span class="built_in">NSEC_PER_SEC</span>, <span class="number">0</span>);</span><br><span class="line">    </span><br><span class="line">    dispatch_source_set_event_handler(timerSource, ^&#123;</span><br><span class="line">        <span class="keyword">if</span> (timeout &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">            dispatch_source_cancel(timerSource);</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"cancel"</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            timeout--;</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"timeout = %tu  %f"</span>,timeout,timeout/<span class="number">10.</span>);</span><br><span class="line">            <span class="built_in">NSInteger</span> a = timeout == <span class="number">0</span> ? <span class="number">100</span> : timeout;</span><br><span class="line">            dispatch_source_merge_data(source,  a);<span class="comment">//timeout == 0 时不会触发事件</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//开始执行</span></span><br><span class="line">    dispatch_resume(timerSource);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>联结方式为OR时</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)dispatch_source_6</span><br><span class="line">&#123;</span><br><span class="line">    dispatch_source_t source = dispatch_source_create(DISPATCH_SOURCE_TYPE_DATA_OR, <span class="number">0</span>, <span class="number">0</span>, dispatch_get_main_queue());</span><br><span class="line">    dispatch_source_set_event_handler(source, ^&#123;</span><br><span class="line">         <span class="built_in">NSLog</span>(<span class="string">@"监听函数：%lu"</span>,dispatch_source_get_data(source));</span><br><span class="line">    &#125;);</span><br><span class="line">    dispatch_resume(source);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; <span class="number">5</span> ; i++) &#123;</span><br><span class="line">        dispatch_source_merge_data(source, i);</span><br><span class="line">        usleep(<span class="number">2000</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>DISPATCH_SOURCE_TYPE_DATA_ADD</code> 与 <code>DISPATCH_SOURCE_TYPE_DATA_OR</code> 的区别：</p>
-<p>DISPATCH_SOURCE_TYPE_DATA_ADD 带别的方式为将<code>dispatch_source_merge_data</code>联结进来的数据进行加运算</p>
-<p>DISPATCH_SOURCE_TYPE_DATA_OR 带别的方式为将<code>dispatch_source_merge_data</code>联结进来的数据进行或运算</p>
-<p>比如上面的那个例子，先将<code>usleep(2000);</code>这段代码注释掉以后，通过<code>DISPATCH_SOURCE_TYPE_DATA_ADD</code>方式运行的到的结果会是 10（1+2+3+4），通过<code>DISPATCH_SOURCE_TYPE_DATA_OR</code>方式运行得到的结果是7 （1|2|3|4）</p>
-<p>如果将这段代码<code>usleep(2000);</code>放开，不管是用ADD还是OR会打印四次结果为下面所示,这正是联结的作用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">监听函数：1</span><br><span class="line">监听函数：2</span><br><span class="line">监听函数：3</span><br><span class="line">监听函数：4</span><br></pre></td></tr></table></figure>
-<h5 id="DISPATCH-SOURCE-TYPE-VNODE"><a href="#DISPATCH-SOURCE-TYPE-VNODE" class="headerlink" title="DISPATCH_SOURCE_TYPE_VNODE"></a>DISPATCH_SOURCE_TYPE_VNODE</h5><p>通过这种类型，可以监听文件状态</p>
-<table>
-<thead>
-<tr>
-<th>状态类型</th>
-<th>状态</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>DISPATCH_VNODE_DELETE</td>
-<td>文件被删除</td>
-</tr>
-<tr>
-<td>DISPATCH_VNODE_WRITE</td>
-<td>文件数据发生变化</td>
-</tr>
-<tr>
-<td>DISPATCH_VNODE_EXTEND</td>
-<td>文件size发生变化</td>
-</tr>
-<tr>
-<td>DISPATCH_VNODE_ATTRIB</td>
-<td>文件metadata发生变化</td>
-</tr>
-<tr>
-<td>DISPATCH_VNODE_LINK</td>
-<td>文件链接数发生变化</td>
-</tr>
-<tr>
-<td>DISPATCH_VNODE_RENAME</td>
-<td>文件被重命名</td>
-</tr>
-<tr>
-<td>DISPATCH_VNODE_REVOKE</td>
-<td>文件被revoked</td>
-</tr>
-<tr>
-<td>DISPATCH_VNODE_FUNLOCK</td>
-<td>文件被unlocked</td>
-</tr>
-</tbody>
-</table>
-<p>通过这个属性我们可以实现一个监听指定目录下文件内容是否发生变化，如果变化，我们可以来做一些操作,这里有一个我写工具<a href="https://github.com/leoliuyt/LLDirWatchDog" target="_blank" rel="noopener">LLDirWatchDog</a>欢迎star</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)start &#123;</span><br><span class="line">    <span class="built_in">NSString</span>* docPath = <span class="keyword">self</span>.path;</span><br><span class="line">    <span class="keyword">if</span> (!docPath) <span class="keyword">return</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">int</span> dirFD = open([docPath fileSystemRepresentation], O_EVTONLY);</span><br><span class="line">    <span class="keyword">if</span> (dirFD &lt; <span class="number">0</span>) &#123;<span class="keyword">return</span>;&#125;</span><br><span class="line">    </span><br><span class="line">    _dirQueueSource = dispatch_source_create(DISPATCH_SOURCE_TYPE_VNODE, dirFD, DISPATCH_VNODE_WRITE, dispatch_get_main_queue());</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> (!_dirQueueSource)</span><br><span class="line">    &#123;</span><br><span class="line">        close(dirFD);</span><br><span class="line">    &#125;</span><br><span class="line">    _dirFD = dirFD;</span><br><span class="line">    __<span class="keyword">weak</span> <span class="keyword">typeof</span>(<span class="keyword">self</span>) weakSelf = <span class="keyword">self</span>;</span><br><span class="line">    dispatch_source_set_event_handler(_dirQueueSource, ^&#123;</span><br><span class="line">        __<span class="keyword">strong</span> <span class="keyword">typeof</span>(weakSelf) strongSelf = weakSelf;</span><br><span class="line">        <span class="keyword">if</span> (strongSelf.update) &#123;</span><br><span class="line">            strongSelf.update();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    dispatch_source_set_cancel_handler(_dirQueueSource, ^&#123;close(dirFD);&#125;);</span><br><span class="line">    dispatch_resume(_dirQueueSource);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="DISPATCH-SOURCE-TYPE-MEMORYPRESSURE"><a href="#DISPATCH-SOURCE-TYPE-MEMORYPRESSURE" class="headerlink" title="DISPATCH_SOURCE_TYPE_MEMORYPRESSURE"></a>DISPATCH_SOURCE_TYPE_MEMORYPRESSURE</h5><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//内存压力情况变化.</span></span><br><span class="line">- (<span class="keyword">void</span>)dispatch_source_3</span><br><span class="line">&#123;</span><br><span class="line">    dispatch_source_t source = dispatch_source_create(DISPATCH_SOURCE_TYPE_MEMORYPRESSURE, <span class="number">0</span>, DISPATCH_MEMORYPRESSURE_WARN|DISPATCH_MEMORYPRESSURE_CRITICAL, dispatch_get_main_queue());</span><br><span class="line">    dispatch_source_set_event_handler(source, ^&#123;</span><br><span class="line">        dispatch_source_memorypressure_flags_t pressureLevel = dispatch_source_get_data(source);</span><br><span class="line">        <span class="keyword">if</span> (pressureLevel &amp; DISPATCH_MEMORYPRESSURE_WARN) &#123;</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"memeory warn"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span> (pressureLevel &amp; DISPATCH_MEMORYPRESSURE_CRITICAL) &#123;</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@"memeory critical"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    dispatch_resume(source);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://github.com/ChenYilong/ParseSourceCodeStudy/blob/master/01_Parse的多线程处理思路/Parse的底层多线程处理思路.md#parse-ios-sdk介绍" target="_blank" rel="noopener">Parse的底层多线程处理思路</a></p>
-<p><a href="https://www.jianshu.com/p/2f6eed90bb9d" target="_blank" rel="noopener">IOS dispatch source 学习篇</a></p>
-<p><a href="https://www.jianshu.com/p/89943e91bee9" target="_blank" rel="noopener">Dispatch Source的自定义事件</a></p>
-<p><a href="https://www.jianshu.com/p/83c3b7e4af28" target="_blank" rel="noopener">IOS Dispatch Source 笔记</a></p>
-<p><a href="https://www.jianshu.com/p/4b1d77054b35" target="_blank" rel="noopener">iOS多线程：『NSOperation、NSOperationQueue』详尽总结</a></p>
-<p><a href="http://nshipster.cn/nsoperation/" target="_blank" rel="noopener">NSHipster-NSOperation</a></p>
-<p><a href="http://www.cocoachina.com/ios/20160412/15903.html" target="_blank" rel="noopener">iOS多线程篇：NSThread</a></p>
-
-          
+          多线程相关概念同步、异步同步：完成需要做的任务后才会返回，进行下一任务。不会开新的线程，会在当前线程中执行任务。
+异步：不会等待任务完成才返回，会立即返回。必定会开启新的线程，线程的申请是由异步负责，起到开分支的作用。
+串、并行、全局、主队列串行队列： 任务依次执行，同一时间队列中只有一个任务在执行
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/19/iOS中的多线程/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1330,35 +1162,20 @@
       
         
           
-            <img src="/2018/04/13/Mac开发Tip/Cocoa@2x.png" title="Cocoa">
-<h2 id="删除Main-Storyboard-纯代码开发"><a href="#删除Main-Storyboard-纯代码开发" class="headerlink" title="删除Main.Storyboard,纯代码开发"></a>删除<code>Main.Storyboard</code>,纯代码开发</h2><p>如果想纯代码开发Mac应用，删除<code>Main.Storyboard</code>,用代码构建初始化窗口，步骤如下：</p>
-<p>1、删除<code>Main.Storyboard</code>,修改<code>info.plist</code></p>
-
-<p>2、修改<code>main.m</code>中代码如下：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#import <span class="meta-string">"AppDelegate.h"</span></span></span><br><span class="line"><span class="keyword">int</span> main(<span class="keyword">int</span> argc, <span class="keyword">const</span> <span class="keyword">char</span> * argv[]) &#123;</span><br><span class="line">    <span class="built_in">NSApplication</span>*applicaton = [<span class="built_in">NSApplication</span> sharedApplication];</span><br><span class="line">    <span class="keyword">id</span> delegete = [[AppDelegate alloc]init];</span><br><span class="line">    </span><br><span class="line">    applicaton.delegate= delegete;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">NSApplicationMain</span>(argc, argv);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>3、修改<code>AppDelegate.m</code>中代码如下:</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)applicationDidFinishLaunching:(<span class="built_in">NSNotification</span> *)aNotification &#123;</span><br><span class="line">    <span class="comment">// Insert code here to initialize your application</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//创建Window的两种方式</span></span><br><span class="line">    DMRootViewController *vc = [[DMRootViewController alloc] init];</span><br><span class="line">    <span class="comment">//创建Window方式一：</span></span><br><span class="line"><span class="comment">//    self.window = [NSWindow windowWithContentViewController:vc];</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">//创建Window方式二：</span></span><br><span class="line">    <span class="keyword">self</span>.window = [[<span class="built_in">NSWindow</span> alloc] initWithContentRect:<span class="built_in">CGRectMake</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">800</span>,<span class="number">600</span>)</span><br><span class="line">                                              styleMask:<span class="built_in">NSWindowStyleMaskTitled</span>|<span class="built_in">NSWindowStyleMaskMiniaturizable</span>|<span class="built_in">NSWindowStyleMaskResizable</span>|<span class="built_in">NSWindowStyleMaskClosable</span></span><br><span class="line">                                                backing:<span class="built_in">NSBackingStoreRetained</span></span><br><span class="line">                                                  defer:<span class="literal">NO</span>];</span><br><span class="line">    <span class="keyword">self</span>.window.contentViewController = vc;</span><br><span class="line">  </span><br><span class="line">    </span><br><span class="line">    <span class="comment">//window 显示出来也有两种方式：</span></span><br><span class="line">    </span><br><span class="line">    [<span class="keyword">self</span>.window center];</span><br><span class="line">    <span class="comment">//window显示方式一：</span></span><br><span class="line"><span class="comment">//    [self.window makeKeyAndOrderFront:nil];</span></span><br><span class="line">    <span class="comment">//window显示方式二：</span></span><br><span class="line">    [<span class="keyword">self</span>.window makeKeyWindow];</span><br><span class="line">    <span class="comment">//将window与APP绑定，如果不绑定，无法显示Window。</span></span><br><span class="line">    [<span class="built_in">NSApp</span> beginModalSessionForWindow:<span class="keyword">self</span>.window];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这里要注意<code>DMRootViewController</code>中再没使用nib的情况下，要通过实现<code>loadView</code>来加载<code>Controller</code>中的View</p>
-<h2 id="给NSView设置背景颜色"><a href="#给NSView设置背景颜色" class="headerlink" title="给NSView设置背景颜色"></a>给NSView设置背景颜色</h2><p><code>NSView</code>没有<code>backgroudColor</code>这个属性，要设置背景色要通过layer来设置，并且要开开启<code>wantsLayer</code>这个属性，代码如下：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span>.view.wantsLayer = <span class="literal">YES</span>;</span><br><span class="line"><span class="keyword">self</span>.view.layer.backgroundColor = [<span class="built_in">NSColor</span> orangeColor].CGColor;</span><br></pre></td></tr></table></figure>
-<h2 id="给NSScrollView设置背景颜色"><a href="#给NSScrollView设置背景颜色" class="headerlink" title="给NSScrollView设置背景颜色"></a>给NSScrollView设置背景颜色</h2><p><code>NSScrollView</code>有<code>backgroundColor</code>这个属性，可以通过设置这个属性和<code>drawsBackground</code>来设置<code>NSScrollView</code>的背景颜色,<code>drawsBackground</code>不设置的话也是无法显示背景颜色的<br><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">_scrollView.backgroundColor = [<span class="built_in">NSColor</span> redColor];</span><br><span class="line">_scrollView.drawsBackground = <span class="literal">YES</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//clear color 要设置为NO</span></span><br><span class="line">_scrollView.backgroundColor = [<span class="built_in">NSColor</span> clearColor];</span><br><span class="line">_scrollView.drawsBackground = <span class="literal">NO</span>;</span><br></pre></td></tr></table></figure></p>
-<h2 id="给NSCollectionView设置透明背景"><a href="#给NSCollectionView设置透明背景" class="headerlink" title="给NSCollectionView设置透明背景"></a>给NSCollectionView设置透明背景</h2><figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[_collectionView setBackgroundColors:@[[<span class="built_in">NSColor</span> clearColor]]];</span><br></pre></td></tr></table></figure>
-<h2 id="访问网络"><a href="#访问网络" class="headerlink" title="访问网络"></a>访问网络</h2><p>Mac应用要想访问网络，必须要手动配置一下才可以，配置如图：</p>
-<img src="/2018/04/13/Mac开发Tip/network@2x.png" title="访问网络配置">
-<p>勾选上<code>Outgoing Connections(tClien)</code>就可以访问网络了，如有想要使用摄像头、麦克风等硬件设备，那么可以勾选上<code>Camera</code>、<code>Microphone</code>等配置项</p>
-<h2 id="window被close后，点击Dock重新显示出来"><a href="#window被close后，点击Dock重新显示出来" class="headerlink" title="window被close后，点击Dock重新显示出来"></a>window被close后，点击<code>Dock</code>重新显示出来</h2><p>当你的界面被关闭后，想点击<code>Dock</code>重新显示(类似QQ、微信的效果)，可以分两种情况实现：</p>
-<p>1、使用<code>Main.Storyboard</code>的情况</p>
-<p>实现<code>AppDelegate</code>中的方法，如下：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">-(<span class="built_in">BOOL</span>)applicationShouldHandleReopen:(<span class="built_in">NSApplication</span> *)theApplication hasVisibleWindows:(<span class="built_in">BOOL</span>)flag</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (!flag)&#123;<span class="comment">//为了让close后的window，点dock中应用图标显示出来</span></span><br><span class="line">        <span class="built_in">NSStoryboard</span> *sb = [<span class="built_in">NSStoryboard</span> mainStoryboard];</span><br><span class="line">        <span class="built_in">NSWindowController</span> *windowController = [sb instantiateInitialController];</span><br><span class="line">        [windowController.window makeKeyAndOrderFront:<span class="keyword">self</span>];</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NO</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>2、使用纯代码的情况</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">-(<span class="built_in">BOOL</span>)applicationShouldHandleReopen:(<span class="built_in">NSApplication</span> *)theApplication hasVisibleWindows:(<span class="built_in">BOOL</span>)flag</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (!flag)&#123;<span class="comment">//为了让close后的window，点dock中应用图标显示出来</span></span><br><span class="line">        [<span class="keyword">self</span>.window makeKeyAndOrderFront:<span class="keyword">self</span>];</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">NO</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>如果想点击<code>x</code>直接退出程序,可以通过实现<code>NSWindowDelegate</code>的代理来处理</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="built_in">BOOL</span>)windowShouldClose:(<span class="built_in">NSWindow</span> *)sender</span><br><span class="line">&#123;</span><br><span class="line">    [<span class="built_in">NSApp</span> terminate:<span class="literal">nil</span>];</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">YES</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="NSView的动画"><a href="#NSView的动画" class="headerlink" title="NSView的动画"></a>NSView的动画</h2><p>要实现NSView从底部出现的动画，要注意必须设置两个神奇属性，否则根本没有动画效果：</p>
-<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span>.oneView = [[CustomView alloc] init];</span><br><span class="line"><span class="keyword">self</span>.oneView.wantsLayer = <span class="literal">YES</span>;</span><br><span class="line">[<span class="keyword">self</span>.view addSubview:<span class="keyword">self</span>.oneView];</span><br><span class="line">__block MASConstraint *bottomContraint = <span class="literal">nil</span>;</span><br><span class="line">[<span class="keyword">self</span>.oneView mas_makeConstraints:^(MASConstraintMaker *make) &#123;</span><br><span class="line">    make.left.right.equalTo(<span class="keyword">self</span>.view);</span><br><span class="line">    bottomContraint=make.bottom.equalTo(<span class="keyword">self</span>.view).offset(<span class="number">60.</span>);</span><br><span class="line">    make.height.equalTo(@<span class="number">60.</span>);</span><br><span class="line">&#125;];</span><br><span class="line"><span class="comment">//保证初始状态正确</span></span><br><span class="line">[<span class="keyword">self</span>.view layoutSubtreeIfNeeded];</span><br><span class="line"></span><br><span class="line">bottomContraint.offset(<span class="number">0.</span>);</span><br><span class="line"></span><br><span class="line">[<span class="built_in">NSAnimationContext</span> runAnimationGroup:^(<span class="built_in">NSAnimationContext</span> * _Nonnull context) &#123;</span><br><span class="line">    context.duration = <span class="number">5</span>;</span><br><span class="line">    context.allowsImplicitAnimation=<span class="literal">YES</span>;</span><br><span class="line">    [<span class="keyword">self</span>.view layoutSubtreeIfNeeded];</span><br><span class="line">&#125; completionHandler:<span class="literal">nil</span>];</span><br></pre></td></tr></table></figure>
-<p>其中<code>NSView</code>的<code>wantsLayer</code>和 <code>NSAnimationContext</code>的<code>allowsImplicitAnimation</code>这两个属性是必须要设置的！</p>
-
           
+删除Main.Storyboard,纯代码开发如果想纯代码开发Mac应用，删除Main.Storyboard,用代码构建初始化窗口，步骤如下：
+1、删除Main.Storyboard,修改info.plist
+
+2、修改main.m中代码如下：
+12345678#import "AppDelega
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/13/Mac开发Tip/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1498,38 +1315,19 @@
       
         
           
-            <p><code>fastlane</code>是部署和发布app的最简单的一种方式。它能处理像生成截图、处理签名、发布应用这些枯燥的任务。</p>
-<h2 id="fastlane的安装"><a href="#fastlane的安装" class="headerlink" title="fastlane的安装"></a>fastlane的安装</h2><p>1、确保Xcode的命令行工具已安装</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">xcode-select --install</span><br></pre></td></tr></table></figure>
-<p>2、安装fastlane</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">gem install fastlane -NV</span><br><span class="line">或者</span><br><span class="line">brew cask install fastlane</span><br></pre></td></tr></table></figure>
-<p>3、在项目中创建fastlane</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastlane init</span><br></pre></td></tr></table></figure>
-<h2 id="fastlane初体验"><a href="#fastlane初体验" class="headerlink" title="fastlane初体验"></a>fastlane初体验</h2><p>1、进入工程目录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ~/Documents/Code/LL_Workspace/DMFastlane/DMFastlane</span><br></pre></td></tr></table></figure>
-<p>2、创建fastlane</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastlane init</span><br></pre></td></tr></table></figure>
-<p>执行上面命令后，会出现一个选择菜单如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[18:20:51]: What would you like to use fastlane for?</span><br><span class="line">1. 📸  Automate screenshots</span><br><span class="line">2. 👩‍✈️  Automate beta distribution to TestFlight</span><br><span class="line">3. 🚀  Automate App Store distribution</span><br><span class="line">4. 🛠  Manual setup - manually setup your project to automate your tasks</span><br><span class="line">?  4</span><br></pre></td></tr></table></figure>
-<p>选择不用的选项，<code>fastlane</code>会为你创建不同功能对应的 <code>lane</code>。</p>
-<p>比如我选择<code>1</code>，自动生成的<code>Fastfile</code>文件中会出现如下代码:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">default_platform(<span class="symbol">:ios</span>)</span><br><span class="line"></span><br><span class="line">platform <span class="symbol">:ios</span> <span class="keyword">do</span></span><br><span class="line">  desc <span class="string">"Generate new localized screenshots"</span></span><br><span class="line">  lane <span class="symbol">:screenshots</span> <span class="keyword">do</span></span><br><span class="line">    capture_screenshots(<span class="symbol">workspace:</span> <span class="string">"DMFastlane.xcworkspace"</span>, <span class="symbol">scheme:</span> <span class="string">"DMFastlane"</span>)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p><code>screenshots</code>这个<code>lane</code>的功能就是自动生成截图。</p>
-<p>如果我选<code>4</code>,就会生成一个供我们自定<code>lane</code>,如下:</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">default_platform(<span class="symbol">:ios</span>)</span><br><span class="line"></span><br><span class="line">platform <span class="symbol">:ios</span> <span class="keyword">do</span></span><br><span class="line">  desc <span class="string">"Description of what the lane does"</span></span><br><span class="line">  lane <span class="symbol">:custom_lane</span> <span class="keyword">do</span></span><br><span class="line">    <span class="comment"># add actions here: https://docs.fastlane.tools/actions</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p>我们可以把我们想要实现的功能写在这个<code>custom_lane</code>中，比如我们想build工程生成ipa，可以调用<code>fastlane</code>提供的一个工具<code>build_ios_app</code>,这样实现：</p>
-<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">lane <span class="symbol">:custom_lane</span> <span class="keyword">do</span></span><br><span class="line">    <span class="comment"># add actions here: https://docs.fastlane.tools/actions</span></span><br><span class="line">    build_ios_app(<span class="symbol">scheme:</span> <span class="string">"DMFastlane"</span>,</span><br><span class="line">            <span class="symbol">workspace:</span> <span class="string">"DMFastlane.xcworkspace"</span>,</span><br><span class="line">            <span class="symbol">configuration:</span> <span class="string">"Debug"</span>,</span><br><span class="line">            <span class="symbol">export_method:</span> <span class="string">"development"</span>,</span><br><span class="line">            <span class="symbol">output_directory:</span> <span class="string">"~/Desktop/"</span>, <span class="comment"># Destination directory. Defaults to current directory.</span></span><br><span class="line">            <span class="symbol">output_name:</span> <span class="string">"DMFastlane.ipa"</span>       <span class="comment"># specify the name of the .ipa file to generate (including file extension)</span></span><br><span class="line">            )</span><br><span class="line">  <span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p>然后再工程目录下，运行如下命令：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fastlane custom_lane</span><br></pre></td></tr></table></figure>
-<p>就会在<code>output_directory</code>指定的目录下生成<code>output_name</code>指定的<code>ipa</code>包</p>
-<p>这样fastlane的初次体验就完成了，以后生成ipa执行一个命令就可以了。</p>
-<h2 id="QA"><a href="#QA" class="headerlink" title="QA"></a>QA</h2><p>Q: <code>Error: fastlane gym produces error: method &#39;to_plist&#39; not defined in Array</code></p>
-<p>A:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 先卸载</span><br><span class="line">rvm @global do gem uninstall fastlane </span><br><span class="line">rvm all do gem uninstall fastlane</span><br><span class="line">gem uninstall fastlane</span><br><span class="line"></span><br><span class="line"># 从新安装</span><br><span class="line">gem install fastlane -NV</span><br></pre></td></tr></table></figure></p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://docs.fastlane.tools" target="_blank" rel="noopener">fastlane官网</a></p>
-<p><a href="http://blog.devzeng.com/blog/ios-fastlane-in-action.html" target="_blank" rel="noopener">iOS中fastlane的使用</a></p>
-<p><a href="https://whlsxl.github.io/fastlane1/" target="_blank" rel="noopener">小团队的自动化发布－Fastlane带来的全自动化发布</a></p>
-
-          
+          fastlane是部署和发布app的最简单的一种方式。它能处理像生成截图、处理签名、发布应用这些枯燥的任务。
+fastlane的安装1、确保Xcode的命令行工具已安装
+1xcode-select --install
+2、安装fastlane
+123gem install fastlane -NV或
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/11/fastlane在iOS中的使用/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1669,28 +1467,19 @@
       
         
           
-            <p>shell中与时间处理相关的内容整理：</p>
-<ol>
-<li>显示当前时间，按指定格式显示时间</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">date    //显示当前时间，输出结果：Tue Mar  7 22:13:22 CST 2017</span><br><span class="line">date +"%Y/%m/%d %H:%m:%S"  //显示指定格式时间，输出结果：2017/03/07 22:03:05 </span><br><span class="line"></span><br><span class="line">//日期格式化符号说明如下：</span><br><span class="line"><span class="meta">%</span>%    显示一个百分号'%'。</span><br><span class="line"><span class="meta">%</span>a     星期的简称, 如:Sun/Mon/Tue/Wed/...</span><br><span class="line"><span class="meta">%</span>A     星期完整名字，如：Sunday/Monday/...</span><br><span class="line"><span class="meta">%</span>b     月份简称,如:Jan/Feb/...</span><br><span class="line"><span class="meta">%</span>B     月份全称，如: January/February</span><br><span class="line"><span class="meta">%</span>c     显示当前日期和时间，如:Thu Mar  3 23:05:25 2005 //date等同于date +"%c"</span><br><span class="line"><span class="meta">%</span>C     世纪，如：现在是20世纪, 输入date +"%C"显示20。</span><br><span class="line"><span class="meta">%</span>d     日期，如当前是8号，则显示:08</span><br><span class="line"><span class="meta">%</span>D     完整日期，date +"%D"相当于date  +"%m/%d/%y", 如：03/07/17(2017年3月7号)</span><br><span class="line"><span class="meta">%</span>e     日期，用空格补全，而不是0， 如当前日期:7号，则显示" 7"。date +"%e" 相当于 date +"%_d"</span><br><span class="line"><span class="meta">%</span>F     完整日期，相当于:date +"%Y-%m-%d", 输出：2017-03-07</span><br><span class="line"><span class="meta">%</span>g     年份后2位，如果是2017， 则为：17</span><br><span class="line"><span class="meta">%</span>G    年份全4位，如2017</span><br><span class="line"><span class="meta">%</span>h     月份简称，如:Jan/Feb/Mar, 跟%b相同</span><br><span class="line"><span class="meta">%</span>H     小时 (00/01/02/..23)，24小时制</span><br><span class="line"><span class="meta">%</span>I     小时 (01/02/..12), 12小时制。</span><br><span class="line"><span class="meta">%</span>j     一年的第几天 (001/002/..366)</span><br><span class="line"><span class="meta">%</span>k     小时，填充空格, 如 ( 0/ 1/ 2/..23); 相当于%_H。</span><br><span class="line"><span class="meta">%</span>l      小时, 填充空格 ( 1/ 2/ 3/ ..12); 相当于 %_I。</span><br><span class="line"><span class="meta">%</span>m    月份 (01/02/03/..12)</span><br><span class="line"><span class="meta">%</span>M     分钟(00/01/02/..59)</span><br><span class="line"><span class="meta">%</span>n     换行。date +"%d%n%d", 将会分成两行分别显示日期。</span><br><span class="line"><span class="meta">%</span>N     纳秒 (000000000/000000001/..999999999)。</span><br><span class="line"><span class="meta">%</span>p     AM/PM, 即上午或者下午。</span><br><span class="line"><span class="meta">%</span>P     跟%p意思一样, 不过是小写字母，即am/pm。</span><br><span class="line"><span class="meta">%</span>r     显示12小时制的当前时间，如：10:48:05 PM。</span><br><span class="line"><span class="meta">%</span>R     24小时制的当前时间和分钟，相当于： %H:%M，22:49。</span><br><span class="line"><span class="meta">%</span>s     从1970-01-01 00:00:00 UTC开始的秒数，如：1488898232（对应时间：Tue Mar  7 22:50:32 CST 2017），相当于日期转时间戳。</span><br><span class="line"><span class="meta">%</span>S     秒 (00/01/02/..60)。</span><br><span class="line"><span class="meta">%</span>t     一个tab键，制表符。</span><br><span class="line"><span class="meta">%</span>T     当前时间，相当于: %H:%M:%S。如：22:52:07。</span><br><span class="line"><span class="meta">%</span>u     星期中的第几天 (1/2/..7); 1是星期一。</span><br><span class="line"><span class="meta">%</span>U     一年中的第几个星期(00..53)，星期天作为一个星期的第一天</span><br><span class="line"><span class="meta">%</span>V     一年中的第几个星期（ISO标准）(01..53)，星期一作为一个星期的第一天。</span><br><span class="line"><span class="meta">%</span>w     星期中的第几天 (0..6); 0是星期天。</span><br><span class="line"><span class="meta">%</span>W     一年中的第几个星期 (00..53)，星期一作为一个星期的第一天。</span><br><span class="line"><span class="meta">%</span>x     当前日期 (例如： 03/07/17)</span><br><span class="line"><span class="meta">%</span>X    当前时间(例如： 23:13:48)。</span><br><span class="line"><span class="meta">%</span>y     年的后两位 (00/02/..99)。</span><br><span class="line"><span class="meta">%</span>Y     年，如：2017</span><br><span class="line"><span class="meta">%</span>z     +hhmm 数字时区(例如：北京：+0800)。</span><br><span class="line"><span class="meta">%</span>:z    +hh:mm 数字时区(例如：北京：+08:00)。</span><br><span class="line"><span class="meta">%</span>::z   +hh:mm:ss 数字时区 (例如：北京：+08:00:00)。</span><br><span class="line"><span class="meta">%</span>:::z  numeric time zone with : to necessary precision (e.g., -04, +05:30)。</span><br><span class="line"><span class="meta">%</span>Z     字母时区缩写 (如, CST)。</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>时间数字转字符串，时间整数转字符串，时间戳转字符串，数字和字符串时间转换。</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">date --date @1488899583  //将从1970-01-01 00:00:00 UTC开始的秒数，转为字符串时间，1488899583这个整数秒转为字符串时间：Tue Mar  7 23:13:03 CST 2017。</span><br><span class="line">date --date @"1488899583"  //同上，即时间戳转字符串，或者整数秒转字符串时间。</span><br><span class="line">date +"%s"  //日期转时间戳，日期转整数。</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li>设置当前时间</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">date -s "2017/05/08 23:28:13"   //设置日期和时间。</span><br><span class="line">date -s "2017/05/08" //设置日期(注意，时间会同时被设置为00:00:00，慎用)。</span><br><span class="line">date -s "23:28:13"     //设置时间。</span><br></pre></td></tr></table></figure>
-<ol start="4">
-<li>时间解析，将输入的字符串解析为时间</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">date -d "20170305"  //解析日期, 输出：Sun Mar  5 00:00:00 CST 2017。</span><br><span class="line">date -d "03/05/2017"  //解析日期，输出同上。</span><br><span class="line">date -d "2017/03/05 11:12:13" //解析日期和时间, 输出: Sun Mar  5 11:12:13 CST 2017。</span><br><span class="line">date -d "2017-03-05 21:12:17" +"%s" //将输入时间转为时间戳，输出：1488719537。</span><br><span class="line">date -d "2017-03-05 21:12:17" +"%Y/%m/%d %H:%M:%S"  //时间格式转换，将输入日期转换为自定义格式。</span><br></pre></td></tr></table></figure>
-<ol start="5">
-<li>时间运算，时间加减运算</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">//时间加减运算，可以直接用-d命令结合year/month/day/hour/minute/second, 单复数都行</span><br><span class="line">date -d "+1 days" //明天，当前时间加1天。</span><br><span class="line">date -d "+2 days" //后天，当前时间加2天。</span><br><span class="line">date -d "+15 days" //半个月之后，当前时间+15天。</span><br><span class="line">date -d "+10 days" +"%Y%m%d %H:%M:%S" 当前时间加10天，并按指定格式输出。</span><br><span class="line">date -d "-1 days" //昨天，当前时间减1天。</span><br><span class="line">date -d "-2 days" //前天，当前时间减2天。</span><br><span class="line">date -d "2017/03/05 +1 days"   //指定日期加1天。</span><br><span class="line">date -d "2017/03/05 -1 days"    //指定日期减1天。</span><br><span class="line">date -d "2017/03/08 +600 seconds" //指定日期加600秒。</span><br><span class="line">date -d "2017/03/08 -600 seconds" //指定日期减600秒。</span><br><span class="line">date -d "2017/03/08 +600 minutes" //指定日期加600分钟。</span><br><span class="line">date -d "2017/03/08 -600 minutes" //指定日期减600分钟。</span><br><span class="line">date -d "2017/03/08 +10 year" //指定日期加10年。 </span><br><span class="line">date -d "Tue Mar 10 14:12:13 CST 2015  +1 days" //指定日期时间，加一天。 </span><br><span class="line">date -d "15:21:11 03/18/2017  -1 days"  //指定日期时间，减一天。注：时间放在日期的后面目前似乎不可用。</span><br></pre></td></tr></table></figure>
-          
+          shell中与时间处理相关的内容整理：
+
+显示当前时间，按指定格式显示时间
+
+12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849date    //显示当前时间，输出结果：
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/10/shell时间处理/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1830,76 +1619,22 @@
       
         
           
-            <p>在Mac上设置启动任务可以通过一下两种方式（我实验成功了这两种）:</p>
-<ul>
-<li>通过系统设置界面设置</li>
-<li>利用launchd设置</li>
-</ul>
-<!-- Mac下的启动服务主要有三个地方可配置： 
-1，系统偏好设置->帐户->登陆项 
+          在Mac上设置启动任务可以通过一下两种方式（我实验成功了这两种）:
+
+通过系统设置界面设置
+利用launchd设置
+
+帐户->登陆项 
 2，/System/Library/StartupItems 和 /Library/StartupItems/ 
 3，launchd 系统初始化进程配置。  -->
-<h2 id="系统设置界面"><a href="#系统设置界面" class="headerlink" title="系统设置界面"></a>系统设置界面</h2><p>1、创建要运行的脚本 (run.sh)</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/sh</span><br><span class="line">ls &gt; ~/a.txt</span><br></pre></td></tr></table></figure>
-<p>设置脚本运行权限</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x run.sh</span><br></pre></td></tr></table></figure>
-<p>2、设置</p>
-<p>设置脚本打开方式</p>
-<p>右击脚本-&gt;<code>显示简介</code>-&gt;<code>打开方式</code>-&gt; 可以选terminal</p>
-<img src="/2018/04/10/定制Mac的启动任务/introduce.png" title="简介图">
-<p>在<code>系统偏好设置</code>-&gt;<code>用户与群众</code>-&gt;<code>当前用户</code>-&gt;<code>登陆项</code>-&gt;<code>+</code>添加上面所创建的脚本</p>
-<img src="/2018/04/10/定制Mac的启动任务/launch_config.png" title="启动设置图">
-<p>上面操作完成后，系统在每次重新启动后就会自动调用脚本</p>
-<h2 id="利用launchd设置"><a href="#利用launchd设置" class="headerlink" title="利用launchd设置"></a>利用launchd设置</h2><p><code>launchd</code> 是 Mac 下用于初始化操作系统的关键进程。通过启动硬盘指定目录下的配置文件，来完成启动任务。这些文件为 plist，本质上是 XML。</p>
-<h3 id="目录配置"><a href="#目录配置" class="headerlink" title="目录配置"></a>目录配置</h3><p>Mac 下 Launchd 指定目录有：</p>
-<p><code>~/Library/LaunchAgents</code></p>
-<p><code>/Library/LaunchAgents</code></p>
-<p><code>/Library/LaunchDaemons</code></p>
-<p><code>/System/Library/LaunchAgents</code></p>
-<p><code>/System/Library/LaunchDaemons</code></p>
-<p>其中的区别：</p>
-<p><code>/System/Library</code> 目录下存放的是系统文件</p>
-<p><code>/Library</code> 目录是系统管理员存放的第三方软件</p>
-<p><code>~/Library/</code> 目录是用户存放的第三方软件</p>
-<p><code>LaunchDaemons</code> 是用户未登陆前就启动的服务</p>
-<p><code>LaunchAgents</code> 是用户登陆后启动的服务</p>
-<h3 id="Plist-配置"><a href="#Plist-配置" class="headerlink" title="Plist 配置"></a>Plist 配置</h3><p>这里列举几个比较有用的配置关键字：</p>
-<p><code>Label</code> - 标识符，用来表示该任务的唯一性(与plist名称一致)</p>
-<p><code>Program</code> - 程序名称，用来说明运行哪个程序、脚本</p>
-<p><code>ProgramArguments</code> - 数组程序名，同上，只是可以运行多个程序</p>
-<p><code>WatchPaths</code> - 监控路径，当路径文件有变化是运行程序，也是数组</p>
-<p><code>RunAtLoad</code> - 是否在加载的同时</p>
-<p><code>StartInterval</code> - 间隔执行的时间，单位是秒</p>
-<p><code>StartCalendarInterval</code> - 运行的时间，单个时间点使用字典，多个时间点使用数组中包含字典的形式</p>
-<p><code>AbandonProcessGroup</code> - 在<code>job</code>结束时，launchd将杀死所有与这个<code>job</code>相同<code>group ID</code>的所有进程。将这个值设置为<code>true</code>后这个功能将失效</p>
-<p>更多配置可以查看<a href="https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man5/launchd.plist.5.html#//apple_ref/doc/man/5/launchd.plist" target="_blank" rel="noopener">苹果文档</a></p>
-<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><ol>
-<li>设置定时任务</li>
-</ol>
-<p>进入 <code>~/Library/LaunchAgents</code>创建一个plist文件<code>com.leoliu.launch.awake.plist</code>,</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span><span class="meta">?&gt;</span></span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">plist</span> <span class="attr">version</span>=<span class="string">"1.0"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dict</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>Label<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">string</span>&gt;</span>com.leoliu.launch.awake<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>ProgramArguments<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">array</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">string</span>&gt;</span>/Users/lbq/Documents/Code/LL_Workspace/DMShell/awake.sh<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">array</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>RunAtLoad<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>StartInterval<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">integer</span>&gt;</span>5<span class="tag">&lt;/<span class="name">integer</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dict</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plist</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>执行下面的<code>load</code>和<code>start</code>命令就可以了</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">cd ~/Library/LaunchAgents</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 加载任务, -w选项会将plist文件中无效的key覆盖掉，建议加上</span><br><span class="line"><span class="meta">$</span> launchctl load -w com.leoliu.launch.awake.plist</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 删除任务</span><br><span class="line"><span class="meta">$</span> launchctl unload -w com.leoliu.launch.awake.plist</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 查看任务列表, 使用 grep '任务部分名字' 过滤</span><br><span class="line"><span class="meta">$</span> launchctl list | grep 'com.leoliu'</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 开始任务</span><br><span class="line"><span class="meta">$</span> launchctl start  com.leoliu.launch.awake.plist</span><br><span class="line"></span><br><span class="line"><span class="meta">#</span> 结束任务</span><br><span class="line"><span class="meta">$</span> launchctl stop   com.leoliu.launch.awake.plist</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>用户唤醒屏幕后自动运行脚本</li>
-</ol>
-<p><code>awake.sh</code>这个脚本的功能是发送一封邮件，如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">day=$(date +"%u")</span><br><span class="line">if [ $day -eq 2 ]</span><br><span class="line">then</span><br><span class="line"></span><br><span class="line">say 你好，欢迎登录</span><br><span class="line">email_date=$(date "+%Y-%m-%d_%H:%M:%S")  </span><br><span class="line">email_body="周天有人在$&#123;email_date&#125; 登陆了你的电脑"</span><br><span class="line">email_subject="入侵警告!!!"</span><br><span class="line"><span class="meta">#</span> 接收放的邮箱</span><br><span class="line">email_to="xxxx@xxx"</span><br><span class="line">echo "xx密码不能让你们看xx" | (sudo echo $email_body | mail -s $email_subject $email_to) </span><br><span class="line"></span><br><span class="line">if [ $? == 0 ]</span><br><span class="line">then </span><br><span class="line">user=$(whoami)</span><br><span class="line">echo -e "邮件发送成功\n $email_body $email_to $user" &gt; ~/Documents/Code/LL_Workspace/DMShell/1aa.txt</span><br><span class="line"><span class="meta">#</span> ls &gt; /Users/lbq/Documents/Code/LL_Workspace/DMShell/1aa.txt</span><br><span class="line">else </span><br><span class="line">echo -e "发送失败\n" &gt; ~/Documents/Code/LL_Workspace/DMShell/1aa.txt</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line">else </span><br><span class="line">echo -e "失败\n" &gt; ~/Documents/Code/LL_Workspace/DMShell/1aa.txt</span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
-<p>因为每次由睡眠到唤醒(屏幕亮起)后，<code>/Library/Preferences/SystemConfiguration/com.apple.airport.preferences.plist</code>文件会发生变化，所以可以通过观察该文件的变化，来确定是否唤起。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="php"><span class="meta">&lt;?</span>xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span><span class="meta">?&gt;</span></span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">plist</span> <span class="attr">version</span>=<span class="string">"1.0"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dict</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>Label<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">string</span>&gt;</span>com.leoliu.launch.awake<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>ProgramArguments<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">array</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">string</span>&gt;</span>/Users/lbq/Documents/Code/LL_Workspace/DMShell/awake.sh<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">array</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>RunAtLoad<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">key</span>&gt;</span>WatchPaths<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">array</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">string</span>&gt;</span>/Library/Preferences/SystemConfiguration/com.apple.airport.preferences.plist<span class="tag">&lt;/<span class="name">string</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">array</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dict</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plist</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>然后执行：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span> launchctl load -w com.leoliu.launch.awake.plist</span><br><span class="line"><span class="meta">$</span> launchctl start  com.leoliu.launch.awake.plist</span><br></pre></td></tr></table></figure>
-<p>执行之后，发现并没有收到邮件，那是因为脚本执行结束后，<code>launchd</code>将杀死所有与当前脚本拥有相同<code>group ID</code>的所有进程。我们需要在<code>com.leoliu.launch.awake.plist</code>文件中加入下面内容：</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">key</span>&gt;</span>AbandonProcessGroup<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br></pre></td></tr></table></figure>
-<p>按快捷键<code>option+command+关机键</code>休眠后，在重新唤起，输入密码就会看到结果</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://makaiqian.com/setting-boot/" target="_blank" rel="noopener">mac环境下开机自启动Shell脚本</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/25049770" target="_blank" rel="noopener">利用 Launchd 定制 Mac 启动任务</a></p>
-<p><a href="https://developer.apple.com/library/content/documentation/MacOSX/Conceptual/BPSystemStartup/Chapters/Introduction.html#//apple_ref/doc/uid/10000172i-SW1-SW1" target="_blank" rel="noopener">Daemons and Services Programming Guide</a></p>
-<p><a href="https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man5/launchd.plist.5.html#//apple_ref/doc/man/5/launchd.plist" target="_blank" rel="noopener">launchd.plist说明</a></p>
-<p><a href="https://support.apple.com/de-at/HT2420" target="_blank" rel="noopener">Mac OS X: Creating a login hook</a></p>
-<p><a href="https://stackoverflow.com/questions/6442364/running-script-upon-login-mac" target="_blank" rel="noopener">Running script upon login mac [closed]</a></p>
-
-          
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/10/定制Mac的启动任务/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2039,159 +1774,16 @@
       
         
           
-            <p>linux 命令查找<a href="http://wangchujiang.com/linux-command/" target="_blank" rel="noopener">链接</a></p>
+          linux 命令查找链接
 
           
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://leoliuyt.github.io/2018/04/09/shell知识小集/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Leoliu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Leoliu">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/09/shell知识小集/" itemprop="url">shell知识小集</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-09T17:20:26+08:00">
-                2018-04-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/shell/" itemprop="url" rel="index">
-                    <span itemprop="name">shell</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="四种纯数字字符串转数字的方式"><a href="#四种纯数字字符串转数字的方式" class="headerlink" title="四种纯数字字符串转数字的方式"></a>四种纯数字字符串转数字的方式</h2><ul>
-<li>$[]</li>
-<li>$(())</li>
-<li><code>expr</code></li>
-<li>let</li>
-</ul>
-<p>实例:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/sh</span><br><span class="line">string="   12  "</span><br><span class="line">number=$[string]</span><br><span class="line"><span class="meta">#</span> number=$((string))</span><br><span class="line"><span class="meta">#</span> number=`expr $string`</span><br><span class="line"><span class="meta">#</span> let number="string"</span><br><span class="line">echo -e "number=$number\n"</span><br><span class="line">echo -e "string=$string\n"</span><br></pre></td></tr></table></figure>
-<p>结果：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-e number=12</span><br><span class="line"></span><br><span class="line">-e string=   12</span><br></pre></td></tr></table></figure>
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/04/09/Linux-命令/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -2279,7 +1871,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
