@@ -40,6 +40,12 @@ iOS中的三种多线程技术：
 
 ### NSThead
 
+NSThead 启动流程
+
+```
+start()->创建pthread->执行main -> [target performSelector:selector] -> exit;
+```
+
 ### NSOperation/NSOperationQueue
 
 `NSOperation`、`NSOperationQueue` 是基于 GCD 更高一层的封装，完全面向对象。但是比 GCD 更简单易用、代码可读性也更高。
@@ -50,6 +56,7 @@ iOS中的三种多线程技术：
 - 添加操作之间的依赖关系，方便的控制执行顺序。
 - 设定操作执行的优先级。
 - 可以很方便的取消一个操作的执行。
+- 可以控制最大并发量
 - 使用 KVO 观察对操作执行状态的更改：isExecuteing、isFinished、isCancelled、isReady。
 
 `NSOperation`表示了一个独立的计算单元。作为一个抽象类，它给了它的子类一个十分有用而且线程安全的方式来建立状态、优先级、依赖性和取消等的模型。或者，你不是很喜欢再自己继承`NSOperation`的话，框架还提供`NSInvocationOperation`、`NSBlockOperation`两个继承自`NSOperation`的类。
@@ -120,6 +127,9 @@ NSOperationQueuePriorityVeryLow
 每当一个`NSOperation`执行完毕，它就会调用它的`completionBlock`属性一次，这提供了一个非常好的方式让你能在视图控制器(View Controller)里或者模型(Model)里加入自己更多自己的代码逻辑。比如说，你可以在一个网络请求操作的`completionBlock`来处理操作执行完以后从服务器下载下来的数据。
 
 #### 自定义NSOperation
+
+- 如果只重写main方法，底层控制变更任务执行完成状态，以及任务退出。
+- 如果重写start方法，自行控制任务状态
 
 自定义`NSOperation`时，思路都是大同小异，大致可以分为一下几步：
 
@@ -320,7 +330,7 @@ NSOperationQueuePriorityVeryLow
 {
     __block id obj;
     
-    // 任意线程都可以'读'
+    // 同步'读'，立刻返回结果
     dispatch_sync(_queue, ^{
         obj = [self.cache objectForKey:key];
     });
@@ -746,9 +756,248 @@ DISPATCH_VNODE_FUNLOCK	|文件被unlocked
     dispatch_resume(source);
 }
 ```
+## 多线程与锁
+
+iOS中锁的类型：
+
+- @synchronized
+- atomic(保证赋值操作)
+- OSSpinLock（自旋锁）
+    - 循环等待询问，不释放当前资源
+    - 用于轻量级数据访问，简单的int值+/-1的操作
+
+- NSLock
+- NSRecursiveLock（递归锁）
+- dispatch_semaphore_t(信号量)
+
+```Objective-C
+- (void)methodA
+{
+    [lock lock];
+    [self methodB];
+    [lock unlock];
+}
+
+- (void)methodB
+{
+    [lock lock];
+    //其他逻辑
+    [lock unlock];
+}
+```
+
+上面代码会死锁，可用递归锁解决
+
+## QA
+
+看下面代码的是否有问题及执行结果,然后分析结果
+
+Q1:
+
+```Objective-C
+- (void)demo//task1
+{
+    NSLog(@"outer--1");
+    dispatch_sync(dispatch_get_main_queue(), ^{//task2
+       NSLog(@"inner--1");
+    });
+    NSLog(@"outer--2");
+}
+```
+结果： 由于队列中任务的循环等待引起的死锁
+
+分析：
+
+```
+task1是在主队列中一个任务，被派发在主线程中执行，而task2也被加入主队列，
+由于主队列是一个串行队列，而串行队列的特点是一个任务结束才会开始下一个任务，现在有两个任务，task1中的任务要等待task2完成，而task2需要等待task1，最终导致死锁。
+```
+
+Q2:
+```Objective-C
+- (void)demo{//task1
+    dispatch_queue_t q = dispatch_queue_create("serial", DISPATCH_QUEUE_SERIAL);
+    NSLog(@"outer--1");
+    dispatch_sync(q, ^{//task2
+        NSLog(@"inner--1");
+    });
+    NSLog(@"outer--2");
+}
+```
+
+结果：
+
+```
+outer--1
+inner--1
+outer--2
+```
+
+分析：
+
+```
+task1 和 task2 分别在主队列和serial串行队列中，不存在队列中任务的循环等待的问题
+```
+
+Q3:
+```Objective-C
+- (void)demo{
+    dispatch_queue_t q = dispatch_queue_create("serial", DISPATCH_QUEUE_SERIAL);
+    NSLog(@"outer--1");
+    dispatch_async(q, ^{//开辟了一条子线程 task1
+        NSLog(@"inner--1--%@",[NSThread currentThread]);
+        dispatch_sync(q, ^{//任务提交到串行队列中，并在当前子线程中执行 task2
+            NSLog(@"inner--2");
+        });
+    });
+    NSLog(@"outer--2");
+}
+```
+
+结果：由于队列中任务的循环等待引起的死锁
+
+分析：
+
+```
+串行队列中加入task1
+在task1中又有一个任务task2被添加到了串行队列中，并要求在队列中同步执行，
+任务二的完成要等待串行队列任务一task1的完成
+而任务task1的完成要等待task2的完成
+```
+Q4:
+
+```Objective-C
+- (void)demo{
+    dispatch_queue_t q = dispatch_queue_create("serial", DISPATCH_QUEUE_SERIAL);
+    NSLog(@"outer--1");
+    dispatch_sync(q, ^{//主线程 task1
+        NSLog(@"inner--1--%@",[NSThread currentThread]);
+        dispatch_async(q, ^{//子线程 task2
+//            sleep(5);
+            NSLog(@"inner---inner-2");
+        });
+        sleep(2);
+        NSLog(@"inner--2--%@",[NSThread currentThread]);
+    });
+    
+    sleep(2);
+    NSLog(@"outer--2");
+}
+
+```
+
+结果：
+
+```
+outer--1
+inner--1--<NSThread: 0x17007c440>{number = 1, name = main}
+inner--2--<NSThread: 0x17007c440>{number = 1, name = main}
+inner---inner-2
+outer--2
+
+//如果不sleep(2) 那么结果为下面，理论上最后两项的顺序应该是不一定的
+outer--1
+inner--1--<NSThread: 0x17007c440>{number = 1, name = main}
+inner--2--<NSThread: 0x17007c440>{number = 1, name = main}
+outer--2
+inner---inner-2
+```
+
+分析：
+
+```
+task1加入串行队列
+task1中的task2也加入了队列中
+因为task1中的task2任务是在另一条子线程中完成的，
+task1不需要等待task2的完成就可以完成，
+所以task1完成后出队列，然后task2就可以执行
+```
+Q5:
+
+```Objectice-C
+- (void)demo{
+    dispatch_queue_t q = dispatch_queue_create("CONCURRENT", DISPATCH_QUEUE_CONCURRENT);
+    NSLog(@"outer--1");
+    dispatch_sync(q, ^{//task1
+        NSLog(@"inner--1");
+        dispatch_sync(q, ^{//task2
+            sleep(5);
+            NSLog(@"inner--inner--2");
+        });
+        NSLog(@"inner--2");
+    });
+    
+    NSLog(@"outer--2");
+}
+```
+
+结果：
+
+```
+outer--1
+inner--1
+inner--inner--2
+inner--2
+outer--2
+```
+
+分析：
+
+```
+task1 任务被添加到并行队列中后，开始执行
+执行到task2时，把task2后添加到并行队列中，
+由于task2是同步执行，所以task2中的任务开始执行
+task2执行完毕后，task1后续的任务开始执行
+```
+
+Q6:
+```Objective-C
+- (void)demo
+{
+    dispatch_queue_t q = dispatch_queue_create("serial", DISPATCH_QUEUE_SERIAL);
+    dispatch_async(q, ^{
+        NSLog(@"1");
+        [self performSelector:@selector(printLog) withObject:nil afterDelay:0];
+        NSLog(@"3");
+    });
+    
+    /*
+     GCD维持的线程池 其中的线程没有开启runloop，
+     performSelector 方法调用所在的当前的线程，必须开启runloop
+     */
+}
+与demo1效果一样
+- (void)demo1
+{
+    __weak typeof(self) weakSelf = self;
+    [NSThread detachNewThreadWithBlock:^{
+        NSLog(@"1:%@",[NSThread currentThread]);
+        [weakSelf performSelector:@selector(printLog) withObject:nil afterDelay:0];
+        NSLog(@"3:%@",[NSThread currentThread]);
+    }];
+}
+
+- (void)printLog
+{
+    NSLog(@"2");
+}
+```
+
+结果 
+
+```
+1
+3
+```
+
+分析：
+
+```
+1、performSelector 调用该方法所在的线程，必须开启runloop,否则不会执行
+2、GCD维持的线程池 其中的线程没有开启runloop，
+```
 
 ## 参考
-
 [Parse的底层多线程处理思路](https://github.com/ChenYilong/ParseSourceCodeStudy/blob/master/01_Parse的多线程处理思路/Parse的底层多线程处理思路.md#parse-ios-sdk介绍)
 
 [IOS dispatch source 学习篇](https://www.jianshu.com/p/2f6eed90bb9d)
