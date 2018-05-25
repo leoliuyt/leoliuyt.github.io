@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="runtime," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Block介绍Block是将函数及其执行上下文封装起来的对象。 源码分析1234567891011@implementation DMBlock1- (void)dm_method&amp;#123;    void(^MyBlock)(void) = ^()&amp;#123;        NSLog(@&amp;quot;my block&amp;quot;);    &amp;#125;;    MyBlock();&amp;#125;">
+<meta name="keywords" content="runtime">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Block介绍">
+<meta property="og:url" content="http://leoliuyt.github.io/2018/05/21/Block介绍/index.html">
+<meta property="og:site_name" content="Leoliu">
+<meta property="og:description" content="Block介绍Block是将函数及其执行上下文封装起来的对象。 源码分析1234567891011@implementation DMBlock1- (void)dm_method&amp;#123;    void(^MyBlock)(void) = ^()&amp;#123;        NSLog(@&amp;quot;my block&amp;quot;);    &amp;#125;;    MyBlock();&amp;#125;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-25T10:38:41.722Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Block介绍">
+<meta name="twitter:description" content="Block介绍Block是将函数及其执行上下文封装起来的对象。 源码分析1234567891011@implementation DMBlock1- (void)dm_method&amp;#123;    void(^MyBlock)(void) = ^()&amp;#123;        NSLog(@&amp;quot;my block&amp;quot;);    &amp;#125;;    MyBlock();&amp;#125;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://leoliuyt.github.io/2018/05/21/Block介绍/"/>
+
+
+
+
+
+  <title>Block介绍 | Leoliu</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?39278431666862f9e43bc023abb6c81b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Leoliu</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-objective-c">
+          <a href="/categories/Objective-C/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Objective-C
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-shell">
+          <a href="/categories/shell/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-taxi"></i> <br />
+            
+            shell
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tool">
+          <a href="/categories/tool/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-wrench"></i> <br />
+            
+            工具
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-cocoa-touch">
+          <a href="/categories/Cocoa-Touch/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-apple"></i> <br />
+            
+            Cocoa Touch
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-cocoa">
+          <a href="/categories/Cocoa/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-apple"></i> <br />
+            
+            Cocoa
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-python">
+          <a href="/categories/Python/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-bar-chart"></i> <br />
+            
+            Python
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leoliuyt.github.io/2018/05/21/Block介绍/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Leoliu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leoliu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Block介绍</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-21T21:10:38+08:00">
+                2018-05-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Objective-C/" itemprop="url" rel="index">
+                    <span itemprop="name">Objective-C</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Block介绍"><a href="#Block介绍" class="headerlink" title="Block介绍"></a>Block介绍</h2><p>Block是将函数及其执行上下文封装起来的对象。</p>
+<h3 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">@implementation DMBlock1</span><br><span class="line"></span><br><span class="line">- (void)dm_method</span><br><span class="line">&#123;</span><br><span class="line">    void(^MyBlock)(void) = ^()&#123;</span><br><span class="line">        NSLog(@&quot;my block&quot;);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    MyBlock();</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>上面这段源码通过<code>clang -rewrite-objc DMBlock1.m</code>执行后生成如下cpp文件</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> __<span class="title">block_impl</span> &#123;</span></span><br><span class="line">  <span class="keyword">void</span> *isa;<span class="comment">//isa指针，Block是对象的标志</span></span><br><span class="line">  <span class="keyword">int</span> Flags;</span><br><span class="line">  <span class="keyword">int</span> Reserved;</span><br><span class="line">  <span class="keyword">void</span> *FuncPtr;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Block结构体</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> __<span class="title">DMBlock1__dm_method_block_impl_0</span> &#123;</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> __<span class="title">block_impl</span> <span class="title">impl</span>;</span></span><br><span class="line">  <span class="class"><span class="keyword">struct</span> __<span class="title">DMBlock1__dm_method_block_desc_0</span>* <span class="title">Desc</span>;</span></span><br><span class="line">  </span><br><span class="line">  <span class="comment">//结构体的构造函数</span></span><br><span class="line">  __DMBlock1__dm_method_block_impl_0(<span class="keyword">void</span> *fp, struct __DMBlock1__dm_method_block_desc_0 *desc, <span class="keyword">int</span> flags=<span class="number">0</span>) &#123;</span><br><span class="line">    impl.isa = &amp;_NSConcreteStackBlock;<span class="comment">//栈</span></span><br><span class="line">    impl.Flags = flags;</span><br><span class="line">    impl.FuncPtr = fp;</span><br><span class="line">    Desc = desc;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//对应Block中的执行体</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">void</span> __DMBlock1__dm_method_block_func_0(struct __DMBlock1__dm_method_block_impl_0 *__cself) &#123;</span><br><span class="line"></span><br><span class="line">        NSLog((NSString *)&amp;__NSConstantStringImpl__var_folders_6__qmlfhwd97q1dy9pv8qpqrkth0000gn_T_DMBlock1_56af0a_mi_0);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="class"><span class="keyword">struct</span> __<span class="title">DMBlock1__dm_method_block_desc_0</span> &#123;</span></span><br><span class="line">  <span class="keyword">size_t</span> reserved;</span><br><span class="line">  <span class="keyword">size_t</span> Block_size;</span><br><span class="line">&#125; __DMBlock1__dm_method_block_desc_0_DATA = &#123; <span class="number">0</span>, <span class="keyword">sizeof</span>(struct __DMBlock1__dm_method_block_impl_0)&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//与- (void)dm_method&#123;&#125;对应</span></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">void</span> _I_DMBlock1_dm_method(DMBlock1 * self, SEL _cmd) &#123;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    void(^MyBlock)(void) = ^()&#123;</span></span><br><span class="line"><span class="comment">        NSLog(@"my block");</span></span><br><span class="line"><span class="comment">    &#125;;</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">    简洁写法</span></span><br><span class="line"><span class="comment">    struct __DMBlock1__dm_method_block_impl_0 tmp = __DMBlock1__dm_method_block_impl_0(__DMBlock1__dm_method_block_func_0,&amp;__DMBlock1__dm_method_block_desc_0_DATA)</span></span><br><span class="line"><span class="comment">    struct __DMBlock1__dm_method_block_impl_0 *MyBlock = &amp;tmp</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">void</span>(*MyBlock)(<span class="keyword">void</span>) = ((<span class="keyword">void</span> (*)())&amp;__DMBlock1__dm_method_block_impl_0((<span class="keyword">void</span> *)__DMBlock1__dm_method_block_func_0, &amp;__DMBlock1__dm_method_block_desc_0_DATA));</span><br><span class="line"></span><br><span class="line">    <span class="comment">// MyBlock();</span></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    简洁写法</span></span><br><span class="line"><span class="comment">    (*MyBlock-&gt;FuncPtr)(MyBlock);</span></span><br><span class="line"><span class="comment">    Block的调用实际就是函数的调用</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    ((<span class="keyword">void</span> (*)(__block_impl *))((__block_impl *)MyBlock)-&gt;FuncPtr)((__block_impl *)MyBlock);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从上面源码可以看出</p>
+<p>Block是将函数及其执行上下文封装起来的对象。<br>Block的调用就是函数调用。</p>
+<h2 id="Block的截获变量"><a href="#Block的截获变量" class="headerlink" title="Block的截获变量"></a>Block的截获变量</h2><ul>
+<li>局部变量<ul>
+<li>基本数据类型  截获其值</li>
+<li>对象类型      连同对象所有权修饰符一同截获</li>
+</ul>
+</li>
+<li>静态局部变量  以指针形式截获</li>
+<li>全局变量     不截获</li>
+<li>全局静态变量  不截获</li>
+</ul>
+<p>源码分析</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">//全局变量</span><br><span class="line">int global_var = 4;</span><br><span class="line">//静态全局变量</span><br><span class="line">static int static_global_var = 5;</span><br><span class="line">- (void)dm_method&#123;</span><br><span class="line">    //基本数据类型的局部变量</span><br><span class="line">    int var = 1;</span><br><span class="line">    </span><br><span class="line">    //对象类型的局部变量</span><br><span class="line">    __unsafe_unretained id unsafe_obj = nil;</span><br><span class="line">    __strong id strong_obj = nil;</span><br><span class="line">    </span><br><span class="line">    //局部静态变量</span><br><span class="line">    static int static_var = 3;</span><br><span class="line">    void(^Block)(void) = ^&#123;</span><br><span class="line">        NSLog(@&quot;局部变量&lt;基本数据类型&gt; var %d&quot;,var);</span><br><span class="line">        NSLog(@&quot;局部变量&lt;__unsafe_unretained 对象类型&gt; var %@&quot;,unsafe_obj);</span><br><span class="line">        NSLog(@&quot;局部变量&lt;__strong 对象类型&gt; var %@&quot;,strong_obj);</span><br><span class="line">        NSLog(@&quot;静态变量 %d&quot;,static_var);</span><br><span class="line">        </span><br><span class="line">        NSLog(@&quot;全局变量 %d&quot;,global_var);</span><br><span class="line">        </span><br><span class="line">        NSLog(@&quot;静态全局变量 %d&quot;,static_global_var);</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    Block();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面这段源码通过<code>clang -rewrite-objc -fobjc-arc DMBlock1.m</code>执行后生成如下cpp文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">int global_var = 4;</span><br><span class="line"></span><br><span class="line">static int static_global_var = 5;</span><br><span class="line"></span><br><span class="line">struct __DMBlock__dm_method_block_impl_0 &#123;</span><br><span class="line">  struct __block_impl impl;</span><br><span class="line">  struct __DMBlock__dm_method_block_desc_0* Desc;</span><br><span class="line">  //截获局部变量的值</span><br><span class="line">  int var;</span><br><span class="line">    //连同所有权修饰符一起截活</span><br><span class="line">  __unsafe_unretained id unsafe_obj;</span><br><span class="line">  __strong id strong_obj;</span><br><span class="line">  // 以指针形式截获局部变量</span><br><span class="line">  int *static_var;</span><br><span class="line">  //对全局变量、静态全局变量不截获</span><br><span class="line">    </span><br><span class="line">  __DMBlock__dm_method_block_impl_0(void *fp, struct __DMBlock__dm_method_block_desc_0 *desc, int _var, __unsafe_unretained id _unsafe_obj, __strong id _strong_obj, int *_static_var, int flags=0) : var(_var), unsafe_obj(_unsafe_obj), strong_obj(_strong_obj), static_var(_static_var) &#123;</span><br><span class="line">    impl.isa = &amp;_NSConcreteStackBlock;</span><br><span class="line">    impl.Flags = flags;</span><br><span class="line">    impl.FuncPtr = fp;</span><br><span class="line">    Desc = desc;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>思考下段代码输出的结果</p>
+<h2 id="block修饰符"><a href="#block修饰符" class="headerlink" title="__block修饰符"></a>__block修饰符</h2><p>__block修饰符一般使用在对截获变量进行赋值操作时。</p>
+<ul>
+<li>需要添加__block<ul>
+<li>基本数据类型</li>
+<li>对象类型</li>
+</ul>
+</li>
+<li>不需要需要添加__block<ul>
+<li>静态局部变量</li>
+<li>全局变量</li>
+<li>静态全局变量<br>源码分析：</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">@implementation DMBlock2</span><br><span class="line">- (void)dm_method</span><br><span class="line">&#123;</span><br><span class="line">    __block int multiplier = 4;</span><br><span class="line">    int(^MyBlock)(int) = ^int(int num)&#123;</span><br><span class="line">        return num * multiplier;</span><br><span class="line">    &#125;;</span><br><span class="line">    MyBlock(2);</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p>编译后：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> __<span class="title">Block_byref_multiplier_0</span> &#123;</span></span><br><span class="line">  <span class="keyword">void</span> *__isa;</span><br><span class="line">__Block_byref_multiplier_0 *__forwarding;</span><br><span class="line"> <span class="keyword">int</span> __flags;</span><br><span class="line"> <span class="keyword">int</span> __size;</span><br><span class="line"> <span class="keyword">int</span> multiplier;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">void</span> _I_DMBlock2_dm_method(DMBlock2 * self, SEL _cmd) &#123;</span><br><span class="line">    __attribute__((__blocks__(byref))) __Block_byref_multiplier_0 multiplier = &#123;(<span class="keyword">void</span>*)<span class="number">0</span>,(__Block_byref_multiplier_0 *)&amp;multiplier, <span class="number">0</span>, <span class="keyword">sizeof</span>(__Block_byref_multiplier_0), <span class="number">4</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span>(*MyBlock)(<span class="keyword">int</span>) = ((<span class="keyword">int</span> (*)(<span class="keyword">int</span>))&amp;__DMBlock2__dm_method_block_impl_0((<span class="keyword">void</span> *)__DMBlock2__dm_method_block_func_0, &amp;__DMBlock2__dm_method_block_desc_0_DATA, (__Block_byref_multiplier_0 *)&amp;multiplier, <span class="number">570425344</span>));</span><br><span class="line"></span><br><span class="line">    ((<span class="keyword">int</span> (*)(__block_impl *, <span class="keyword">int</span>))((__block_impl *)MyBlock)-&gt;FuncPtr)((__block_impl *)MyBlock, <span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> __DMBlock2__dm_method_block_func_0(struct __DMBlock2__dm_method_block_impl_0 *__cself, <span class="keyword">int</span> num) &#123;</span><br><span class="line">  __Block_byref_multiplier_0 *multiplier = __cself-&gt;multiplier; <span class="comment">// bound by ref</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> num * (multiplier-&gt;__forwarding-&gt;multiplier);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>__block 修饰的变量变成了对象</p>
+<p>Block与<strong>block变量的实质<br>名称|实质<br>—|—<br>Block|栈上Block的结构体实例（对象）
+</strong>block变量|栈上__block变量的结构体实例（对象）</p>
+<h2 id="Block的内存管理"><a href="#Block的内存管理" class="headerlink" title="Block的内存管理"></a>Block的内存管理</h2><p>Block的类型</p>
+<table>
+<thead>
+<tr>
+<th>类</th>
+<th>对象的存储区域</th>
+<th>copy后的结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>_NSConcreteStackBlock</td>
+<td>栈</td>
+<td>堆</td>
+</tr>
+<tr>
+<td>_NSConcreteGlobalBlock</td>
+<td>程序的数据区（.data区）</td>
+<td>什么都不做</td>
+</tr>
+<tr>
+<td>_NSConcreteMallocBlock</td>
+<td>堆</td>
+<td>增加引用计数</td>
+</tr>
+</tbody>
+</table>
+<p><code>__forwarding</code>可以实现无论<strong>block变量配置在栈上还是堆上时都能够正确的访问</strong>block变量。</p>
+
+<h2 id="Block的循环引用"><a href="#Block的循环引用" class="headerlink" title="Block的循环引用"></a>Block的循环引用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">- (void)dm_methodF</span><br><span class="line">&#123;</span><br><span class="line">    int multipler = 1;</span><br><span class="line">    int(^Block)(int) = ^int(int num)&#123;</span><br><span class="line">        NSLog(@&quot;%@&quot;,self.isAssign);</span><br><span class="line">        return multipler * num;</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    self.copyBlock = Block;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Block被self持有，而Block中又持有self</p>
+
+<p>可以通过添加下面的代码解除循环<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">__weak typeof(self)weakSelf = self;</span><br></pre></td></tr></table></figure></p>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">- (void)dm_methodG</span><br><span class="line">&#123;</span><br><span class="line">    __block id tmp = self;</span><br><span class="line">    int multipler = 1;</span><br><span class="line">    int(^Block)(int) = ^int(int num)&#123;</span><br><span class="line">        NSLog(@&quot;%@&quot;,tmp);</span><br><span class="line">        return multipler * num;</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    self.copyBlock = Block;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面那段代码在MRC下不会产生循环引用，这是因为在MRC下Block不会对__block强引用<br>在ARC下会产生循环引用</p>
+
+<p>可以通过以下方法解决循环引用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">int(^Block)(int) = ^int(int num)&#123;</span><br><span class="line">        NSLog(@&quot;%@&quot;,tmp);</span><br><span class="line">        tmp = nil;</span><br><span class="line">        return multipler * num;</span><br><span class="line">    &#125;;</span><br></pre></td></tr></table></figure>
+<p>弊端如果block不调用那么循环引用就会一直存在</p>
+<h2 id="QA"><a href="#QA" class="headerlink" title="QA"></a>QA</h2><p>Q:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- (void)dm_methodA&#123;</span><br><span class="line">    int multipler = 5;</span><br><span class="line">    int(^Block)(int) = ^int(int num)&#123;</span><br><span class="line">        return multipler * num;</span><br><span class="line">    &#125;;</span><br><span class="line">    multipler = 4;</span><br><span class="line">    int result = Block(2);//10</span><br><span class="line">    NSLog(@&quot;%d&quot;,result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Q:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">- (void)dm_methodC&#123;</span><br><span class="line">    __block int multipler = 5;</span><br><span class="line">    int(^Block)(int) = ^int(int num)&#123;</span><br><span class="line">        return multipler * num;</span><br><span class="line">    &#125;;</span><br><span class="line">    multipler = 4;</span><br><span class="line">    int result = Block(2);//8</span><br><span class="line">    NSLog(@&quot;%d&quot;,result);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Q:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">- (void)dm_methodE</span><br><span class="line">&#123;</span><br><span class="line">    __block int multipler = 1;</span><br><span class="line">    int(^Block)(int) = ^int(int num)&#123;</span><br><span class="line">        return multipler * num;</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    multipler = 2;</span><br><span class="line">    int result1 = Block(1);//2</span><br><span class="line">    NSLog(@&quot;result1 = %d&quot;,result1);</span><br><span class="line">    </span><br><span class="line">//    _aBlock = Block;</span><br><span class="line">    self.copyBlock = Block;</span><br><span class="line">    </span><br><span class="line">    multipler = 3;</span><br><span class="line">    int result2 = Block(1);//3</span><br><span class="line">    NSLog(@&quot;result2 = %d&quot;,result2);</span><br><span class="line">    </span><br><span class="line">    int result3 = self.copyBlock(1);//3</span><br><span class="line">    NSLog(@&quot;result3 = %d&quot;,result3);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/runtime/" rel="tag"># runtime</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/21/Runloop/" rel="next" title="Runloop">
+                <i class="fa fa-chevron-left"></i> Runloop
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/25/事件传递与视图响应/" rel="prev" title="事件传递与视图响应">
+                事件传递与视图响应 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.png"
+                alt="Leoliu" />
+            
+              <p class="site-author-name" itemprop="name">Leoliu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/leoliuyt" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:leoliuyt@sina.cn" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://plus.google.com/u/0/113639913270953856300" target="_blank" title="Google">
+                      
+                        <i class="fa fa-fw fa-google"></i>Google</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/p/1005053266784037/home" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Weibo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Block介绍"><span class="nav-number">1.</span> <span class="nav-text">Block介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#源码分析"><span class="nav-number">1.1.</span> <span class="nav-text">源码分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Block的截获变量"><span class="nav-number">2.</span> <span class="nav-text">Block的截获变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#block修饰符"><span class="nav-number">3.</span> <span class="nav-text">__block修饰符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Block的内存管理"><span class="nav-number">4.</span> <span class="nav-text">Block的内存管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Block的循环引用"><span class="nav-number">5.</span> <span class="nav-text">Block的循环引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#QA"><span class="nav-number">6.</span> <span class="nav-text">QA</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Leoliu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
