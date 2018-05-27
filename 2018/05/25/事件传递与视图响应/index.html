@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="aaaaa">
+<meta name="description" content="点击了屏幕上的一个View，事件是怎么找到这个View的呢？这个View又是怎么响应这个传递过来的事件的呢？ 事件传递当点击了屏幕上的一个View后，系统会产生一个UIEvent事件，这个事件被加入到由UIApplication管理的一个事件队列中，UIApplication会从事件队列中取出最前面的事件,然后再传递给UIWindow,最后UIWindow通过- (nullable UIView">
 <meta name="keywords" content="iOS,UI">
 <meta property="og:type" content="article">
-<meta property="og:title" content="事件传递与视图响应">
+<meta property="og:title" content="事件传递与响应者链条">
 <meta property="og:url" content="http://leoliuyt.github.io/2018/05/25/事件传递与视图响应/index.html">
 <meta property="og:site_name" content="Leoliu">
-<meta property="og:description" content="aaaaa">
+<meta property="og:description" content="点击了屏幕上的一个View，事件是怎么找到这个View的呢？这个View又是怎么响应这个传递过来的事件的呢？ 事件传递当点击了屏幕上的一个View后，系统会产生一个UIEvent事件，这个事件被加入到由UIApplication管理的一个事件队列中，UIApplication会从事件队列中取出最前面的事件,然后再传递给UIWindow,最后UIWindow通过- (nullable UIView">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-25T10:38:41.737Z">
+<meta property="og:updated_time" content="2018-05-27T15:08:42.980Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="事件传递与视图响应">
-<meta name="twitter:description" content="aaaaa">
+<meta name="twitter:title" content="事件传递与响应者链条">
+<meta name="twitter:description" content="点击了屏幕上的一个View，事件是怎么找到这个View的呢？这个View又是怎么响应这个传递过来的事件的呢？ 事件传递当点击了屏幕上的一个View后，系统会产生一个UIEvent事件，这个事件被加入到由UIApplication管理的一个事件队列中，UIApplication会从事件队列中取出最前面的事件,然后再传递给UIWindow,最后UIWindow通过- (nullable UIView">
 
 
 
@@ -126,7 +126,7 @@
 
 
 
-  <title>事件传递与视图响应 | Leoliu</title>
+  <title>事件传递与响应者链条 | Leoliu</title>
   
 
 
@@ -330,7 +330,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">事件传递与视图响应</h1>
+          <h1 class="post-title" itemprop="name headline">事件传递与响应者链条</h1>
         
 
         <div class="post-meta">
@@ -402,7 +402,19 @@
       
 
       
-        <p>aaaaa</p>
+        <p>点击了屏幕上的一个View，事件是怎么找到这个View的呢？这个View又是怎么响应这个传递过来的事件的呢？</p>
+<h2 id="事件传递"><a href="#事件传递" class="headerlink" title="事件传递"></a>事件传递</h2><p>当点击了屏幕上的一个View后，系统会产生一个<code>UIEvent</code>事件，这个事件被加入到由<code>UIApplication</code>管理的一个事件队列中，<code>UIApplication</code>会从事件队列中取出最前面的事件,然后再传递给<code>UIWindow</code>,最后<code>UIWindow</code>通过<code>- (nullable UIView *)hitTest:(CGPoint)point withEvent:(nullable UIEvent *)event;</code>和<br><code>- (BOOL)pointInside:(CGPoint)point withEvent:(nullable UIEvent *)event;</code>在视图层次结构中找到一个最合适的view来处理触摸事件。</p>
+
+<p>如果父控件不能接收触摸事件，那么子控件就不可能接收到触摸事件</p>
+<p>view 不能处理触摸事件的情况：</p>
+<ol>
+<li>userInteractionEnabled = NO</li>
+<li>hidden = YES</li>
+<li>alpha = 0.0~0.01（临界点待确定）</li>
+</ol>
+<h3 id="查找最合适的view来处理事件"><a href="#查找最合适的view来处理事件" class="headerlink" title="查找最合适的view来处理事件"></a>查找最合适的view来处理事件</h3><p>1.自己是否能接收触摸事件？否事件传递结束<br>2.触摸点是否在自己身上？否事件传递结束<br>3.从后往前遍历子控件，重复前面的两步<br>4.如果没有符合条件的子控件，那么就自己最合适处理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//调用时机：只要有一个事件传递到控件上，就会调用控件的这个方法。point是基于方法调用者的坐标系</span><br><span class="line">- (nullable UIView *)hitTest:(CGPoint)point withEvent:(nullable UIEvent *)event;</span><br><span class="line"></span><br><span class="line">//用来判断point这个点是否在方法调用者上，point基于方法调用者的坐标系</span><br><span class="line">- (BOOL)pointInside:(CGPoint)point withEvent:(nullable UIEvent *)event;</span><br></pre></td></tr></table></figure>
+<p>模拟系统，实现hitTest方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">- (nullable UIView *)hitTest:(CGPoint)point withEvent:(nullable UIEvent *)event</span><br><span class="line">&#123;</span><br><span class="line">    if(self.hidden == YES || self.alpha &lt;= 0.01 || self.userInteractionEnabled == NO)&#123;</span><br><span class="line">        return nil;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if([self pointInside:point withEvent:event] == NO)&#123;</span><br><span class="line">        return nil;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    int count = self.subviews.count;</span><br><span class="line">    for(int i = count-1; i &gt;= 0; i--)&#123;</span><br><span class="line">        UIView *childView = self.subviews[i];</span><br><span class="line">        CGPoint childP = [self convertPoint:point toView:childView];</span><br><span class="line">        UIView *bestView = [childView hitTest:childP withEvent:event];</span><br><span class="line">        if(bestView)&#123;</span><br><span class="line">            return bestView;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return self;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -444,6 +456,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/26/UI绘制原理/" rel="prev" title="UI绘制原理">
+                UI绘制原理 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -495,8 +511,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -515,7 +540,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">19</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -588,6 +613,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#事件传递"><span class="nav-number">1.</span> <span class="nav-text">事件传递</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查找最合适的view来处理事件"><span class="nav-number">1.1.</span> <span class="nav-text">查找最合适的view来处理事件</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Sketch," />
+  <meta name="keywords" content="iOS," />
 
 
 
@@ -79,18 +79,25 @@
 
 
 
-<meta name="description" content="快捷键显示Layer List 1cmd + opt + 1 显示 Inspector 1cmd + opt + 2 显示Toolbar 1cmd + opt + t 显示Canvas 1cmd + . 打开配置 1cmd + , 显示尺标 1ctrl + R 显示网格 1ctrl + G 使用辅助线 1当我们在Ruler上移动鼠标的时候，辅助线的最小移动单位是1像素，大多数情况下，我们不需要这样">
-<meta name="keywords" content="Sketch">
+<meta name="description" content="图像显示原理CPU与GPU是通过总线连接起来，通过CPU输出一个位图，经由总线传输在合适的时机上传到GPU，GPU获取到位图后，会进行图层渲染、纹理合成，将结果放入帧缓存区中，由视频控制器根据VSyn信号，在指定时间之前提取帧缓存区中的屏幕显示内容，最终显示到手机屏幕上。  CPU与GPU分别做了什么？ 创建UIView后，显示部分由CALayer负责，CALayer有一个contents属性，就">
+<meta name="keywords" content="iOS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Sketch的使用">
-<meta property="og:url" content="http://leoliuyt.github.io/2018/04/21/Sketch的使用/index.html">
+<meta property="og:title" content="UI绘制原理">
+<meta property="og:url" content="http://leoliuyt.github.io/2018/05/26/UI绘制原理/index.html">
 <meta property="og:site_name" content="Leoliu">
-<meta property="og:description" content="快捷键显示Layer List 1cmd + opt + 1 显示 Inspector 1cmd + opt + 2 显示Toolbar 1cmd + opt + t 显示Canvas 1cmd + . 打开配置 1cmd + , 显示尺标 1ctrl + R 显示网格 1ctrl + G 使用辅助线 1当我们在Ruler上移动鼠标的时候，辅助线的最小移动单位是1像素，大多数情况下，我们不需要这样">
+<meta property="og:description" content="图像显示原理CPU与GPU是通过总线连接起来，通过CPU输出一个位图，经由总线传输在合适的时机上传到GPU，GPU获取到位图后，会进行图层渲染、纹理合成，将结果放入帧缓存区中，由视频控制器根据VSyn信号，在指定时间之前提取帧缓存区中的屏幕显示内容，最终显示到手机屏幕上。  CPU与GPU分别做了什么？ 创建UIView后，显示部分由CALayer负责，CALayer有一个contents属性，就">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-25T10:38:41.731Z">
+<meta property="og:image" content="http://leoliuyt.github.io/2018/05/26/UI绘制原理/display_principle.png">
+<meta property="og:image" content="http://leoliuyt.github.io/2018/05/26/UI绘制原理/display_sepereate.png">
+<meta property="og:image" content="http://leoliuyt.github.io/2018/05/26/UI绘制原理/frame_off.png">
+<meta property="og:image" content="http://leoliuyt.github.io/2018/05/26/UI绘制原理/display_flow.png">
+<meta property="og:image" content="http://leoliuyt.github.io/2018/05/26/UI绘制原理/system_display.png">
+<meta property="og:image" content="http://leoliuyt.github.io/2018/05/26/UI绘制原理/asyn_display.png">
+<meta property="og:updated_time" content="2018-05-27T09:59:53.627Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Sketch的使用">
-<meta name="twitter:description" content="快捷键显示Layer List 1cmd + opt + 1 显示 Inspector 1cmd + opt + 2 显示Toolbar 1cmd + opt + t 显示Canvas 1cmd + . 打开配置 1cmd + , 显示尺标 1ctrl + R 显示网格 1ctrl + G 使用辅助线 1当我们在Ruler上移动鼠标的时候，辅助线的最小移动单位是1像素，大多数情况下，我们不需要这样">
+<meta name="twitter:title" content="UI绘制原理">
+<meta name="twitter:description" content="图像显示原理CPU与GPU是通过总线连接起来，通过CPU输出一个位图，经由总线传输在合适的时机上传到GPU，GPU获取到位图后，会进行图层渲染、纹理合成，将结果放入帧缓存区中，由视频控制器根据VSyn信号，在指定时间之前提取帧缓存区中的屏幕显示内容，最终显示到手机屏幕上。  CPU与GPU分别做了什么？ 创建UIView后，显示部分由CALayer负责，CALayer有一个contents属性，就">
+<meta name="twitter:image" content="http://leoliuyt.github.io/2018/05/26/UI绘制原理/display_principle.png">
 
 
 
@@ -120,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://leoliuyt.github.io/2018/04/21/Sketch的使用/"/>
+  <link rel="canonical" href="http://leoliuyt.github.io/2018/05/26/UI绘制原理/"/>
 
 
 
 
 
-  <title>Sketch的使用 | Leoliu</title>
+  <title>UI绘制原理 | Leoliu</title>
   
 
 
@@ -313,7 +320,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://leoliuyt.github.io/2018/04/21/Sketch的使用/">
+    <link itemprop="mainEntityOfPage" href="http://leoliuyt.github.io/2018/05/26/UI绘制原理/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Leoliu">
@@ -330,7 +337,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Sketch的使用</h1>
+          <h1 class="post-title" itemprop="name headline">UI绘制原理</h1>
         
 
         <div class="post-meta">
@@ -342,8 +349,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-21T20:55:35+08:00">
-                2018-04-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-26T22:17:08+08:00">
+                2018-05-26
               </time>
             
 
@@ -365,8 +372,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tool/" itemprop="url" rel="index">
-                    <span itemprop="name">tool</span>
+                  <a href="/categories/Cocoa-Touch/" itemprop="url" rel="index">
+                    <span itemprop="name">Cocoa Touch</span>
                   </a>
                 </span>
 
@@ -402,38 +409,82 @@
       
 
       
-        <h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><p>显示<code>Layer List</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmd + opt + 1</span><br></pre></td></tr></table></figure>
-<p>显示 <code>Inspector</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmd + opt + 2</span><br></pre></td></tr></table></figure>
-<p>显示<code>Toolbar</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmd + opt + t</span><br></pre></td></tr></table></figure>
-<p>显示<code>Canvas</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmd + .</span><br></pre></td></tr></table></figure>
-<p>打开配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cmd + ,</span><br></pre></td></tr></table></figure>
-<p>显示尺标</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctrl + R</span><br></pre></td></tr></table></figure>
-<p>显示网格</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctrl + G</span><br></pre></td></tr></table></figure>
-<p>使用辅助线</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">当我们在Ruler上移动鼠标的时候，辅助线的最小移动单位是1像素，大多数情况下，我们不需要这样的精度。这时，我们就可以按住shift，辅助线就会以10像素为单位移动了。</span><br></pre></td></tr></table></figure>
-<h2 id="使用ArtBoards"><a href="#使用ArtBoards" class="headerlink" title="使用ArtBoards"></a>使用ArtBoards</h2><p><code>Artboard</code>是<code>Sketch</code>中的一个组织内容的工具，它可以在画布上先定一个指定大小的区域，我们可以把这个区域理解为我们设计时使用的屏幕。</p>
-<p>按快捷键A，Sketch指针会变成一个十字，我们就可以在画布中创建Artboards了。此时，Inspector的部分会如下图所示</p>
+        <h2 id="图像显示原理"><a href="#图像显示原理" class="headerlink" title="图像显示原理"></a>图像显示原理</h2><p>CPU与GPU是通过总线连接起来，通过CPU输出一个位图，经由总线传输在合适的时机上传到GPU，GPU获取到位图后，会进行图层渲染、纹理合成，将结果放入帧缓存区中，由视频控制器根据VSyn信号，在指定时间之前提取帧缓存区中的屏幕显示内容，最终显示到手机屏幕上。</p>
+<img src="/2018/05/26/UI绘制原理/display_principle.png" title="显示原理">
+<p>CPU与GPU分别做了什么？</p>
+<p>创建UIView后，显示部分由CALayer负责，CALayer有一个contents属性，就是我们最终要绘制到屏幕上的位图，如果我们创建的是UILabel，那么contents上最终要绘制就是“Hello”的位图,系统在合适的时候回调给我们一个drawRect的方法，然后我们可以在此基础上绘制一些我们想自定义绘制的内容，绘制好的这个位图，会经过Core Animation提交给GPU部分的OpenGL渲染管线，进行最终的位图的渲染以及文理的合成，最终显示到屏幕上。</p>
+<img src="/2018/05/26/UI绘制原理/display_sepereate.png" title="CPU与GPU分工">
+<p>CPU要做的工作</p>
+<ol>
+<li>Layout<ul>
+<li>UI布局</li>
+<li>文本计算</li>
+</ul>
+</li>
+<li>Display<ul>
+<li>绘制（drawRect）</li>
+</ul>
+</li>
+<li>Prepare<ul>
+<li>图片解码</li>
+</ul>
+</li>
+<li>Commit<ul>
+<li>提交位图</li>
+</ul>
+</li>
+</ol>
+<p>GPU 渲染管线</p>
+<ul>
+<li>顶点着色</li>
+<li>图元装配</li>
+<li>光栅化</li>
+<li>片段着色</li>
+<li>片段处理</li>
+</ul>
+<p>提交到帧缓冲区中</p>
+<h2 id="UI卡顿、掉帧的原因"><a href="#UI卡顿、掉帧的原因" class="headerlink" title="UI卡顿、掉帧的原因"></a>UI卡顿、掉帧的原因</h2><p>一般来说，页面滑动的流畅性是60FPS，代表着每秒钟有六十帧画面更新，换种说法就是每一帧画面的生成时间在1/60秒即16.7毫秒以内就不会卡顿。在16.7毫秒内需要CPU和GPU共同来生成一帧的数据。如果时间超过了16.7ms就会产生卡顿。</p>
+<img src="/2018/05/26/UI绘制原理/frame_off.png" title="掉帧原因">
+<p>在 VSync 信号到来后，系统图形服务会通过 CADisplayLink 等机制通知 App，App 主线程开始在 CPU 中计算显示内容，比如视图的创建、布局计算、图片解码、文本绘制等。随后 CPU 会将计算好的内容提交到 GPU 去，由 GPU 进行变换、合成、渲染。随后 GPU 会把渲染结果提交到帧缓冲区去，等待下一次 VSync 信号到来时显示到屏幕上。由于垂直同步的机制，如果在一个 VSync 时间内，CPU 或者 GPU 没有完成内容提交，则那一帧就会被丢弃，等待下一次机会再显示，而这时显示屏会保留之前的内容不变。这就是界面卡顿的原因。</p>
+<p>从上面的图中可以看到，CPU 和 GPU 不论哪个阻碍了显示流程，都会造成掉帧现象。所以开发时，也需要分别对 CPU 和 GPU 压力进行评估和优化。</p>
+<h2 id="滑动优化方案"><a href="#滑动优化方案" class="headerlink" title="滑动优化方案"></a>滑动优化方案</h2><p>CPU</p>
+<ul>
+<li>对象的创建、调整、销毁</li>
+<li>预排版（布局计算、文本计算）</li>
+<li>预渲染（文本等异步绘制，图片编解码等）</li>
+</ul>
+<p>GPU</p>
+<ul>
+<li>文理渲染（避免离屏渲染）</li>
+<li>视图混合（减少视图层级）</li>
+</ul>
+<h2 id="UIView的绘制原理"><a href="#UIView的绘制原理" class="headerlink" title="UIView的绘制原理"></a>UIView的绘制原理</h2><p>当调用<code>UIView</code>的<code>setNeedsDisplay</code>方法时，会调用<code>CALayer</code>的同名方法<code>setNeedsDisplay</code>,这时并没有立即发生绘制，而只是相当于在当前layer打上了脏标记， 会在Runloop即将结束时才会调用<code>[CALayer display]</code>,而这个方法的内部会判断是否实现了displayLayer这个方法，如果没有实现，那么走系统调用，如果实现了，就为我们异步绘制提供了入口。</p>
+<img src="/2018/05/26/UI绘制原理/display_flow.png" title="绘制流程">
+<h3 id="系统绘制实现"><a href="#系统绘制实现" class="headerlink" title="系统绘制实现"></a>系统绘制实现</h3><img src="/2018/05/26/UI绘制原理/system_display.png" title="系统绘制流程">
+<h3 id="异步绘制实现"><a href="#异步绘制实现" class="headerlink" title="异步绘制实现"></a>异步绘制实现</h3><p>通过实现layer的代理方法displayLayer</p>
+<ul>
+<li>代理负责生成对应的bitmap</li>
+<li>设置该bitmap作为layer.contents属性的值</li>
+</ul>
+<img src="/2018/05/26/UI绘制原理/asyn_display.png" title="异步绘制流程">
+<h3 id="离屏渲染"><a href="#离屏渲染" class="headerlink" title="离屏渲染"></a>离屏渲染</h3><p>On-Screen Rendering 意为当前屏幕渲染，指的是GPU的渲染操作是在当前用于显示的屏幕缓冲区中进行渲染操作</p>
+<p>Off-Screen Rendering 意为离屏渲染，指的是GPU在当前屏幕缓冲区以外新开辟一个缓冲区进行渲染操作</p>
+<p>当设置某些UI视图的图层属性，如果标记为未合成之前不能用于显示，那么就会触发离屏渲染</p>
+<p>触发离屏渲染的条件</p>
+<ul>
+<li>圆角（和maskToBounds一起使用时）</li>
+<li>图层蒙版</li>
+<li>阴影</li>
+<li>光栅化</li>
+</ul>
+<p>为何要避免离屏渲染？</p>
+<p>触发离屏渲染，增加GPU工作量，而GPU的工作的增加可能导致CPU+GPU产生一帧画面的时间超过16.7ms，就会产生卡顿掉帧，所以要避免离屏渲染。</p>
+<ul>
+<li>创建新的渲染缓存区</li>
+<li>上下文切换</li>
+</ul>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://blog.ibireme.com/2015/11/12/smooth_user_interfaces_for_ios/" target="_blank" rel="noopener">iOS 保持界面流畅的技巧</a></p>
 
-<p>Sketch内置了常用操作系统上使用的常用尺寸，我们可以直接点击这些方案，就可以创建对应大小的artboard了。每一个artboard都由两部分组成，分别是标题和背景色：</p>
-<p>一般情况下，我们用一个artboard来显示一个功能页，或者一屏UI，因此我们可以用artboards展示的功能来命名它们。而artboard的背景色则显示在Inspector部分，这里需要注意的是，虽然在画布中artboard显示为白色，但是默认情况下，artboard是没有背景色的，我们把artboard导出成png的时候，就会是透明背景。因此，如果你需要使用背景色，要记得选中Background color，然后设置成需要的颜色。</p>
-<p>这里，给大家推荐一个Sketch插件，叫<code>Artboard Manager</code>。当我们有多个artboards的时候，默认情况下，拖动artboard会让它们彼此重叠覆盖在一起，我们得手工去处理它们的位置。但有了<code>Artboard Manager</code>就方便多了，我们直接选择一个或多个artboard，然后拖动到目标位置。它总是能依据我们对内容的直觉，帮我们自动排列好所有artboards。</p>
-<h2 id="使用Pages"><a href="#使用Pages" class="headerlink" title="使用Pages"></a>使用Pages</h2><p><code>Pages</code>是<code>Sketch</code>中第二个组织内容的工具，它位于Layer List的顶部：</p>
-
-<p>我们可以点击顶部的加号新建<code>Page</code>，也可以点击下面的箭头图标收起<code>Pages</code>列表。简单来说，<code>Page</code>就是不同的画布，在<code>Sketch</code>里，通常我们用<code>Pages</code>管理逻辑上相关，但是维度不同的内容。</p>
-<h2 id="使用Sketch-UI模板"><a href="#使用Sketch-UI模板" class="headerlink" title="使用Sketch UI模板"></a>使用Sketch UI模板</h2><p>选择<code>File -&gt; New from Template</code>：</p>
-<p>可以看到Sketch默认带了5个模板，分别是：</p>
-<p>Android Icon Design<br>Web Design<br>iOS App Icon<br>Material Design<br>Prototyping Tutorial</p>
-<p>添加其他模板的方法是 下载以<code>.sketch</code>结尾的模板文件，直接用Sketch打开之后，选择<code>File -&gt; Save as Template...</code>，给它起个名字。下次再新建项目的时候，就可以把它当作模板使用了。</p>
-<p>从这里可以下载<a href="https://iosdesignkit.io" target="_blank" rel="noopener">iOS的模板文件</a></p>
-<h2 id="DP"><a href="#DP" class="headerlink" title="DP"></a>DP</h2><p>Pixel Density(PD、像素密度)的概念，它指的是一英寸屏幕上的物理像素个数。显然，这个数值越大，屏幕就越精细。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp = (width in pixels * 160) / screen density</span><br></pre></td></tr></table></figure>
       
     </div>
     
@@ -450,7 +501,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Sketch/" rel="tag"># Sketch</a>
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
           
         </div>
       
@@ -463,8 +514,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/19/iOS中的多线程/" rel="next" title="iOS中的多线程">
-                <i class="fa fa-chevron-left"></i> iOS中的多线程
+              <a href="/2018/05/25/事件传递与视图响应/" rel="next" title="事件传递与响应者链条">
+                <i class="fa fa-chevron-left"></i> 事件传递与响应者链条
               </a>
             
           </div>
@@ -472,10 +523,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/28/Python基本语法/" rel="prev" title="Python3基本语法">
-                Python3基本语法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -639,7 +686,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#快捷键"><span class="nav-number">1.</span> <span class="nav-text">快捷键</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用ArtBoards"><span class="nav-number">2.</span> <span class="nav-text">使用ArtBoards</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用Pages"><span class="nav-number">3.</span> <span class="nav-text">使用Pages</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用Sketch-UI模板"><span class="nav-number">4.</span> <span class="nav-text">使用Sketch UI模板</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DP"><span class="nav-number">5.</span> <span class="nav-text">DP</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#图像显示原理"><span class="nav-number">1.</span> <span class="nav-text">图像显示原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UI卡顿、掉帧的原因"><span class="nav-number">2.</span> <span class="nav-text">UI卡顿、掉帧的原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#滑动优化方案"><span class="nav-number">3.</span> <span class="nav-text">滑动优化方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UIView的绘制原理"><span class="nav-number">4.</span> <span class="nav-text">UIView的绘制原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#系统绘制实现"><span class="nav-number">4.1.</span> <span class="nav-text">系统绘制实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异步绘制实现"><span class="nav-number">4.2.</span> <span class="nav-text">异步绘制实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#离屏渲染"><span class="nav-number">4.3.</span> <span class="nav-text">离屏渲染</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
