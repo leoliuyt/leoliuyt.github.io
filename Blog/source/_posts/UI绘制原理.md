@@ -110,4 +110,6 @@ Off-Screen Rendering 意为离屏渲染，指的是GPU在当前屏幕缓冲区�
 
 [iOS 保持界面流畅的技巧](https://blog.ibireme.com/2015/11/12/smooth_user_interfaces_for_ios/)
 
+[谈谈 iOS 中图片的解压缩](http://blog.leichunfeng.com/blog/2017/02/20/talking-about-the-decompression-of-the-image-in-ios/#jtss-tsina)
+
 
