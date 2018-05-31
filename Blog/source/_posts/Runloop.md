@@ -14,10 +14,6 @@ RunLoop是通过内部维护的**事件循环**来对事件/消息进行管理�
 - 没有消息处理时，休眠以避免资源浪费（用户态通过系统调用进入内核态）
 - 有消息需要被处理时，被立刻唤醒（内核态到用户态）
 
-用户态：
-
-内核态：
-
 ```Objective-C
 int main(int argc, char * argv[]) {
     @autoreleasepool {
@@ -45,10 +41,6 @@ UIApplicationMain内部启动了主线程上的一个RunLoop，而RunLoop是对�
 NSRunLoop是对CFRunLoop的封装，提供了面向对象的API。
 
 - CFRunLoop
-    - a
-    - b
-    - c
-
 - CFRunLoopMode
 - Source/Timer/Observer
 
