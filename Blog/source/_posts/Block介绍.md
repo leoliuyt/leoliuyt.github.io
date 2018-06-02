@@ -547,6 +547,33 @@ Q:
     blk();
 }
 
+Q:
+```Objective-C
+- (void)dm_methodK
+{
+    typedef void(^blk_t)(id obj);
+    blk_t  blk;
+    {
+        id array1 = [[NSMutableArray alloc] init];
+        __weak id array = array1;
+        blk = [^(id obj){
+            [array addObject:obj];
+            NSLog(@"array count = %tu",[array count]);
+        } copy];
+    }
+    
+    blk([[NSObject alloc] init]);
+    blk([[NSObject alloc] init]);
+    blk([[NSObject alloc] init]);
+
+    /*
+     array count = 0
+     array count = 0
+     array count = 0
+     */
+}
+```
+
 - (id)getBlockArray
 {
     int val = 10;
