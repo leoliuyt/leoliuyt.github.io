@@ -93,7 +93,7 @@
 <meta property="og:image" content="http://leoliuyt.github.io/2018/05/26/UI绘制原理/display_flow.png">
 <meta property="og:image" content="http://leoliuyt.github.io/2018/05/26/UI绘制原理/system_display.png">
 <meta property="og:image" content="http://leoliuyt.github.io/2018/05/26/UI绘制原理/asyn_display.png">
-<meta property="og:updated_time" content="2018-05-27T09:59:53.627Z">
+<meta property="og:updated_time" content="2018-05-28T13:07:58.101Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UI绘制原理">
 <meta name="twitter:description" content="图像显示原理CPU与GPU是通过总线连接起来，通过CPU输出一个位图，经由总线传输在合适的时机上传到GPU，GPU获取到位图后，会进行图层渲染、纹理合成，将结果放入帧缓存区中，由视频控制器根据VSyn信号，在指定时间之前提取帧缓存区中的屏幕显示内容，最终显示到手机屏幕上。  CPU与GPU分别做了什么？ 创建UIView后，显示部分由CALayer负责，CALayer有一个contents属性，就">
@@ -484,6 +484,7 @@
 <li>上下文切换</li>
 </ul>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://blog.ibireme.com/2015/11/12/smooth_user_interfaces_for_ios/" target="_blank" rel="noopener">iOS 保持界面流畅的技巧</a></p>
+<p><a href="http://blog.leichunfeng.com/blog/2017/02/20/talking-about-the-decompression-of-the-image-in-ios/#jtss-tsina" target="_blank" rel="noopener">谈谈 iOS 中图片的解压缩</a></p>
 
       
     </div>
@@ -523,6 +524,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/28/深拷贝与浅拷贝/" rel="prev" title="深拷贝与浅拷贝">
+                深拷贝与浅拷贝 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -603,7 +608,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

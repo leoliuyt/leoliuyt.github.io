@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="什么是RunLoop？ RunLoop是通过内部维护的事件循环来对事件/消息进行管理的一个对象。 事件循环：  没有消息处理时，休眠以避免资源浪费（用户态通过系统调用进入内核态） 有消息需要被处理时，被立刻唤醒（内核态到用户态）  用户态： 内核态： 12345678int main(int argc, char * argv[]) &amp;#123;    @autoreleasepool &amp;#123">
+<meta name="description" content="什么是RunLoop？ RunLoop是通过内部维护的事件循环来对事件/消息进行管理的一个对象。 事件循环：  没有消息处理时，休眠以避免资源浪费（用户态通过系统调用进入内核态） 有消息需要被处理时，被立刻唤醒（内核态到用户态）  12345678int main(int argc, char * argv[]) &amp;#123;    @autoreleasepool &amp;#123;        N">
 <meta name="keywords" content="runloop">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Runloop">
 <meta property="og:url" content="http://leoliuyt.github.io/2018/05/21/Runloop/index.html">
 <meta property="og:site_name" content="Leoliu">
-<meta property="og:description" content="什么是RunLoop？ RunLoop是通过内部维护的事件循环来对事件/消息进行管理的一个对象。 事件循环：  没有消息处理时，休眠以避免资源浪费（用户态通过系统调用进入内核态） 有消息需要被处理时，被立刻唤醒（内核态到用户态）  用户态： 内核态： 12345678int main(int argc, char * argv[]) &amp;#123;    @autoreleasepool &amp;#123">
+<meta property="og:description" content="什么是RunLoop？ RunLoop是通过内部维护的事件循环来对事件/消息进行管理的一个对象。 事件循环：  没有消息处理时，休眠以避免资源浪费（用户态通过系统调用进入内核态） 有消息需要被处理时，被立刻唤醒（内核态到用户态）  12345678int main(int argc, char * argv[]) &amp;#123;    @autoreleasepool &amp;#123;        N">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-25T10:38:41.729Z">
+<meta property="og:updated_time" content="2018-06-01T13:33:00.099Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Runloop">
-<meta name="twitter:description" content="什么是RunLoop？ RunLoop是通过内部维护的事件循环来对事件/消息进行管理的一个对象。 事件循环：  没有消息处理时，休眠以避免资源浪费（用户态通过系统调用进入内核态） 有消息需要被处理时，被立刻唤醒（内核态到用户态）  用户态： 内核态： 12345678int main(int argc, char * argv[]) &amp;#123;    @autoreleasepool &amp;#123">
+<meta name="twitter:description" content="什么是RunLoop？ RunLoop是通过内部维护的事件循环来对事件/消息进行管理的一个对象。 事件循环：  没有消息处理时，休眠以避免资源浪费（用户态通过系统调用进入内核态） 有消息需要被处理时，被立刻唤醒（内核态到用户态）  12345678int main(int argc, char * argv[]) &amp;#123;    @autoreleasepool &amp;#123;        N">
 
 
 
@@ -409,8 +409,6 @@
 <li>没有消息处理时，休眠以避免资源浪费（用户态通过系统调用进入内核态）</li>
 <li>有消息需要被处理时，被立刻唤醒（内核态到用户态）</li>
 </ul>
-<p>用户态：</p>
-<p>内核态：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">int main(int argc, char * argv[]) &#123;</span><br><span class="line">    @autoreleasepool &#123;</span><br><span class="line">        NSLog(@&quot;%s&quot;,__func__);</span><br><span class="line">        int a = UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));</span><br><span class="line">        NSLog(@&quot;a = %tu&quot;,a);</span><br><span class="line">        return a;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>打印的结果为：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">main</span><br></pre></td></tr></table></figure>
@@ -419,15 +417,8 @@
 <p>UIApplicationMain内部启动了主线程上的一个RunLoop，而RunLoop是对事件循环的维护机制，在有事做的时候做事，没事做的时候，由用户态切换到内核态，避免资源占用，使当前线程处于休眠状态。</p>
 <h2 id="Runloop的数据结构"><a href="#Runloop的数据结构" class="headerlink" title="Runloop的数据结构"></a>Runloop的数据结构</h2><p>NSRunLoop是对CFRunLoop的封装，提供了面向对象的API。</p>
 <ul>
-<li><p>CFRunLoop</p>
-<ul>
-<li>a</li>
-<li>b</li>
-<li>c</li>
-</ul>
-</li>
-<li><p>CFRunLoopMode</p>
-</li>
+<li>CFRunLoop</li>
+<li>CFRunLoopMode</li>
 <li>Source/Timer/Observer</li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> __<span class="title">CFRunLoop</span> &#123;</span></span><br><span class="line">    CFRuntimeBase _base;</span><br><span class="line">    <span class="keyword">pthread_mutex_t</span> _lock;			<span class="comment">/* locked for accessing mode list */</span></span><br><span class="line">    __CFPort _wakeUpPort;			<span class="comment">// used for CFRunLoopWakeUp </span></span><br><span class="line">    Boolean _unused;</span><br><span class="line">    <span class="keyword">volatile</span> _per_run_data *_perRunData;              <span class="comment">// reset for runs of the run loop</span></span><br><span class="line">    <span class="keyword">pthread_t</span> _pthread;</span><br><span class="line">    <span class="keyword">uint32_t</span> _winthread;</span><br><span class="line">    CFMutableSetRef _commonModes;</span><br><span class="line">    CFMutableSetRef _commonModeItems;</span><br><span class="line">    CFRunLoopModeRef _currentMode;</span><br><span class="line">    CFMutableSetRef _modes;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> _<span class="title">block_item</span> *_<span class="title">blocks_head</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> _<span class="title">block_item</span> *_<span class="title">blocks_tail</span>;</span></span><br><span class="line">    CFTypeRef _counterpart;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
@@ -574,7 +565,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
