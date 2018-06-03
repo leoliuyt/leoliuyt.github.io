@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Leoliu">
 <meta property="og:description" content="Block介绍Block是将函数及其执行上下文封装起来的对象。 下面代码的改写过程，大体能够体现出，Block是如何实现的 1234567//相当于block中用到的变量int varId = 1;//相当于block的实现主体void detail_func(int event)&amp;#123;    printf(&amp;quot;varId:%d event = %d\n&amp;quot;,varId,ev">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-03T02:45:16.582Z">
+<meta property="og:updated_time" content="2018-06-03T03:01:55.231Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Block介绍">
 <meta name="twitter:description" content="Block介绍Block是将函数及其执行上下文封装起来的对象。 下面代码的改写过程，大体能够体现出，Block是如何实现的 1234567//相当于block中用到的变量int varId = 1;//相当于block的实现主体void detail_func(int event)&amp;#123;    printf(&amp;quot;varId:%d event = %d\n&amp;quot;,varId,ev">
@@ -608,7 +608,7 @@
 <p>Q:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">- (void)dm_methodK</span><br><span class="line">&#123;</span><br><span class="line">    typedef void(^blk_t)(id obj);</span><br><span class="line">    blk_t  blk;</span><br><span class="line">    &#123;</span><br><span class="line">        id array1 = [[NSMutableArray alloc] init];</span><br><span class="line">        __weak id array = array1;</span><br><span class="line">        blk = [^(id obj)&#123;</span><br><span class="line">            [array addObject:obj];</span><br><span class="line">            NSLog(@&quot;array count = %tu&quot;,[array count]);</span><br><span class="line">        &#125; copy];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    blk([[NSObject alloc] init]);</span><br><span class="line">    blk([[NSObject alloc] init]);</span><br><span class="line">    blk([[NSObject alloc] init]);</span><br><span class="line"></span><br><span class="line">    /*</span><br><span class="line">     array count = 0</span><br><span class="line">     array count = 0</span><br><span class="line">     array count = 0</span><br><span class="line">     */</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://clang.llvm.org/docs/" target="_blank" rel="noopener">clang</a></p>
-<p>Objective-C 高级编程 - iOS与OSX多线程和内存管理 </p>
+<p>《Objective-C 高级编程 - iOS与OSX多线程和内存管理》 </p>
 
       
     </div>
