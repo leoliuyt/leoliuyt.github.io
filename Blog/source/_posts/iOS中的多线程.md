@@ -57,7 +57,7 @@ start()->创建pthread->执行main -> [target performSelector:selector] -> exit;
 - 设定操作执行的优先级。
 - 可以很方便的取消一个操作的执行。
 - 可以控制最大并发量
-- 使用 KVO 观察对操作执行状态的更改：isExecuteing、isFinished、isCancelled、isReady。
+- 使用 KVO 观察对操作执行状态的更改：isReady、isExecuteing、isFinished、isCancelled。
 
 `NSOperation`表示了一个独立的计算单元。作为一个抽象类，它给了它的子类一个十分有用而且线程安全的方式来建立状态、优先级、依赖性和取消等的模型。或者，你不是很喜欢再自己继承`NSOperation`的话，框架还提供`NSInvocationOperation`、`NSBlockOperation`两个继承自`NSOperation`的类。
 

@@ -81,7 +81,7 @@ source1 具备唤起线程的能力
 ### 数据结构之间的关系
 RunLoop 与线程一对一
 RunLoop与Model 是一对多的关系
-Model与 Source 、Timer 、Observer 是以对多的关系
+Model与 Source 、Timer 、Observer 是一对多的关系
 
 如果RunLoop运行在Mode1上面，对应Mode2中的事件是无法处理的
 
