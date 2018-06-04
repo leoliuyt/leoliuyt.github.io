@@ -89,7 +89,10 @@
 <meta property="og:image" content="http://leoliuyt.github.io/2018/06/01/网络知识/request.png">
 <meta property="og:image" content="http://leoliuyt.github.io/2018/06/01/网络知识/responde.png">
 <meta property="og:image" content="http://leoliuyt.github.io/2018/06/01/网络知识/http.png">
-<meta property="og:updated_time" content="2018-06-02T01:00:45.142Z">
+<meta property="og:image" content="http://leoliuyt.github.io/2018/06/01/网络知识/middle.png">
+<meta property="og:image" content="http://leoliuyt.github.io/2018/06/01/网络知识/multiplexing.png">
+<meta property="og:image" content="http://leoliuyt.github.io/2018/06/01/网络知识/demultiplexing.png">
+<meta property="og:updated_time" content="2018-06-04T13:40:07.570Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络知识">
 <meta name="twitter:description" content="HTTPHTTP 请求报文  HTTP 响应报文  HTTP的请求方式  GET POST HEAD PUT DELETE OPTIONS  GET和POST方式的区别 GET：用来获取资源  安全：不应该引起server端的任何状态变化（GET、HEAD、OPTIONS） 幂等：同一个请求方法执行多次和执行一次的效果完全相同。（GET、PUT、DELETE） 可缓存的：请求是否可以被缓存（GE">
@@ -428,7 +431,7 @@
 <p>chunked:最后会有一个空的chunked<br>根据响应报文中chunked是否为空判断请求是否结束</p>
 <p>Charles的抓包原理</p>
 <p>利用http的中间人攻击来实现的</p>
-
+<img src="/2018/06/01/网络知识/middle.png" title="中间人攻击">
 <h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><p>HTTPS = HTTP + SSL/TLS</p>
 <p>HTTPS 连接的建立流程</p>
 
@@ -453,8 +456,8 @@
 </ul>
 <p>功能：</p>
 <p>复用<br>分用<br>差错检测 </p>
-
-
+<img src="/2018/06/01/网络知识/multiplexing.png" title="复用">
+<img src="/2018/06/01/网络知识/demultiplexing.png" title="分用">
       
     </div>
     
@@ -487,6 +490,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/04/KVO与KVC/" rel="prev" title="KVO与KVC">
+                KVO与KVC <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -567,7 +574,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

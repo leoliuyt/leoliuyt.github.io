@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Leoliu">
 <meta property="og:description" content="多线程相关概念同步、异步同步：完成需要做的任务后才会返回，进行下一任务。不会开新的线程，会在当前线程中执行任务。 异步：不会等待任务完成才返回，会立即返回。必定会开启新的线程，线程的申请是由异步负责，起到开分支的作用。 串、并行、全局、主队列串行队列： 任务依次执行，同一时间队列中只有一个任务在执行，每个任务只有在前一个任务执行完成后才能开始执行。 并行队列：任务并发执行，你唯一能保证的是，这些任">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-25T13:36:44.769Z">
+<meta property="og:updated_time" content="2018-06-04T13:26:47.691Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS中的多线程">
 <meta name="twitter:description" content="多线程相关概念同步、异步同步：完成需要做的任务后才会返回，进行下一任务。不会开新的线程，会在当前线程中执行任务。 异步：不会等待任务完成才返回，会立即返回。必定会开启新的线程，线程的申请是由异步负责，起到开分支的作用。 串、并行、全局、主队列串行队列： 任务依次执行，同一时间队列中只有一个任务在执行，每个任务只有在前一个任务执行完成后才能开始执行。 并行队列：任务并发执行，你唯一能保证的是，这些任">
@@ -445,7 +445,7 @@
 <li>设定操作执行的优先级。</li>
 <li>可以很方便的取消一个操作的执行。</li>
 <li>可以控制最大并发量</li>
-<li>使用 KVO 观察对操作执行状态的更改：isExecuteing、isFinished、isCancelled、isReady。</li>
+<li>使用 KVO 观察对操作执行状态的更改：isReady、isExecuteing、isFinished、isCancelled。</li>
 </ul>
 <p><code>NSOperation</code>表示了一个独立的计算单元。作为一个抽象类，它给了它的子类一个十分有用而且线程安全的方式来建立状态、优先级、依赖性和取消等的模型。或者，你不是很喜欢再自己继承<code>NSOperation</code>的话，框架还提供<code>NSInvocationOperation</code>、<code>NSBlockOperation</code>两个继承自<code>NSOperation</code>的类。</p>
 <p>所以我们有三种方式来封装操作：</p>
@@ -838,7 +838,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

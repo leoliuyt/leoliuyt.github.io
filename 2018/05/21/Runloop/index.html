@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Leoliu">
 <meta property="og:description" content="什么是RunLoop？ RunLoop是通过内部维护的事件循环来对事件/消息进行管理的一个对象。 事件循环：  没有消息处理时，休眠以避免资源浪费（用户态通过系统调用进入内核态） 有消息需要被处理时，被立刻唤醒（内核态到用户态）  12345678int main(int argc, char * argv[]) &amp;#123;    @autoreleasepool &amp;#123;        N">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-06-01T13:33:00.099Z">
+<meta property="og:updated_time" content="2018-06-04T13:26:47.690Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Runloop">
 <meta name="twitter:description" content="什么是RunLoop？ RunLoop是通过内部维护的事件循环来对事件/消息进行管理的一个对象。 事件循环：  没有消息处理时，休眠以避免资源浪费（用户态通过系统调用进入内核态） 有消息需要被处理时，被立刻唤醒（内核态到用户态）  12345678int main(int argc, char * argv[]) &amp;#123;    @autoreleasepool &amp;#123;        N">
@@ -432,7 +432,7 @@
 <li>kCFRunLoopAfterWaiting ## 内核态切换到用户态不久</li>
 <li>kCFRunLoopExit //RunLoop退出</li>
 </ul>
-<h3 id="数据结构之间的关系"><a href="#数据结构之间的关系" class="headerlink" title="数据结构之间的关系"></a>数据结构之间的关系</h3><p>RunLoop 与线程一对一<br>RunLoop与Model 是一对多的关系<br>Model与 Source 、Timer 、Observer 是以对多的关系</p>
+<h3 id="数据结构之间的关系"><a href="#数据结构之间的关系" class="headerlink" title="数据结构之间的关系"></a>数据结构之间的关系</h3><p>RunLoop 与线程一对一<br>RunLoop与Model 是一对多的关系<br>Model与 Source 、Timer 、Observer 是一对多的关系</p>
 <p>如果RunLoop运行在Mode1上面，对应Mode2中的事件是无法处理的</p>
 <p>滑动tableView时，轮播图停止了滚动是什么原因？</p>
 <p>一个timer想要同时加入到两个Mode中，该怎么做？</p>
@@ -565,7 +565,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">23</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>

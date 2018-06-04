@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="shell," />
+  <meta name="keywords" content="runtime," />
 
 
 
@@ -79,18 +79,22 @@
 
 
 
-<meta name="description" content="四种纯数字字符串转数字的方式 $[] $(()) expr let  实例: 12345678#!/bin/shstring=&quot;   12  &quot;number=$[string]# number=$((string))# number=`expr $string`# let number=&quot;string&quot;echo -e &quot;number=$number\n&quot;echo -e &quot;string=$strin">
-<meta name="keywords" content="shell">
+<meta name="description" content="KVOKVO（key-value-observing）  系统对观察者设计模式的一种实现 通过运行时的ISA-Swizzling技术实现   KVCKVC(key-value-coding) valueForKey执行流程  访问器方法是否存在的判断标准（假设valueForKey中传入的key为@”name”）  getName name isName  如果别观察对象中实现了上面三个方法，那么">
+<meta name="keywords" content="runtime">
 <meta property="og:type" content="article">
-<meta property="og:title" content="shell知识小集">
-<meta property="og:url" content="http://leoliuyt.github.io/2018/04/09/shell知识小集/index.html">
+<meta property="og:title" content="KVO与KVC">
+<meta property="og:url" content="http://leoliuyt.github.io/2018/06/04/KVO与KVC/index.html">
 <meta property="og:site_name" content="Leoliu">
-<meta property="og:description" content="四种纯数字字符串转数字的方式 $[] $(()) expr let  实例: 12345678#!/bin/shstring=&quot;   12  &quot;number=$[string]# number=$((string))# number=`expr $string`# let number=&quot;string&quot;echo -e &quot;number=$number\n&quot;echo -e &quot;string=$strin">
+<meta property="og:description" content="KVOKVO（key-value-observing）  系统对观察者设计模式的一种实现 通过运行时的ISA-Swizzling技术实现   KVCKVC(key-value-coding) valueForKey执行流程  访问器方法是否存在的判断标准（假设valueForKey中传入的key为@”name”）  getName name isName  如果别观察对象中实现了上面三个方法，那么">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-25T10:38:41.735Z">
+<meta property="og:image" content="http://leoliuyt.github.io/2018/06/04/KVO与KVC/kvo.png">
+<meta property="og:image" content="http://leoliuyt.github.io/2018/06/04/KVO与KVC/kvc_valueforkey.png">
+<meta property="og:image" content="http://leoliuyt.github.io/2018/06/04/KVO与KVC/kvc_setvalueforkey.png">
+<meta property="og:updated_time" content="2018-06-04T13:26:47.685Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="shell知识小集">
-<meta name="twitter:description" content="四种纯数字字符串转数字的方式 $[] $(()) expr let  实例: 12345678#!/bin/shstring=&quot;   12  &quot;number=$[string]# number=$((string))# number=`expr $string`# let number=&quot;string&quot;echo -e &quot;number=$number\n&quot;echo -e &quot;string=$strin">
+<meta name="twitter:title" content="KVO与KVC">
+<meta name="twitter:description" content="KVOKVO（key-value-observing）  系统对观察者设计模式的一种实现 通过运行时的ISA-Swizzling技术实现   KVCKVC(key-value-coding) valueForKey执行流程  访问器方法是否存在的判断标准（假设valueForKey中传入的key为@”name”）  getName name isName  如果别观察对象中实现了上面三个方法，那么">
+<meta name="twitter:image" content="http://leoliuyt.github.io/2018/06/04/KVO与KVC/kvo.png">
 
 
 
@@ -120,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://leoliuyt.github.io/2018/04/09/shell知识小集/"/>
+  <link rel="canonical" href="http://leoliuyt.github.io/2018/06/04/KVO与KVC/"/>
 
 
 
 
 
-  <title>shell知识小集 | Leoliu</title>
+  <title>KVO与KVC | Leoliu</title>
   
 
 
@@ -313,7 +317,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://leoliuyt.github.io/2018/04/09/shell知识小集/">
+    <link itemprop="mainEntityOfPage" href="http://leoliuyt.github.io/2018/06/04/KVO与KVC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Leoliu">
@@ -330,7 +334,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">shell知识小集</h1>
+          <h1 class="post-title" itemprop="name headline">KVO与KVC</h1>
         
 
         <div class="post-meta">
@@ -342,8 +346,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-09T17:20:26+08:00">
-                2018-04-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-04T11:05:53+08:00">
+                2018-06-04
               </time>
             
 
@@ -365,8 +369,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/shell/" itemprop="url" rel="index">
-                    <span itemprop="name">shell</span>
+                  <a href="/categories/Objective-C/" itemprop="url" rel="index">
+                    <span itemprop="name">Objective-C</span>
                   </a>
                 </span>
 
@@ -402,16 +406,55 @@
       
 
       
-        <h2 id="四种纯数字字符串转数字的方式"><a href="#四种纯数字字符串转数字的方式" class="headerlink" title="四种纯数字字符串转数字的方式"></a>四种纯数字字符串转数字的方式</h2><ul>
-<li>$[]</li>
-<li>$(())</li>
-<li><code>expr</code></li>
-<li>let</li>
+        <h2 id="KVO"><a href="#KVO" class="headerlink" title="KVO"></a>KVO</h2><p>KVO（key-value-observing）</p>
+<ul>
+<li>系统对观察者设计模式的一种实现</li>
+<li>通过运行时的<code>ISA-Swizzling</code>技术实现</li>
 </ul>
-<p>实例:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span>!/bin/sh</span><br><span class="line">string="   12  "</span><br><span class="line">number=$[string]</span><br><span class="line"><span class="meta">#</span> number=$((string))</span><br><span class="line"><span class="meta">#</span> number=`expr $string`</span><br><span class="line"><span class="meta">#</span> let number="string"</span><br><span class="line">echo -e "number=$number\n"</span><br><span class="line">echo -e "string=$string\n"</span><br></pre></td></tr></table></figure>
-<p>结果：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-e number=12</span><br><span class="line"></span><br><span class="line">-e string=   12</span><br></pre></td></tr></table></figure>
+<img src="/2018/06/04/KVO与KVC/kvo.png" title="kvo流程">
+<h2 id="KVC"><a href="#KVC" class="headerlink" title="KVC"></a>KVC</h2><p>KVC(key-value-coding)</p>
+<p><code>valueForKey</code>执行流程</p>
+<img src="/2018/06/04/KVO与KVC/kvc_valueforkey.png" title="valueForKey调用流程">
+<p>访问器方法是否存在的判断标准（假设valueForKey中传入的key为@”name”）</p>
+<ul>
+<li>getName</li>
+<li>name</li>
+<li>isName</li>
+</ul>
+<p>如果别观察对象中实现了上面三个方法，那么<code>valueForKey:@&quot;name&quot;</code>方法时就会调用到上面的三个方法，如果三方法都存在只调用其中的一个方法，优先级就是上面的顺序。</p>
+<p>实例变量是否存在的判断标准是</p>
+<table>
+<thead>
+<tr>
+<th>类中定义字段名</th>
+<th>valueForKey中传入的key的名称</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>name</td>
+<td>name</td>
+</tr>
+<tr>
+<td>_name</td>
+<td>name 或 _name</td>
+</tr>
+<tr>
+<td>isName</td>
+<td>name 或 isName</td>
+</tr>
+<tr>
+<td>_isName</td>
+<td>name 或 _isName 或 isName</td>
+</tr>
+</tbody>
+</table>
+<p><code>setValueForKey</code>执行流程</p>
+<img src="/2018/06/04/KVO与KVC/kvc_setvalueforkey.png" title="setValueForKey流程">
+<p>setter方法的判断标准是</p>
+<p>是否实现了<code>setName</code>或<code>setIsName</code></p>
+<p>验证的<a href="https://github.com/leoliuyt/DMKVO" target="_blank" rel="noopener">demo</a>从这里下载。</p>
+
       
     </div>
     
@@ -428,7 +471,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/shell/" rel="tag"># shell</a>
+            <a href="/tags/runtime/" rel="tag"># runtime</a>
           
         </div>
       
@@ -441,8 +484,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/08/shell基本语法/" rel="next" title="shell基本语法">
-                <i class="fa fa-chevron-left"></i> shell基本语法
+              <a href="/2018/06/01/网络知识/" rel="next" title="网络知识">
+                <i class="fa fa-chevron-left"></i> 网络知识
               </a>
             
           </div>
@@ -450,10 +493,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/09/Linux-命令/" rel="prev" title="Linux 命令">
-                Linux 命令 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -617,7 +656,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#四种纯数字字符串转数字的方式"><span class="nav-number">1.</span> <span class="nav-text">四种纯数字字符串转数字的方式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#KVO"><span class="nav-number">1.</span> <span class="nav-text">KVO</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#KVC"><span class="nav-number">2.</span> <span class="nav-text">KVC</span></a></li></ol></div>
             
 
           </div>
