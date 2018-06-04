@@ -9,9 +9,9 @@ categories: Objective-C
 
 Block是将函数及其执行上下文封装起来的对象。
 
-下面代码的改写过程，大体能够体现出，Block是如何实现的
+下面代码的改写过程，大体能够体现出Block是如何实现的
 
-```
+```c
 //相当于block中用到的变量
 int varId = 1;
 
@@ -22,13 +22,14 @@ void detail_func(int event){
 ```
 改写成block形式如下：
 
-```
+```Objective-C
 int varId = 1;
 void(^detail_func)(int) = ^(int event){
     printf("varId:%d event = %d\n",varId,event);
 }
 ```
-在改写为对象形式如下：
+
+上面block的写法看起开block中用的变量与block的执行方法体的调用是分离的，但其实block中的内部实现是将用到的变量和block执行方法体封装成了对象，看起来像是这样:
 
 ```Objective-c
 @interface CallbackObject:NSObject
@@ -54,7 +55,7 @@ void(^detail_func)(int) = ^(int event){
 
 之后这步的改写，就类似Block在内部为我们所做的操作：将函数及上下文封装成对象。
 
-那么Block真是的内部实现是怎样的呢？我来通过clang来将源码编译成cpp文件后，来窥探一下Block的内部实现。
+那么Block真正的内部实现是怎样的呢？我来通过`clang`来将源码编译成cpp文件后，来窥探一下Block的内部实现。
 
 ### 源码分析
 
@@ -132,10 +133,11 @@ static void _I_DMBlock1_dm_method(DMBlock1 * self, SEL _cmd) {
     ((void (*)(__block_impl *))((__block_impl *)MyBlock)->FuncPtr)((__block_impl *)MyBlock);
 }
 ```
+
 分析代码前，先说一下，编译器的命名规则:类名+方法名+block_impl或block_func或block_des+出现的顺序
 
-下面开始逐一分析源码
-首先看一下源Block代码块中的
+下面开始逐一分析源码,首先看一下源Block代码块中的
+
 ```
 ^(){
     NSLog(@"my block");
@@ -279,6 +281,8 @@ __block修饰符一般使用在对截获变量进行赋值操作时。
     - 静态局部变量
     - 全局变量
     - 静态全局变量
+
+
 源码分析：
 
 ```Objective-C
@@ -303,6 +307,20 @@ __Block_byref_multiplier_0 *__forwarding;
  int __flags;
  int __size;
  int multiplier;
+};
+
+struct __DMBlock2__dm_method_block_impl_0 {
+  struct __block_impl impl;
+  struct __DMBlock2__dm_method_block_desc_0* Desc;
+  
+  __Block_byref_multiplier_0 *multiplier; // by ref
+
+  __DMBlock2__dm_method_block_impl_0(void *fp, struct __DMBlock2__dm_method_block_desc_0 *desc, __Block_byref_multiplier_0 *_multiplier, int flags=0) : multiplier(_multiplier->__forwarding) {
+    impl.isa = &_NSConcreteStackBlock;
+    impl.Flags = flags;
+    impl.FuncPtr = fp;
+    Desc = desc;
+  }
 };
 
 static void _I_DMBlock2_dm_method(DMBlock2 * self, SEL _cmd) {
@@ -353,10 +371,7 @@ __block变量|栈上__block变量的结构体实例（对象）
 ```
 typedef int (^blk_t)(int);
 blk_t func(int rate){
-    blk_t bk = ^(int count){
-        return rate * count;
-    };
-    return bk;
+    return ^(int count){return rate * count;};
 }
 ```
 该源码为返回配置在栈上的block函数。即程序执行中从该函数返回函数调用方时变量作用域结束，因此栈上的block被废弃。但该源码通过对应ARC的编译器转化如下:
@@ -388,11 +403,11 @@ blk_t func(int rate)
 - GCD的API
 
 会将栈中Block复制到堆上的操作:
+
 - 对block调用copy
 - Block作为函数返回值时
 - 将Block赋值给__strong修饰的变量时
 - 方法名中包括usingBlock的Cocoa框架方法或GCD的API中传递Block时
-
 
 `__forwarding`可以实现无论`__block`变量配置在栈上还是堆上都可以正确访问`__block`变量。
 
@@ -406,7 +421,6 @@ _NSConcreteStackBlock|栈|堆
 _NSConcreteGlobalBlock|程序的数据区（.data区）|什么都不做
 _NSConcreteMallocBlock|堆|增加引用计数
 
-
 block 从栈复制到堆时对__block变量产生的影响
 
 __block变量的配置存储区域|Block从栈复制到堆时的影响
@@ -414,14 +428,16 @@ __block变量的配置存储区域|Block从栈复制到堆时的影响
 栈|从栈复制到堆并被Block持有
 堆|被Block持有
 
-
 调用copy函数和dispose函数的时机
 
 函数|调用时机
+--|--
 copy函数|栈上的block复制到堆上时
 dispose函数|堆上的block被废弃时
 
 {% asset_img block_forwarding __block中的forwarding %}
+
+在ARC无效的情况下,可以使用`__block`修饰符用来避免Block中的循环引用。这是由于当Block从栈复制到堆时，若Block中使用的变量为附有`__block`修饰符的id类型的或对象类型的局部变量时，不会被retain,若Block中使用的变量为没有`__block`修饰符的id类型或对象类型的局部变量，则被retain。
 
 ## Block的循环引用
 
@@ -443,9 +459,11 @@ Block被self持有，而Block中又持有self
 {% asset_img block_circle_referance block的循环引用 %}
 
 可以通过添加下面的代码解除循环
+
 ```
 __weak typeof(self)weakSelf = self;
 ```
+
 {% asset_img block_circle_reference_break block的循环引用破解 %}
 
 ```Objective-C
@@ -536,7 +554,7 @@ Q:
 }
 ```
 
-Q:
+Q: 下面代码运行会发生什么？
 
 ```Objective-C
 - (void)dm_methodI
@@ -547,7 +565,41 @@ Q:
     blk();
 }
 
+- (id)getBlockArray
+{
+    int val = 10;
+    return [[NSArray alloc] initWithObjects:
+            ^{NSLog(@"block0:%tu",val);},
+            ^{NSLog(@"block1:%tu",val);}, nil];
+}
+```
+A:
+程序会崩溃。这是因为`getBlockArray`方法执行结束后，栈上的block会被释放掉的缘故。
+但如果将`getBlockArray`方法改成下面的，就不会崩溃，这是因为执行`a =`和`b = `时，会将block从栈拷贝到堆上了。
+
+```Objective-C
+- (id)getBlockArray
+{
+    int val = 10;
+    
+    typedef void(^blk_t)(void);
+    
+    blk_t a = ^(){
+       NSLog(@"block0:%tu",val);
+    };
+    
+    blk_t b = ^(){
+        NSLog(@"block0:%tu",val);
+    };
+
+    return [[NSArray alloc] initWithObjects:
+            a,
+            b, nil];
+}
+```
+
 Q:
+
 ```Objective-C
 - (void)dm_methodK
 {
@@ -574,14 +626,7 @@ Q:
 }
 ```
 
-- (id)getBlockArray
-{
-    int val = 10;
-    return [[NSArray alloc] initWithObjects:
-            ^{NSLog(@"block0:%tu",val);},
-            ^{NSLog(@"block1:%tu",val);}, nil];
-}
-```
-
 ## 参考
 [clang](https://clang.llvm.org/docs/)
+
+《Objective-C 高级编程 - iOS与OSX多线程和内存管理》 
