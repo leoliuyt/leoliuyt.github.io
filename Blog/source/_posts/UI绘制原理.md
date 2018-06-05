@@ -71,7 +71,7 @@ GPU
 
 ### 系统绘制实现
 
-{% asset_img system_display.png 系统绘制流程 %}
+{% asset_img system_display_new.png 系统绘制流程 %}
 
 ### 异步绘制实现
 
