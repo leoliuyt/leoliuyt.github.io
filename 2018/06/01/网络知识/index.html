@@ -89,11 +89,10 @@
 <meta property="og:image" content="http://leoliuyt.github.io/2018/06/01/网络知识/request.png">
 <meta property="og:image" content="http://leoliuyt.github.io/2018/06/01/网络知识/responde.png">
 <meta property="og:image" content="http://leoliuyt.github.io/2018/06/01/网络知识/http.png">
-<meta property="og:image" content="http://leoliuyt.github.io/2018/06/01/网络知识/middle.png">
 <meta property="og:image" content="http://leoliuyt.github.io/2018/06/01/网络知识/https.png">
 <meta property="og:image" content="http://leoliuyt.github.io/2018/06/01/网络知识/multiplexing.png">
 <meta property="og:image" content="http://leoliuyt.github.io/2018/06/01/网络知识/demultiplexing.png">
-<meta property="og:updated_time" content="2018-06-04T13:42:37.338Z">
+<meta property="og:updated_time" content="2018-06-05T13:06:46.266Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络知识">
 <meta name="twitter:description" content="HTTPHTTP 请求报文  HTTP 响应报文  HTTP的请求方式  GET POST HEAD PUT DELETE OPTIONS  GET和POST方式的区别 GET：用来获取资源  安全：不应该引起server端的任何状态变化（GET、HEAD、OPTIONS） 幂等：同一个请求方法执行多次和执行一次的效果完全相同。（GET、PUT、DELETE） 可缓存的：请求是否可以被缓存（GE">
@@ -432,15 +431,32 @@
 <p>chunked:最后会有一个空的chunked<br>根据响应报文中chunked是否为空判断请求是否结束</p>
 <p>Charles的抓包原理</p>
 <p>利用http的中间人攻击来实现的</p>
-<img src="/2018/06/01/网络知识/middle.png" title="中间人攻击">
+
 <h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><p>HTTPS = HTTP + SSL/TLS</p>
-<p>HTTPS 连接的建立流程</p>
+<p>HTTPS 连接的建立流程：</p>
+<p>①客户端向服务器传送 客户端SSL/TLS协议的版本号，加密算法的种类，产生的随机数C，以及其他服务器和客户端之间通讯所需要的各种信息。</p>
+<p>②服务器向客户端传送 SSL/TLS协议的版本号，商定好的加密算法，随机数S以及其他相关信息，同时服务器还将向客户端传送自己的数字证书。</p>
+<p>③客户利用服务器传过来的信息验证服务器的合法性，服务器的合法性包括：证书是否过期，发行服务器证书的 CA 是否可靠，发行者证书的公钥能否正确解开服务器证书的“发行者的数字签名”，服务器证书上的域名是否和服务器的实际域名相匹配。如果合法性验证没有通过，通讯将断开；如果合法性验证通过，将继续进行第四步。</p>
+<p>④客户端随机产生一个<em>预主秘钥</em>，然后用服务器的公钥（服务器的公钥从步骤②中的服务器的证书中获得）对其加密，然后将加密后的<em>预主秘钥</em>传给服务器。同时用随机数C、随机数S、预主秘钥共同组装成<em>会话秘钥</em>，<em>会话秘钥</em>就是之后用于<em>对称加密</em>的秘钥。</p>
+<p>⑤服务器收到被客户端通过公钥加密的<em>预主秘钥</em>后，用私钥进行解密，得到<em>预主秘钥</em>，然后用随机数C、随机数S、预主秘钥共同组装成<em>会话秘钥</em>。</p>
+<p>⑥然后客户端和服务端使用相同的<em>会话秘钥</em>来加密会话消息,用来发送加密的握手消息。</p>
+<p>整个过程的流程图如下：</p>
 <img src="/2018/06/01/网络知识/https.png" title="https连接建立流程">
+<p>上面第⑤步分两种情况，服务端不验证客户端证书和服务端验证客户端证书，<br>上面的流程执行是不验证的情况，如果要验证的话，流程是这样的：</p>
+<p>如果服务器要求客户的身份认证（在握手过程中为可选），用户可以建立一个随机数然后对其进行数据签名，将这个含有签名的随机数和客户自己的证书以及加密过的<em>预主秘钥</em>一起传给服务器。</p>
+<p>如果服务器要求客户的身份认证，服务器必须检验客户证书和签名随机数的合法性，具体的合法性验证过程包括：客户的证书使用日期是否有效，为客户提供证书的CA 是否可靠，发行CA 的公钥能否正确解开客户证书的发行 CA 的数字签名，检查客户的证书是否在证书废止列表（CRL）中。检验如果没有通过，通讯立刻中断。</p>
+<p>预主秘钥:客户端产生第一个随机秘钥 </p>
 <p>会话秘钥 = random S + random C + 预主秘钥</p>
+<p>签名就是在信息的后面再加上一段内容，可以证明信息没有被修改过，怎么样可以达到这个效果呢？一般是对信息做一个hash计算得到一个hash值，注意，这个过程是不可逆的，也就是说无法通过hash值得出原来的信息内容。在把信息发送出去时，把这个hash值加密后做为一个签名和信息一起发出去。 接收方在收到信息后，会重新计算信息的hash值，并和信息所附带的hash值(解密后)进行对比，如果一致，就说明信息的内容没有被修改过，因为这里hash计算可以保证不同的内容一定会得到不同的hash值，所以只要内容一被修改，根据信息内容计算的hash值就会变化。当然，不怀好意的人也可以修改信息内容的同时也修改hash值，从而让它们可以相匹配，为了防止这种情况，hash值一般都会加密后(也就是签名)再和信息一起发送，以保证这个hash值不被修改。至于如何让别人可以解密这个签名，这个过程涉及到数字证书等概念，我们后面在说到数字证书时再详细说明，这里您先只需先理解签名的这个概念。</p>
+<p>客户端证书验证：</p>
+<p>证书上面有一个数字签名，可用于验证证书的真伪，这个数字签名同样是利用公开密钥方法加密的，证书办法机构会用自己的私钥对其加密，客户端则用给定的公钥对齐进行解密，解密后得到的内容就拿去验证证书是不是真的；在这个过程中，对证书进行解密的公钥如何传递给客户端是一个问题，因为一旦在网络传输中，公钥被攻击者掉包的话，证书也就有了伪造的可能，所以目前的做法是，在浏览器生产的时候就会内置一些常用的认证机构的公钥。（注意，验证证书真伪用的这组公钥私钥是证书办法机构的，和服务器端用来机密的公钥私钥不是同一对，就是在SSL中，因为证书的使用，会有两对密钥）；</p>
 <p>HTTPS 使用了哪些加密手段? 为什么？</p>
 <p>连接建立过程中使用的非对称加密，非对称加密很耗时<br>后续的通信过程使用对称加密</p>
-<p>非对称加密</p>
-<p>对称加密</p>
+<h2 id="加密算法"><a href="#加密算法" class="headerlink" title="加密算法"></a>加密算法</h2><p>常见的加密算法可以分成三类，对称加密算法，非对称加密算法和Hash算法。</p>
+<h3 id="对称加密"><a href="#对称加密" class="headerlink" title="对称加密"></a>对称加密</h3><p>指加密和解密使用相同密钥的加密算法。对称加密算法的优点在于加解密的高速度和使用长密钥时的难破解性。假设两个用户需要使用对称加密方法加密然后交换数据，则用户最少需要2个密钥并交换使用，如果企业内用户有n个，则整个企业共需要n×(n-1) 个密钥，密钥的生成和分发将成为企业信息部门的恶梦。对称加密算法的安全性取决于加密密钥的保存情况，但要求企业中每一个持有密钥的人都保守秘密是不可能的，他们通常会有意无意的把密钥泄漏出去——如果一个用户使用的密钥被入侵者所获得，入侵者便可以读取该用户密钥加密的所有文档，如果整个企业共用一个加密密钥，那整个企业文档的保密性便无从谈起。<br>常见的对称加密算法有DES、3DES、Blowfish、IDEA、RC4、RC5、RC6和AES</p>
+<h3 id="非对称加密"><a href="#非对称加密" class="headerlink" title="非对称加密"></a>非对称加密</h3><p>指加密和解密使用不同密钥的加密算法，也称为公私钥加密。假设两个用户要加密交换数据，双方交换公钥，使用时一方用对方的公钥加密，另一方即可用自己的私钥解密。如果企业中有n个用户，企业需要生成n对密钥，并分发n个公钥。由于公钥是可以公开的，用户只要保管好自己的私钥即可，因此加密密钥的分发将变得十分简单。同时，由于每个用户的私钥是唯一的，其他用户除了可以可以通过信息发送者的公钥来验证信息的来源是否真实，还可以确保发送者无法否认曾发送过该信息。非对称加密的缺点是加解密速度要远远慢于对称加密，在某些极端情况下，甚至能比非对称加密慢上1000倍。<br>常见的非对称加密算法有：RSA、ECC（移动设备用）、Diffie-Hellman、El Gamal、DSA（数字签名用）</p>
+<h3 id="Hash算法"><a href="#Hash算法" class="headerlink" title="Hash算法"></a>Hash算法</h3><p>Hash算法特别的地方在于它是一种单向算法，用户可以通过Hash算法对目标信息生成一段特定长度的唯一的Hash值，却不能通过这个Hash值重新获得目标信息。因此Hash算法常用在不可还原的密码存储、信息完整性校验等。<br>常见的Hash算法有MD4、MD5、HAVAL、SHA<br>在证书领域，一般都是用SHA（安全哈希算法）<br>加密算法的效能通常可以按照算法本身的复杂程度、密钥长度（密钥越长越安全）、加解密速度等来衡量。上述的算法中，除了DES密钥长度不够、MD2速度较慢已逐渐被淘汰外，其他算法仍在目前的加密系统产品中使用。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">// 只要访问的是HTTPS的路径就会调用</span><br><span class="line">// 该方法的作用就是处理服务器返回的证书, 需要在该方法中告诉系统是否需要安装服务器返回的证书</span><br><span class="line">// NSURLAuthenticationChallenge : 授权质问</span><br><span class="line">//+ 受保护空间</span><br><span class="line">//+ 服务器返回的证书类型</span><br><span class="line">- (void)URLSession:(NSURLSession *)session</span><br><span class="line">didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge</span><br><span class="line"> completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *credential))completionHandler</span><br><span class="line">&#123;</span><br><span class="line">   //AFNetworking中的处理方式</span><br><span class="line">    NSURLSessionAuthChallengeDisposition disposition = NSURLSessionAuthChallengePerformDefaultHandling;</span><br><span class="line">    __block NSURLCredential *credential = nil;  </span><br><span class="line">    //判断服务器返回的证书是否是服务器信任的</span><br><span class="line">    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) &#123;</span><br><span class="line">        credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];</span><br><span class="line">        /*disposition：如何处理证书</span><br><span class="line">     NSURLSessionAuthChallengePerformDefaultHandling:默认方式处理</span><br><span class="line">         NSURLSessionAuthChallengeUseCredential：使用指定的证书    NSURLSessionAuthChallengeCancelAuthenticationChallenge：取消请求</span><br><span class="line">         */</span><br><span class="line">        if (credential) &#123;</span><br><span class="line">            disposition = NSURLSessionAuthChallengeUseCredential;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            disposition = NSURLSessionAuthChallengePerformDefaultHandling;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        disposition = NSURLSessionAuthChallengeCancelAuthenticationChallenge;</span><br><span class="line">    &#125;</span><br><span class="line">    //安装证书</span><br><span class="line">    if (completionHandler) &#123;</span><br><span class="line">        completionHandler(disposition, credential);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="TCP-UDP"><a href="#TCP-UDP" class="headerlink" title="TCP / UDP"></a>TCP / UDP</h2><p>传输层协议 </p>
 <ul>
 <li>TCP 传输控制协议</li>
@@ -459,6 +475,8 @@
 <p>复用<br>分用<br>差错检测 </p>
 <img src="/2018/06/01/网络知识/multiplexing.png" title="复用">
 <img src="/2018/06/01/网络知识/demultiplexing.png" title="分用">
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://blog.csdn.net/u012858858/article/details/73716105" target="_blank" rel="noopener">关于HTTPS通信和证书验证的流程</a><br><a href="http://www.cnblogs.com/JeffreySun/archive/2010/06/24/1627247.html" target="_blank" rel="noopener">数字证书原理</a><br><a href="https://support.apple.com/zh-cn/HT204132" target="_blank" rel="noopener">iOS 中可用的受信任根证书列表</a><br><a href="https://segmentfault.com/a/1190000000476876" target="_blank" rel="noopener">HTTPS的建立流程</a><br><a href="http://www.ruanyifeng.com/blog/2014/09/illustration-ssl.html" target="_blank" rel="noopener">图解SSL/TLS协议</a><br><a href="https://github.com/youngwind/blog/issues/108" target="_blank" rel="noopener">图解 HTTPS：Charles 捕获 HTTPS 的原理</a></p>
+
       
     </div>
     
@@ -658,7 +676,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP"><span class="nav-number">1.</span> <span class="nav-text">HTTP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP特点-缺点"><span class="nav-number">1.1.</span> <span class="nav-text">HTTP特点(缺点)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#持久连接"><span class="nav-number">1.1.1.</span> <span class="nav-text">持久连接</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTPS"><span class="nav-number">2.</span> <span class="nav-text">HTTPS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-UDP"><span class="nav-number">3.</span> <span class="nav-text">TCP / UDP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UDP"><span class="nav-number">3.1.</span> <span class="nav-text">UDP</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP"><span class="nav-number">1.</span> <span class="nav-text">HTTP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP特点-缺点"><span class="nav-number">1.1.</span> <span class="nav-text">HTTP特点(缺点)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#持久连接"><span class="nav-number">1.1.1.</span> <span class="nav-text">持久连接</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTPS"><span class="nav-number">2.</span> <span class="nav-text">HTTPS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加密算法"><span class="nav-number">3.</span> <span class="nav-text">加密算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对称加密"><span class="nav-number">3.1.</span> <span class="nav-text">对称加密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非对称加密"><span class="nav-number">3.2.</span> <span class="nav-text">非对称加密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hash算法"><span class="nav-number">3.3.</span> <span class="nav-text">Hash算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-UDP"><span class="nav-number">4.</span> <span class="nav-text">TCP / UDP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UDP"><span class="nav-number">4.1.</span> <span class="nav-text">UDP</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>

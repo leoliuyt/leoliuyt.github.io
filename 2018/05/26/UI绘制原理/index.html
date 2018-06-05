@@ -91,9 +91,9 @@
 <meta property="og:image" content="http://leoliuyt.github.io/2018/05/26/UI绘制原理/display_sepereate.png">
 <meta property="og:image" content="http://leoliuyt.github.io/2018/05/26/UI绘制原理/frame_off.png">
 <meta property="og:image" content="http://leoliuyt.github.io/2018/05/26/UI绘制原理/display_flow.png">
-<meta property="og:image" content="http://leoliuyt.github.io/2018/05/26/UI绘制原理/system_display.png">
+<meta property="og:image" content="http://leoliuyt.github.io/2018/05/26/UI绘制原理/system_display_new.png">
 <meta property="og:image" content="http://leoliuyt.github.io/2018/05/26/UI绘制原理/asyn_display.png">
-<meta property="og:updated_time" content="2018-05-28T13:07:58.101Z">
+<meta property="og:updated_time" content="2018-06-05T14:18:25.362Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="UI绘制原理">
 <meta name="twitter:description" content="图像显示原理CPU与GPU是通过总线连接起来，通过CPU输出一个位图，经由总线传输在合适的时机上传到GPU，GPU获取到位图后，会进行图层渲染、纹理合成，将结果放入帧缓存区中，由视频控制器根据VSyn信号，在指定时间之前提取帧缓存区中的屏幕显示内容，最终显示到手机屏幕上。  CPU与GPU分别做了什么？ 创建UIView后，显示部分由CALayer负责，CALayer有一个contents属性，就">
@@ -460,7 +460,7 @@
 </ul>
 <h2 id="UIView的绘制原理"><a href="#UIView的绘制原理" class="headerlink" title="UIView的绘制原理"></a>UIView的绘制原理</h2><p>当调用<code>UIView</code>的<code>setNeedsDisplay</code>方法时，会调用<code>CALayer</code>的同名方法<code>setNeedsDisplay</code>,这时并没有立即发生绘制，而只是相当于在当前layer打上了脏标记， 会在Runloop即将结束时才会调用<code>[CALayer display]</code>,而这个方法的内部会判断是否实现了displayLayer这个方法，如果没有实现，那么走系统调用，如果实现了，就为我们异步绘制提供了入口。</p>
 <img src="/2018/05/26/UI绘制原理/display_flow.png" title="绘制流程">
-<h3 id="系统绘制实现"><a href="#系统绘制实现" class="headerlink" title="系统绘制实现"></a>系统绘制实现</h3><img src="/2018/05/26/UI绘制原理/system_display.png" title="系统绘制流程">
+<h3 id="系统绘制实现"><a href="#系统绘制实现" class="headerlink" title="系统绘制实现"></a>系统绘制实现</h3><img src="/2018/05/26/UI绘制原理/system_display_new.png" title="系统绘制流程">
 <h3 id="异步绘制实现"><a href="#异步绘制实现" class="headerlink" title="异步绘制实现"></a>异步绘制实现</h3><p>通过实现layer的代理方法displayLayer</p>
 <ul>
 <li>代理负责生成对应的bitmap</li>
