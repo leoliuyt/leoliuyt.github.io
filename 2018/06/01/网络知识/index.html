@@ -92,7 +92,7 @@
 <meta property="og:image" content="http://leoliuyt.github.io/2018/06/01/网络知识/https.png">
 <meta property="og:image" content="http://leoliuyt.github.io/2018/06/01/网络知识/multiplexing.png">
 <meta property="og:image" content="http://leoliuyt.github.io/2018/06/01/网络知识/demultiplexing.png">
-<meta property="og:updated_time" content="2018-06-05T13:06:46.266Z">
+<meta property="og:updated_time" content="2018-06-05T15:08:17.519Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络知识">
 <meta name="twitter:description" content="HTTPHTTP 请求报文  HTTP 响应报文  HTTP的请求方式  GET POST HEAD PUT DELETE OPTIONS  GET和POST方式的区别 GET：用来获取资源  安全：不应该引起server端的任何状态变化（GET、HEAD、OPTIONS） 幂等：同一个请求方法执行多次和执行一次的效果完全相同。（GET、PUT、DELETE） 可缓存的：请求是否可以被缓存（GE">
@@ -414,6 +414,9 @@
 </ul>
 <p>状态码</p>
 <p>1xx:这一类型的状态码，代表请求已被接受，需要继续处理。这类响应是临时响应<br>2xx:这一类型的状态码，代表请求已成功被服务器接收、理解、并接受<br>3xx:重定向，需要进一步的操作以完成请求<br>4xx:这类的状态码代表了客户端看起来可能发生了错误，妨碍了服务器的处理。<br>5xx:表示服务器无法完成明显有效的请求。[56]这类状态码代表了服务器在处理请求的过程中有错误或者异常状态发生</p>
+<p>1xx：指示信息–表示请求已接收，继续处理。<br>2xx：成功–表示请求已被成功接收、理解、接受。<br>3xx：重定向–要完成请求必须进行更进一步的操作。<br>4xx：客户端错误–请求有语法错误或请求无法实现。<br>5xx：服务器端错误–服务器未能实现合法的请求。</p>
+<p>常见状态代码、状态描述的说明如下。</p>
+<p>200 OK：客户端请求成功。<br>400 Bad Request：客户端请求有语法错误，不能被服务器所理解。<br>401 Unauthorized：请求未经授权，这个状态代码必须和WWW-Authenticate报头域一起使用。<br>403 Forbidden：服务器收到请求，但是拒绝提供服务。<br>404 Not Found：请求资源不存在，举个例子：输入了错误的URL。<br>500 Internal Server Error：服务器发生不可预期的错误。<br>503 Server Unavailable：服务器当前不能处理客户端的请求，一段时间后可能恢复正常，举个例子：HTTP/1.1 200 OK（CRLF）</p>
 <p>连接建立流程</p>
 <img src="/2018/06/01/网络知识/http.png" title="http连接建立流程">
 <h3 id="HTTP特点-缺点"><a href="#HTTP特点-缺点" class="headerlink" title="HTTP特点(缺点)"></a>HTTP特点(缺点)</h3><ul>
@@ -475,7 +478,13 @@
 <p>复用<br>分用<br>差错检测 </p>
 <img src="/2018/06/01/网络知识/multiplexing.png" title="复用">
 <img src="/2018/06/01/网络知识/demultiplexing.png" title="分用">
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://blog.csdn.net/u012858858/article/details/73716105" target="_blank" rel="noopener">关于HTTPS通信和证书验证的流程</a><br><a href="http://www.cnblogs.com/JeffreySun/archive/2010/06/24/1627247.html" target="_blank" rel="noopener">数字证书原理</a><br><a href="https://support.apple.com/zh-cn/HT204132" target="_blank" rel="noopener">iOS 中可用的受信任根证书列表</a><br><a href="https://segmentfault.com/a/1190000000476876" target="_blank" rel="noopener">HTTPS的建立流程</a><br><a href="http://www.ruanyifeng.com/blog/2014/09/illustration-ssl.html" target="_blank" rel="noopener">图解SSL/TLS协议</a><br><a href="https://github.com/youngwind/blog/issues/108" target="_blank" rel="noopener">图解 HTTPS：Charles 捕获 HTTPS 的原理</a></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://blog.csdn.net/u012858858/article/details/73716105" target="_blank" rel="noopener">关于HTTPS通信和证书验证的流程</a></p>
+<p><a href="http://www.cnblogs.com/JeffreySun/archive/2010/06/24/1627247.html" target="_blank" rel="noopener">数字证书原理</a></p>
+<p><a href="https://support.apple.com/zh-cn/HT204132" target="_blank" rel="noopener">iOS 中可用的受信任根证书列表</a></p>
+<p><a href="https://segmentfault.com/a/1190000000476876" target="_blank" rel="noopener">HTTPS的建立流程</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/2014/09/illustration-ssl.html" target="_blank" rel="noopener">图解SSL/TLS协议</a></p>
+<p><a href="https://github.com/youngwind/blog/issues/108" target="_blank" rel="noopener">图解 HTTPS：Charles 捕获 HTTPS 的原理</a></p>
+<p><a href="http://www.cnblogs.com/biyeymyhjob/archive/2012/07/28/2612910.html" target="_blank" rel="noopener">HTTP请求报文和HTTP响应报文</a></p>
 
       
     </div>
