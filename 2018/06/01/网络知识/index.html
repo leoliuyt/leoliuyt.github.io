@@ -89,10 +89,17 @@
 <meta property="og:image" content="http://leoliuyt.github.io/2018/06/01/网络知识/request.png">
 <meta property="og:image" content="http://leoliuyt.github.io/2018/06/01/网络知识/responde.png">
 <meta property="og:image" content="http://leoliuyt.github.io/2018/06/01/网络知识/http.png">
+<meta property="og:image" content="http://leoliuyt.github.io/2018/06/01/网络知识/middle.png">
 <meta property="og:image" content="http://leoliuyt.github.io/2018/06/01/网络知识/https.png">
+<meta property="og:image" content="http://leoliuyt.github.io/2018/06/01/网络知识/net_seven.png">
+<meta property="og:image" content="http://leoliuyt.github.io/2018/06/01/网络知识/net_four.png">
 <meta property="og:image" content="http://leoliuyt.github.io/2018/06/01/网络知识/multiplexing.png">
 <meta property="og:image" content="http://leoliuyt.github.io/2018/06/01/网络知识/demultiplexing.png">
-<meta property="og:updated_time" content="2018-06-05T15:08:17.519Z">
+<meta property="og:image" content="http://leoliuyt.github.io/2018/06/01/网络知识/dns_parse.png">
+<meta property="og:image" content="http://leoliuyt.github.io/2018/06/01/网络知识/dns_recursive.png">
+<meta property="og:image" content="http://leoliuyt.github.io/2018/06/01/网络知识/dns_iterative.png">
+<meta property="og:image" content="http://leoliuyt.github.io/2018/06/01/网络知识/dns_hijack.png">
+<meta property="og:updated_time" content="2018-06-06T13:32:12.424Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络知识">
 <meta name="twitter:description" content="HTTPHTTP 请求报文  HTTP 响应报文  HTTP的请求方式  GET POST HEAD PUT DELETE OPTIONS  GET和POST方式的区别 GET：用来获取资源  安全：不应该引起server端的任何状态变化（GET、HEAD、OPTIONS） 幂等：同一个请求方法执行多次和执行一次的效果完全相同。（GET、PUT、DELETE） 可缓存的：请求是否可以被缓存（GE">
@@ -414,7 +421,6 @@
 </ul>
 <p>状态码</p>
 <p>1xx:这一类型的状态码，代表请求已被接受，需要继续处理。这类响应是临时响应<br>2xx:这一类型的状态码，代表请求已成功被服务器接收、理解、并接受<br>3xx:重定向，需要进一步的操作以完成请求<br>4xx:这类的状态码代表了客户端看起来可能发生了错误，妨碍了服务器的处理。<br>5xx:表示服务器无法完成明显有效的请求。[56]这类状态码代表了服务器在处理请求的过程中有错误或者异常状态发生</p>
-<p>1xx：指示信息–表示请求已接收，继续处理。<br>2xx：成功–表示请求已被成功接收、理解、接受。<br>3xx：重定向–要完成请求必须进行更进一步的操作。<br>4xx：客户端错误–请求有语法错误或请求无法实现。<br>5xx：服务器端错误–服务器未能实现合法的请求。</p>
 <p>常见状态代码、状态描述的说明如下。</p>
 <p>200 OK：客户端请求成功。<br>400 Bad Request：客户端请求有语法错误，不能被服务器所理解。<br>401 Unauthorized：请求未经授权，这个状态代码必须和WWW-Authenticate报头域一起使用。<br>403 Forbidden：服务器收到请求，但是拒绝提供服务。<br>404 Not Found：请求资源不存在，举个例子：输入了错误的URL。<br>500 Internal Server Error：服务器发生不可预期的错误。<br>503 Server Unavailable：服务器当前不能处理客户端的请求，一段时间后可能恢复正常，举个例子：HTTP/1.1 200 OK（CRLF）</p>
 <p>连接建立流程</p>
@@ -434,7 +440,16 @@
 <p>chunked:最后会有一个空的chunked<br>根据响应报文中chunked是否为空判断请求是否结束</p>
 <p>Charles的抓包原理</p>
 <p>利用http的中间人攻击来实现的</p>
-
+<img src="/2018/06/01/网络知识/middle.png" title="中间人攻击">
+<h4 id="Cookie-Session"><a href="#Cookie-Session" class="headerlink" title="Cookie/Session"></a>Cookie/Session</h4><p>Cookie保存在客户端，主要用来记录用户状态，区分用户</p>
+<p>修改Cookie：<br>新cookie覆盖旧cookie<br>删除cookie 通过expires或者maxAge</p>
+<p>保证Cookie的安全：</p>
+<ul>
+<li>对Cookie进行加密处理</li>
+<li>只在https上携带Cookie</li>
+<li>设置Cookie为httpOnly,防止跨站脚本攻击</li>
+</ul>
+<p>Session技术依赖Cookie,保存在服务端</p>
 <h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><p>HTTPS = HTTP + SSL/TLS</p>
 <p>HTTPS 连接的建立流程：</p>
 <p>①客户端向服务器传送 客户端SSL/TLS协议的版本号，加密算法的种类，产生的随机数C，以及其他服务器和客户端之间通讯所需要的各种信息。</p>
@@ -459,8 +474,11 @@
 <h3 id="对称加密"><a href="#对称加密" class="headerlink" title="对称加密"></a>对称加密</h3><p>指加密和解密使用相同密钥的加密算法。对称加密算法的优点在于加解密的高速度和使用长密钥时的难破解性。假设两个用户需要使用对称加密方法加密然后交换数据，则用户最少需要2个密钥并交换使用，如果企业内用户有n个，则整个企业共需要n×(n-1) 个密钥，密钥的生成和分发将成为企业信息部门的恶梦。对称加密算法的安全性取决于加密密钥的保存情况，但要求企业中每一个持有密钥的人都保守秘密是不可能的，他们通常会有意无意的把密钥泄漏出去——如果一个用户使用的密钥被入侵者所获得，入侵者便可以读取该用户密钥加密的所有文档，如果整个企业共用一个加密密钥，那整个企业文档的保密性便无从谈起。<br>常见的对称加密算法有DES、3DES、Blowfish、IDEA、RC4、RC5、RC6和AES</p>
 <h3 id="非对称加密"><a href="#非对称加密" class="headerlink" title="非对称加密"></a>非对称加密</h3><p>指加密和解密使用不同密钥的加密算法，也称为公私钥加密。假设两个用户要加密交换数据，双方交换公钥，使用时一方用对方的公钥加密，另一方即可用自己的私钥解密。如果企业中有n个用户，企业需要生成n对密钥，并分发n个公钥。由于公钥是可以公开的，用户只要保管好自己的私钥即可，因此加密密钥的分发将变得十分简单。同时，由于每个用户的私钥是唯一的，其他用户除了可以可以通过信息发送者的公钥来验证信息的来源是否真实，还可以确保发送者无法否认曾发送过该信息。非对称加密的缺点是加解密速度要远远慢于对称加密，在某些极端情况下，甚至能比非对称加密慢上1000倍。<br>常见的非对称加密算法有：RSA、ECC（移动设备用）、Diffie-Hellman、El Gamal、DSA（数字签名用）</p>
 <h3 id="Hash算法"><a href="#Hash算法" class="headerlink" title="Hash算法"></a>Hash算法</h3><p>Hash算法特别的地方在于它是一种单向算法，用户可以通过Hash算法对目标信息生成一段特定长度的唯一的Hash值，却不能通过这个Hash值重新获得目标信息。因此Hash算法常用在不可还原的密码存储、信息完整性校验等。<br>常见的Hash算法有MD4、MD5、HAVAL、SHA<br>在证书领域，一般都是用SHA（安全哈希算法）<br>加密算法的效能通常可以按照算法本身的复杂程度、密钥长度（密钥越长越安全）、加解密速度等来衡量。上述的算法中，除了DES密钥长度不够、MD2速度较慢已逐渐被淘汰外，其他算法仍在目前的加密系统产品中使用。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">// 只要访问的是HTTPS的路径就会调用</span><br><span class="line">// 该方法的作用就是处理服务器返回的证书, 需要在该方法中告诉系统是否需要安装服务器返回的证书</span><br><span class="line">// NSURLAuthenticationChallenge : 授权质问</span><br><span class="line">//+ 受保护空间</span><br><span class="line">//+ 服务器返回的证书类型</span><br><span class="line">- (void)URLSession:(NSURLSession *)session</span><br><span class="line">didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge</span><br><span class="line"> completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *credential))completionHandler</span><br><span class="line">&#123;</span><br><span class="line">   //AFNetworking中的处理方式</span><br><span class="line">    NSURLSessionAuthChallengeDisposition disposition = NSURLSessionAuthChallengePerformDefaultHandling;</span><br><span class="line">    __block NSURLCredential *credential = nil;  </span><br><span class="line">    //判断服务器返回的证书是否是服务器信任的</span><br><span class="line">    if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) &#123;</span><br><span class="line">        credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];</span><br><span class="line">        /*disposition：如何处理证书</span><br><span class="line">     NSURLSessionAuthChallengePerformDefaultHandling:默认方式处理</span><br><span class="line">         NSURLSessionAuthChallengeUseCredential：使用指定的证书    NSURLSessionAuthChallengeCancelAuthenticationChallenge：取消请求</span><br><span class="line">         */</span><br><span class="line">        if (credential) &#123;</span><br><span class="line">            disposition = NSURLSessionAuthChallengeUseCredential;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            disposition = NSURLSessionAuthChallengePerformDefaultHandling;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        disposition = NSURLSessionAuthChallengeCancelAuthenticationChallenge;</span><br><span class="line">    &#125;</span><br><span class="line">    //安装证书</span><br><span class="line">    if (completionHandler) &#123;</span><br><span class="line">        completionHandler(disposition, credential);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="TCP-UDP"><a href="#TCP-UDP" class="headerlink" title="TCP / UDP"></a>TCP / UDP</h2><p>传输层协议 </p>
+<h2 id="TCP-UDP"><a href="#TCP-UDP" class="headerlink" title="TCP / UDP"></a>TCP / UDP</h2><p>网络七层协议</p>
+<img src="/2018/06/01/网络知识/net_seven.png" title="网络七层模型">
+<p>网络四层协议</p>
+<img src="/2018/06/01/网络知识/net_four.png" title="网络四层协议">
+<p>传输层协议 </p>
 <ul>
 <li>TCP 传输控制协议</li>
 <li>UDP 用户数据报协议</li>
@@ -475,9 +493,52 @@
 </li>
 </ul>
 <p>功能：</p>
-<p>复用<br>分用<br>差错检测 </p>
+<ul>
+<li>复用</li>
+<li>分用</li>
+<li>差错检测 </li>
+</ul>
 <img src="/2018/06/01/网络知识/multiplexing.png" title="复用">
 <img src="/2018/06/01/网络知识/demultiplexing.png" title="分用">
+<h3 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h3><p>特点</p>
+<ul>
+<li>面向连接：数据传输前，建立连接（三次握手，四次挥手）</li>
+<li>可靠传输：无差错、不丢失、不重复、按序到达（通过停止等待协议实现）</li>
+<li>面向字节流</li>
+<li>流量控制（滑动窗口协议）</li>
+<li>拥塞控制（慢开始,拥塞避免 快恢复,快重传）</li>
+</ul>
+<p>三次握手为什么不是两次</p>
+<p>为了解决SYN请求超时的情况，防止重复建立连接。</p>
+<p>客户端发送SYN 超时后，客户端会重传，如果只有两次握手，重传后，客户端发送SYN和ACK，建立连接，但这时超时的SYN到达后，服务端又会重新发送SYN和ACK，又一次建立了连接，这不是我们所期望的。<br>如果是三次握手的情况可以规避这种问题，重传后，客户端发送了ACK确认报文给服务端，然后建立连接，当超时报文到达后，服务端又会重新发送SYN和ACK，客户端不会再发送ACK给服务端，服务端就可知道这个一个超时报文。</p>
+<h2 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h2><h3 id="DNS解析"><a href="#DNS解析" class="headerlink" title="DNS解析"></a>DNS解析</h3><p>DNS解析是域名到IP地址的映射过程，DNS解析请求采用UDP数据报，且是明文的。</p>
+<img src="/2018/06/01/网络知识/dns_parse.png" title="DNS解析过程">
+<h3 id="DNS查询方式"><a href="#DNS查询方式" class="headerlink" title="DNS查询方式"></a>DNS查询方式</h3><p>DNS解析的查询方式分两种：</p>
+<ul>
+<li>递归查询(我去给你问一下)</li>
+</ul>
+<p>请求本地DNS服务器，如果没找到，本地DNS服务器就去问根DNS服务器，找到了就返回给本地DNS服务器，然后本地DNS服务器返回给Client</p>
+<img src="/2018/06/01/网络知识/dns_recursive.png" title="递归查询">
+<ul>
+<li>迭代查询(我告诉你谁知道，你去问他)</li>
+</ul>
+<p>请求本地DNS服务器，如果没找到，本地DNS服务器就去问根DNS服务器，如果没找根DNS服务器告诉本地DNS服务器去问顶级DNS服务器，如果找到，返回给本地DNS服务器，然后本地DNS服务器返回给Client</p>
+<img src="/2018/06/01/网络知识/dns_iterative.png" title="递归查询">
+<h3 id="DNS问题"><a href="#DNS问题" class="headerlink" title="DNS问题"></a>DNS问题</h3><ul>
+<li>DNS劫持</li>
+</ul>
+<img src="/2018/06/01/网络知识/dns_hijack.png" title="DNS劫持流程">
+<p>DNS劫持发生在Http连接建立之前，DNS劫持与HTTP没有关系<br>DNS解析请求使用UDP数据报，使用53端口</p>
+<p>解决办法</p>
+<ul>
+<li>httpDNS<br>  使用HTTP协议向DNS服务器80端口进行请求</li>
+<li><p>长连接</p>
+</li>
+<li><p>DNS解析转发</p>
+</li>
+</ul>
+
+<p>会引起跨域访问等问题</p>
 <h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://blog.csdn.net/u012858858/article/details/73716105" target="_blank" rel="noopener">关于HTTPS通信和证书验证的流程</a></p>
 <p><a href="http://www.cnblogs.com/JeffreySun/archive/2010/06/24/1627247.html" target="_blank" rel="noopener">数字证书原理</a></p>
 <p><a href="https://support.apple.com/zh-cn/HT204132" target="_blank" rel="noopener">iOS 中可用的受信任根证书列表</a></p>
@@ -685,7 +746,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP"><span class="nav-number">1.</span> <span class="nav-text">HTTP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP特点-缺点"><span class="nav-number">1.1.</span> <span class="nav-text">HTTP特点(缺点)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#持久连接"><span class="nav-number">1.1.1.</span> <span class="nav-text">持久连接</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTPS"><span class="nav-number">2.</span> <span class="nav-text">HTTPS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加密算法"><span class="nav-number">3.</span> <span class="nav-text">加密算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对称加密"><span class="nav-number">3.1.</span> <span class="nav-text">对称加密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非对称加密"><span class="nav-number">3.2.</span> <span class="nav-text">非对称加密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hash算法"><span class="nav-number">3.3.</span> <span class="nav-text">Hash算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-UDP"><span class="nav-number">4.</span> <span class="nav-text">TCP / UDP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UDP"><span class="nav-number">4.1.</span> <span class="nav-text">UDP</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP"><span class="nav-number">1.</span> <span class="nav-text">HTTP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP特点-缺点"><span class="nav-number">1.1.</span> <span class="nav-text">HTTP特点(缺点)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#持久连接"><span class="nav-number">1.1.1.</span> <span class="nav-text">持久连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cookie-Session"><span class="nav-number">1.1.2.</span> <span class="nav-text">Cookie/Session</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTPS"><span class="nav-number">2.</span> <span class="nav-text">HTTPS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#加密算法"><span class="nav-number">3.</span> <span class="nav-text">加密算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对称加密"><span class="nav-number">3.1.</span> <span class="nav-text">对称加密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非对称加密"><span class="nav-number">3.2.</span> <span class="nav-text">非对称加密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hash算法"><span class="nav-number">3.3.</span> <span class="nav-text">Hash算法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP-UDP"><span class="nav-number">4.</span> <span class="nav-text">TCP / UDP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UDP"><span class="nav-number">4.1.</span> <span class="nav-text">UDP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TCP"><span class="nav-number">4.2.</span> <span class="nav-text">TCP</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DNS"><span class="nav-number">5.</span> <span class="nav-text">DNS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS解析"><span class="nav-number">5.1.</span> <span class="nav-text">DNS解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS查询方式"><span class="nav-number">5.2.</span> <span class="nav-text">DNS查询方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DNS问题"><span class="nav-number">5.3.</span> <span class="nav-text">DNS问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">6.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>

@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="Leoliu">
 <meta property="og:description" content="点击了屏幕上的一个View，事件是怎么找到这个View的呢？这个View又是怎么响应这个传递过来的事件的呢？ 事件传递当点击了屏幕上的一个View后，系统会产生一个UIEvent事件，这个事件被加入到由UIApplication管理的一个事件队列中，UIApplication会从事件队列中取出最前面的事件,然后再传递给UIWindow,最后UIWindow通过- (nullable UIView">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-28T13:07:58.102Z">
+<meta property="og:updated_time" content="2018-06-06T14:25:56.832Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="事件传递与响应者链条">
 <meta name="twitter:description" content="点击了屏幕上的一个View，事件是怎么找到这个View的呢？这个View又是怎么响应这个传递过来的事件的呢？ 事件传递当点击了屏幕上的一个View后，系统会产生一个UIEvent事件，这个事件被加入到由UIApplication管理的一个事件队列中，UIApplication会从事件队列中取出最前面的事件,然后再传递给UIWindow,最后UIWindow通过- (nullable UIView">
@@ -420,6 +420,31 @@
 
 <p>代码实现如下</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//BottomView.m中</span><br><span class="line"></span><br><span class="line">//方式一：</span><br><span class="line">- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event</span><br><span class="line">&#123;</span><br><span class="line">    CGPoint scantPoint = [self convertPoint:point toView:self.scanBtn];</span><br><span class="line">    if ([self.scanBtn pointInside:scantPoint withEvent:event]) &#123;</span><br><span class="line">        return self.scanBtn;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return [super hitTest:point withEvent:event];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//方式二：</span><br><span class="line">- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event</span><br><span class="line">&#123;</span><br><span class="line">    CGPoint scantPoint = [self convertPoint:point toView:self.scanBtn];</span><br><span class="line">    if ([self.scanBtn pointInside:scantPoint withEvent:event]) &#123;</span><br><span class="line">        return YES;</span><br><span class="line">    &#125;</span><br><span class="line">    return [super pointInside:point withEvent:event];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="事件响应"><a href="#事件响应" class="headerlink" title="事件响应"></a>事件响应</h2><p>响应者链的事件传递过程:</p>
+<p>1&gt;如果当前view是控制器的view，那么控制器就是上一个响应者，事件就传递给控制器；如果当前view不是控制器的view，那么父视图就是当前view的上一个响应者，事件就传递给它的父视图</p>
+<p>2&gt;在视图层次结构的最顶级视图，如果也不能处理收到的事件或消息，则其将事件或消息传递给window对象进行处理</p>
+<p>3&gt;如果window对象也不处理，则其将事件或消息传递给<code>UIApplication</code>对象</p>
+<p>4&gt;如果<code>UIApplicatio</code>n也不能处理该事件或消息，则将其丢弃</p>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>事件处理的整个流程总结:</p>
+<p>1.触摸屏幕产生触摸事件后，触摸事件会被添加到由UIApplication管理的事件队列中（即，首先接收到事件的是UIApplication）。</p>
+<p>2.UIApplication会从事件队列中取出最前面的事件，把事件传递给应用程序的主窗口（keyWindow）。</p>
+<p>3.主窗口会在视图层次结构中找到一个最合适的视图来处理触摸事件。（至此，第一步已完成)</p>
+<p>4.最合适的view会调用自己的touches方法处理事件</p>
+<p>5.touches默认做法是把事件顺着响应者链条向上抛。</p>
+<p>事件的传递和响应的区别：</p>
+<ul>
+<li>事件的传递是从上到下（父控件到子控件）</li>
+<li>事件的响应是从下到上（顺着响应者链条向上传递：子控件到父控件)</li>
+</ul>
+<h2 id="QA"><a href="#QA" class="headerlink" title="QA"></a>QA</h2><p>Q:增大Button的点击区域</p>
+<p>A:</p>
+<p>重写Button的<code>pointInside</code>方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event</span><br><span class="line">&#123;</span><br><span class="line">    NSLog(@&quot;%@&quot;,NSStringFromCGPoint(point));</span><br><span class="line">    if (point.x &lt; 0 &amp;&amp; fabs(point.x) &gt; self.exInsets.left) &#123;</span><br><span class="line">        return [super pointInside:point withEvent:event];</span><br><span class="line">    &#125; else if(point.x &gt; 0 &amp;&amp; point.x-CGRectGetWidth(self.frame) &gt; self.exInsets.right)&#123;</span><br><span class="line">        return [super pointInside:point withEvent:event];</span><br><span class="line">    &#125; else if(point.y &lt; 0 &amp;&amp; fabs(point.y) &gt; self.exInsets.top)&#123;</span><br><span class="line">        return [super pointInside:point withEvent:event];</span><br><span class="line">    &#125; else if (point.y &gt; 0 &amp;&amp; point.y - CGRectGetHeight(self.frame) &gt; self.exInsets.bottom)&#123;</span><br><span class="line">        return [super pointInside:point withEvent:event];</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        return YES;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Q: 通过View找到它所在的ViewController</p>
+<p>A:</p>
+<p>通过<code>nextResponder</code>方法找到响应链中的VC</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@implementation UIView (DM)</span><br><span class="line"></span><br><span class="line">- (UIViewController *)findViewController:(Class)aClass</span><br><span class="line">&#123;</span><br><span class="line">    id responder = self;</span><br><span class="line">    while (responder) &#123;</span><br><span class="line">         NSLog(@&quot;%@&quot;,responder);</span><br><span class="line">        if ([responder isKindOfClass:aClass]) &#123;</span><br><span class="line">            return responder;</span><br><span class="line">        &#125;</span><br><span class="line">        responder = [responder nextResponder];</span><br><span class="line">    &#125;</span><br><span class="line">    return nil;</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
 <p><a href="https://github.com/leoliuyt/DMEventDeliver" target="_blank" rel="noopener">Demo</a></p>
 
       
@@ -629,7 +654,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#事件传递"><span class="nav-number">1.</span> <span class="nav-text">事件传递</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查找最合适的view来处理事件"><span class="nav-number">1.1.</span> <span class="nav-text">查找最合适的view来处理事件</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#事件传递"><span class="nav-number">1.</span> <span class="nav-text">事件传递</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#查找最合适的view来处理事件"><span class="nav-number">1.1.</span> <span class="nav-text">查找最合适的view来处理事件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件响应"><span class="nav-number">2.</span> <span class="nav-text">事件响应</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">3.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#QA"><span class="nav-number">4.</span> <span class="nav-text">QA</span></a></li></ol></div>
             
 
           </div>
