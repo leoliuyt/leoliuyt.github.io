@@ -619,7 +619,7 @@ DISPATCH_SOURCE_TYPE_MEMORYPRESSURE|内存压力监听
     dispatch_source_t source = dispatch_source_create(DISPATCH_SOURCE_TYPE_DATA_ADD, 0, 0, dispatch_get_main_queue());
     //在主线程繁忙的时候将操作联结起来，等主线程空闲时 刷新UI 避免频繁的在主线程刷新UI
     dispatch_source_set_event_handler(source, ^{
-        //当处理事件被最终执行时，计算后的数据可以通过dispatch_source_get_data来获取。这个数据的值在每次响应事件执行后会被重置，所以totalComplete的值是最终累积的值。
+        //当处理事件被最终执行时，计算后的数据可以通过dispatch_source_get_data来获取。这个数据的值在每次响应事件执行后会被重置，所以totalComplete的值是最终累积的值。value的值可能是几次dispatch_source_merge_data操作后的和的值
         NSUInteger value = dispatch_source_get_data(source);
         
         NSLog(@"value：%@", @(value));
