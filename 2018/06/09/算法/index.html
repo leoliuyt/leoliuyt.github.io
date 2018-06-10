@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="算法," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="排序算法 交换排序  冒泡排序 快速排序   插入排序  直接插入排序 希尔(shell)排序   选择排序  直接选择排序 堆(Heap)排序   归并排序     交换排序交换排序的基本思想都为通过比较两个数的大小，当满足某些条件时对它进行交换从而达到排序的目的。 冒泡排序基本思想：比较相邻的两个数，如果前者比后者大，则进行交换。每一轮排序结束，选出一个未排序中最大的数放到数组后面。 1234">
+<meta name="keywords" content="算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="算法">
+<meta property="og:url" content="http://leoliuyt.github.io/2018/06/09/算法/index.html">
+<meta property="og:site_name" content="Leoliu">
+<meta property="og:description" content="排序算法 交换排序  冒泡排序 快速排序   插入排序  直接插入排序 希尔(shell)排序   选择排序  直接选择排序 堆(Heap)排序   归并排序     交换排序交换排序的基本思想都为通过比较两个数的大小，当满足某些条件时对它进行交换从而达到排序的目的。 冒泡排序基本思想：比较相邻的两个数，如果前者比后者大，则进行交换。每一轮排序结束，选出一个未排序中最大的数放到数组后面。 1234">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://leoliuyt.github.io/2018/06/09/算法/sort_compare.png">
+<meta property="og:image" content="http://leoliuyt.github.io/2018/06/09/算法/big_o.png">
+<meta property="og:updated_time" content="2018-06-10T02:58:27.030Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="算法">
+<meta name="twitter:description" content="排序算法 交换排序  冒泡排序 快速排序   插入排序  直接插入排序 希尔(shell)排序   选择排序  直接选择排序 堆(Heap)排序   归并排序     交换排序交换排序的基本思想都为通过比较两个数的大小，当满足某些条件时对它进行交换从而达到排序的目的。 冒泡排序基本思想：比较相邻的两个数，如果前者比后者大，则进行交换。每一轮排序结束，选出一个未排序中最大的数放到数组后面。 1234">
+<meta name="twitter:image" content="http://leoliuyt.github.io/2018/06/09/算法/sort_compare.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://leoliuyt.github.io/2018/06/09/算法/"/>
+
+
+
+
+
+  <title>算法 | Leoliu</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?39278431666862f9e43bc023abb6c81b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Leoliu</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-objective-c">
+          <a href="/categories/Objective-C/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Objective-C
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-shell">
+          <a href="/categories/shell/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-taxi"></i> <br />
+            
+            shell
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tool">
+          <a href="/categories/tool/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-wrench"></i> <br />
+            
+            工具
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-cocoa-touch">
+          <a href="/categories/Cocoa-Touch/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-apple"></i> <br />
+            
+            Cocoa Touch
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-cocoa">
+          <a href="/categories/Cocoa/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-apple"></i> <br />
+            
+            Cocoa
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-python">
+          <a href="/categories/Python/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-bar-chart"></i> <br />
+            
+            Python
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leoliuyt.github.io/2018/06/09/算法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Leoliu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leoliu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">算法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-06-09T10:34:36+08:00">
+                2018-06-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="排序算法"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h2><ul>
+<li><p>交换排序</p>
+<ul>
+<li>冒泡排序</li>
+<li>快速排序</li>
+</ul>
+</li>
+<li><p>插入排序</p>
+<ul>
+<li>直接插入排序</li>
+<li>希尔(shell)排序</li>
+</ul>
+</li>
+<li><p>选择排序</p>
+<ul>
+<li>直接选择排序</li>
+<li>堆(Heap)排序</li>
+</ul>
+</li>
+<li><p>归并排序</p>
+</li>
+</ul>
+<img src="/2018/06/09/算法/sort_compare.png" title="排序算法比较">
+<img src="/2018/06/09/算法/big_o.png" title="bigO">
+<h3 id="交换排序"><a href="#交换排序" class="headerlink" title="交换排序"></a>交换排序</h3><p>交换排序的基本思想都为通过比较两个数的大小，当满足某些条件时对它进行交换从而达到排序的目的。</p>
+<h4 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h4><p>基本思想：比较相邻的两个数，如果前者比后者大，则进行交换。每一轮排序结束，选出一个未排序中最大的数放到数组后面。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">(<span class="keyword">int</span> *arr, <span class="keyword">int</span> count)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span> ; i &lt; count - <span class="number">1</span>; i++) &#123;</span><br><span class="line">        printEachArr(arr, count,i);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; count - i - <span class="number">1</span>; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[j] &gt; arr[j+<span class="number">1</span>]) &#123;</span><br><span class="line">                <span class="keyword">int</span> tmp = arr[j];</span><br><span class="line">                arr[j] = arr[j+<span class="number">1</span>];</span><br><span class="line">                arr[j+<span class="number">1</span>] = tmp;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    printEachArr(arr, count,count<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printEachArr</span><span class="params">(<span class="keyword">int</span> *arr, <span class="keyword">int</span> count, <span class="keyword">int</span> order)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i == count - <span class="number">1</span>) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%tu\n"</span>,arr[i]);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (order &gt;= <span class="number">0</span> &amp;&amp; i == <span class="number">0</span>) &#123;</span><br><span class="line">                 <span class="built_in">printf</span>(<span class="string">"第%tu次打印结果:%tu-"</span>,order,arr[i]);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="built_in">printf</span>(<span class="string">"%tu-"</span>,arr[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">第0次打印结果:5-9-7-4-10-12-3-6-1</span><br><span class="line">第1次打印结果:5-7-4-9-10-3-6-1-12</span><br><span class="line">第2次打印结果:5-4-7-9-3-6-1-10-12</span><br><span class="line">第3次打印结果:4-5-7-3-6-1-9-10-12</span><br><span class="line">第4次打印结果:4-5-3-6-1-7-9-10-12</span><br><span class="line">第5次打印结果:4-3-5-1-6-7-9-10-12</span><br><span class="line">第6次打印结果:3-4-1-5-6-7-9-10-12</span><br><span class="line">第7次打印结果:3-1-4-5-6-7-9-10-12</span><br><span class="line">第8次打印结果:1-3-4-5-6-7-9-10-12</span><br></pre></td></tr></table></figure>
+<p>分析：</p>
+<p>最差时间复杂度为O(n^2),平均时间复杂度为O(n^2)。稳定性：稳定。辅助空间O(1)。</p>
+<h4 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h4><p>基本思想:选取一个基准元素，通常为数组最后一个元素（或者第一个元素）。从前向后遍历数组，当遇到小于基准元素的元素时，把它和左边第一个大于基准元素的元素进行交换。在利用分治策略从已经分好的两组中分别进行以上步骤，直到排序完成。下图表示了这个过程。</p>
+
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">swap</span><span class="params">(<span class="keyword">int</span> * x,<span class="keyword">int</span> *y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> tmp = *x;</span><br><span class="line">    *x = *y;</span><br><span class="line">    *y = tmp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> callCount = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">partion</span><span class="params">(<span class="keyword">int</span> *a ,<span class="keyword">int</span> left,<span class="keyword">int</span> right)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> j = left;</span><br><span class="line">    <span class="keyword">int</span> i = j - <span class="number">1</span>;<span class="comment">//用来指向小于基准元素的最右边的位置</span></span><br><span class="line">    <span class="keyword">int</span> key = a[right];<span class="comment">//基准元素</span></span><br><span class="line">    <span class="keyword">for</span>(;j &lt; right; j++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(a[j] &lt;= key)&#123;</span><br><span class="line">            swap(&amp;a[j], &amp;a[++i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//基准元素放在中间</span></span><br><span class="line">    swap(&amp;a[right], &amp;a[++i]);</span><br><span class="line">    </span><br><span class="line">    callCount++;</span><br><span class="line">    printQuickSort(a, <span class="number">10</span>, callCount);</span><br><span class="line">    <span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">quickSort</span><span class="params">(<span class="keyword">int</span> *a, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(left &gt;= right)&#123;<span class="keyword">return</span>;&#125;</span><br><span class="line">    <span class="keyword">int</span> mid = partion(a, left, right);</span><br><span class="line">    quickSort(a, left, mid - <span class="number">1</span>);</span><br><span class="line">    quickSort(a, mid+<span class="number">1</span>, right);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printQuickSort</span><span class="params">(<span class="keyword">int</span> *arr ,<span class="keyword">int</span> count,<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"第%tu次打印:"</span>,n);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i == count<span class="number">-1</span>) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%tu\n"</span>,arr[i]);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%tu-"</span>,arr[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">第0次打印:5-9-7-4-10-12-3-6-1-8</span><br><span class="line">第1次打印:5-7-4-3-6-1-8-10-12-9</span><br><span class="line">第2次打印:1-7-4-3-6-5-8-10-12-9</span><br><span class="line">第3次打印:1-4-3-5-6-7-8-10-12-9</span><br><span class="line">第4次打印:1-3-4-5-6-7-8-10-12-9</span><br><span class="line">第5次打印:1-3-4-5-6-7-8-10-12-9</span><br><span class="line">第6次打印:1-3-4-5-6-7-8-9-12-10</span><br><span class="line">第7次打印:1-3-4-5-6-7-8-9-10-12</span><br></pre></td></tr></table></figure></p>
+<p>分析:</p>
+<p>最差时间复杂度：每次选取的基准元素都为最大（或最小元素）导致每次只划分了一个分区，需要进行n-1次划分才能结束递归，故复杂度为O(n^2)；最优时间复杂度：每次选取的基准元素都是中位数，每次都划分出两个分区，需要进行logn次递归，故时间复杂度为O(nlogn)；平均时间复杂度：O(nlogn)。稳定性：不稳定的。辅助空间：O(nlogn)。</p>
+<p>当数组元素基本有序时，快速排序将没有任何优势，基本退化为冒泡排序，可在选取基准元素时选取中间值进行优化。</p>
+<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><h4 id="直接插入排序"><a href="#直接插入排序" class="headerlink" title="直接插入排序"></a>直接插入排序</h4><p>基本思想：和交换排序不同的是它不用进行交换操作，而是用一个临时变量存储当前值。当前面的元素比后面大时，先把后面的元素存入临时变量，前面元素的值放到后面元素位置，再到最后把其值插入到合适的数组位置。　</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insertSort</span><span class="params">(<span class="keyword">int</span> *a,<span class="keyword">int</span> count)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> tmp = <span class="number">0</span>;</span><br><span class="line">    printInsertSort(a, count, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; count; i++) &#123;</span><br><span class="line">        <span class="keyword">int</span> j = i - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (a[i] &lt; a[j]) &#123;</span><br><span class="line">            tmp = a[i];</span><br><span class="line">            a[i] = a[j];</span><br><span class="line">            <span class="keyword">while</span> (j<span class="number">-1</span> &gt;= <span class="number">0</span> &amp;&amp; tmp &lt; a[j<span class="number">-1</span>]) &#123;</span><br><span class="line">                a[j] = a[j<span class="number">-1</span>];</span><br><span class="line">                j--;</span><br><span class="line">            &#125;</span><br><span class="line">            a[j] = tmp;</span><br><span class="line">        &#125;</span><br><span class="line">        printInsertSort(a, count, i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printInsertSort</span><span class="params">(<span class="keyword">int</span> *arr,<span class="keyword">int</span> count,<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"第%tu次打印:"</span>,n);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i == count<span class="number">-1</span>) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%tu\n"</span>,arr[i]);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%tu-"</span>,arr[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">第0次打印:5-9-7-4-10-12-3-6-1-8</span><br><span class="line">第1次打印:5-9-7-4-10-12-3-6-1-8</span><br><span class="line">第2次打印:5-7-9-4-10-12-3-6-1-8</span><br><span class="line">第3次打印:4-5-7-9-10-12-3-6-1-8</span><br><span class="line">第4次打印:4-5-7-9-10-12-3-6-1-8</span><br><span class="line">第5次打印:4-5-7-9-10-12-3-6-1-8</span><br><span class="line">第6次打印:3-4-5-7-9-10-12-6-1-8</span><br><span class="line">第7次打印:3-4-5-6-7-9-10-12-1-8</span><br><span class="line">第8次打印:1-3-4-5-6-7-9-10-12-8</span><br><span class="line">第9次打印:1-3-4-5-6-7-8-9-10-12</span><br></pre></td></tr></table></figure></p>
+<p>分析：<br>最坏时间复杂度为数组为逆序时，为O(n^2)。最优时间复杂度为数组正序时，为O(n)。平均时间复杂度为O(n^2)。辅助空间O(1)。稳定性：稳定。</p>
+<h4 id="希尔-shell-排序"><a href="#希尔-shell-排序" class="headerlink" title="希尔(shell)排序"></a>希尔(shell)排序</h4><p>基本思想为在直接插入排序的思想下设置一个最小增量dk,刚开始dk设置为n/2。进行插入排序，随后再让dk=dk/2,再进行插入排序，直到dk为1时完成最后一次插入排序，此时数组完成排序。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">shellInsertSort</span><span class="params">(<span class="keyword">int</span> *a,<span class="keyword">int</span> n,<span class="keyword">int</span> dk)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = dk ; i &lt; n; ++i) &#123;</span><br><span class="line">        <span class="keyword">int</span> j = i - dk;</span><br><span class="line">        <span class="keyword">if</span> (a[i] &lt; a[j]) &#123;</span><br><span class="line">            <span class="keyword">int</span> tmp = a[i];</span><br><span class="line">            <span class="keyword">while</span> (j&gt;=i%dk &amp;&amp; a[j] &gt; tmp) &#123;</span><br><span class="line">                a[j+dk] = a[j];</span><br><span class="line">                j -= dk;</span><br><span class="line">            &#125;</span><br><span class="line">            a[j+dk] = tmp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> callCount = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">shellSort</span><span class="params">(<span class="keyword">int</span> *a, <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> dk = n/<span class="number">2</span>;</span><br><span class="line">    printShellSort(a, n, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">while</span> (dk &gt;= <span class="number">1</span>) &#123;</span><br><span class="line">        shellInsertSort(a, n, dk);</span><br><span class="line">        dk /= <span class="number">2</span>;</span><br><span class="line">        callCount++;</span><br><span class="line">        printShellSort(a, n, callCount);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printShellSort</span><span class="params">(<span class="keyword">int</span> *arr,<span class="keyword">int</span> count,<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"第%tu次打印:"</span>,n);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i == count<span class="number">-1</span>) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%tu\n"</span>,arr[i]);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%tu-"</span>,arr[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">第0次打印:5-9-7-4-10-12-3-6-1-8</span><br><span class="line">第1次打印:5-3-6-1-8-12-9-7-4-10</span><br><span class="line">第2次打印:4-1-5-3-6-7-8-10-9-12</span><br><span class="line">第3次打印:1-3-4-5-6-7-8-9-10-12</span><br></pre></td></tr></table></figure>
+<p>分析:<br>最坏时间复杂度为O(n^2)；最优时间复杂度为O(n)；平均时间复杂度为O(n^1.3)。辅助空间O(1)。稳定性：不稳定。希尔排序的时间复杂度与选取的增量有关，选取合适的增量可减少时间复杂度。</p>
+<h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><h4 id="直接选择排序"><a href="#直接选择排序" class="headerlink" title="直接选择排序"></a>直接选择排序</h4><p>基本思想：依次选出数组最小的数放到数组的前面。首先从数组的第二个元素开始往后遍历，找出最小的数放到第一个位置。再从剩下数组中找出最小的数放到第二个位置。以此类推，直到数组有序。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">selectSort</span><span class="params">(<span class="keyword">int</span> *a, <span class="keyword">int</span> count)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; i ++) &#123;</span><br><span class="line">        printSelectSort(a, count,i);</span><br><span class="line">        <span class="keyword">int</span> key = i;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; i &lt; count; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (a[j] &lt; a[key]) &#123;</span><br><span class="line">                key = j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (key != i) &#123;</span><br><span class="line">            <span class="keyword">int</span> tmp = a[key];</span><br><span class="line">            a[key] = a[i];</span><br><span class="line">            a[i] = tmp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printSelectSort</span><span class="params">(<span class="keyword">int</span> *arr, <span class="keyword">int</span> count, <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"第%tu次打印:"</span>,n);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i == count<span class="number">-1</span>) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%tu\n"</span>,arr[i]);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%tu-"</span>,arr[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">第0次打印:5-9-7-4-10-12-3-6-1-8</span><br><span class="line">第1次打印:5-3-6-1-8-12-9-7-4-10</span><br><span class="line">第2次打印:4-1-5-3-6-7-8-10-9-12</span><br><span class="line">第3次打印:1-3-4-5-6-7-8-9-10-12</span><br></pre></td></tr></table></figure></p>
+<p>分析:<br>最差、最优、平均时间复杂度都为O(n^2)。辅助空间为O(1)。稳定性：不稳定。</p>
+<h4 id="堆-Heap-排序"><a href="#堆-Heap-排序" class="headerlink" title="堆(Heap)排序"></a>堆(Heap)排序</h4><p>基本思想：先把数组构造成一个大顶堆（父亲节点大于其子节点），然后把堆顶（数组最大值，数组第一个元素）和数组最后一个元素交换，这样就把最大值放到了数组最后边。把数组长度n-1,再进行构造堆，把剩余的第二大值放到堆顶，输出堆顶(放到剩余未排序数组最后面)。依次类推，直至数组排序完成。</p>
+<p>下图为堆结构及其在数组中的表示。可以知道堆顶的元素为数组的首元素，某一个节点的左孩子节点为其在数组中的位置<em>2，其右孩子节点为其在数组中的位置</em>2+1，其父节点为其在数组中的位置/2（假设数组从1开始计数）。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">createBigHeap</span><span class="params">(<span class="keyword">int</span> a[],<span class="keyword">int</span> i, <span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">2</span>*i + <span class="number">1</span>;<span class="comment">//左节点</span></span><br><span class="line">        <span class="keyword">int</span> right = <span class="number">2</span>*i + <span class="number">2</span>;<span class="comment">//右节点</span></span><br><span class="line">        <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//找到左右节点中较大的那个</span></span><br><span class="line">        <span class="keyword">if</span> (right &lt; n) &#123;</span><br><span class="line">            <span class="keyword">if</span> (a[left] &lt; a[right]) &#123;</span><br><span class="line">                j = right;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                j = left;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            j = left;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">//子节点大于父节点时，交换</span></span><br><span class="line">        <span class="keyword">if</span> (a[j] &gt; a[i]) &#123;</span><br><span class="line">            <span class="keyword">int</span> tmp = a[i];</span><br><span class="line">            a[i] = a[j];</span><br><span class="line">            a[j] = tmp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">heapSort</span><span class="params">(<span class="keyword">int</span> *a,<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="comment">//如果有n个元素 那么最后一个非叶子节点为n/2-1</span></span><br><span class="line">    createBigHeap(a, n/<span class="number">2</span> - <span class="number">1</span> , n);<span class="comment">//创建大顶堆</span></span><br><span class="line">    printHeapSort(a, n, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = n - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">        <span class="keyword">int</span> tmp = a[<span class="number">0</span>];</span><br><span class="line">        a[<span class="number">0</span>] = a[j];</span><br><span class="line">        a[j] = tmp;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> i = j /<span class="number">2</span> - <span class="number">1</span>;</span><br><span class="line">        createBigHeap(a, i, j);</span><br><span class="line">        printHeapSort(a, n, n-j);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printHeapSort</span><span class="params">(<span class="keyword">int</span> *arr, <span class="keyword">int</span> count, <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"第%tu次打印:"</span>,n);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i == count<span class="number">-1</span>) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%tu\n"</span>,arr[i]);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%tu-"</span>,arr[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">第0次打印:12-10-5-6-9-7-3-4-1-8</span><br><span class="line">第1次打印:10-8-7-6-9-5-3-4-1-12</span><br><span class="line">第2次打印:9-1-7-6-8-5-3-4-10-12</span><br><span class="line">第3次打印:8-4-7-6-1-5-3-9-10-12</span><br><span class="line">第4次打印:7-6-3-4-1-5-8-9-10-12</span><br><span class="line">第5次打印:6-5-3-4-1-7-8-9-10-12</span><br><span class="line">第6次打印:5-1-3-4-6-7-8-9-10-12</span><br><span class="line">第7次打印:4-1-3-5-6-7-8-9-10-12</span><br><span class="line">第8次打印:3-1-4-5-6-7-8-9-10-12</span><br><span class="line">第9次打印:1-3-4-5-6-7-8-9-10-12</span><br><span class="line">第10次打印:1-3-4-5-6-7-8-9-10-12</span><br></pre></td></tr></table></figure>
+<p>分析:</p>
+<p>最差、最优‘平均时间复杂度都为O(nlogn)，其中堆的每次创建重构花费O(lgn)，需要创建n次。辅助空间O（1）。稳定性：不稳定</p>
+<h3 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h3><p>基本思想：归并算法应用到分治策略，简单说就是把一个答问题分解成易于解决的小问题后一个个解决，最后在把小问题的一步步合并成总问题的解。这里的排序应用递归来把数组分解成一个个小数组，直到小数组的数位有序，在把有序的小数组两两合并而成有序的大数组。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">merge</span><span class="params">(<span class="keyword">int</span> *a,<span class="keyword">int</span> left,<span class="keyword">int</span> mid,<span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len = right - left + <span class="number">1</span>;</span><br><span class="line">    <span class="comment">// 动态分配内存空间，如果失败就退出程序</span></span><br><span class="line">    <span class="keyword">int</span> *tmp = (<span class="keyword">int</span>*)<span class="built_in">malloc</span>(len*<span class="keyword">sizeof</span>(<span class="keyword">int</span>));</span><br><span class="line">    <span class="keyword">int</span> k = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> i = left;</span><br><span class="line">    <span class="keyword">int</span> j = mid + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (i &lt;= mid &amp;&amp; j &lt;= right) &#123;</span><br><span class="line">        tmp[k++] = a[i] &lt; a[j] ? a[i++] : a[j++];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (i &lt;= mid) &#123;</span><br><span class="line">        tmp[k++] = a[i++];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> (j &lt;= right) &#123;</span><br><span class="line">        tmp[k++] = a[j++];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; len; k++)&#123;</span><br><span class="line">        a[left++] = tmp[k];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> callCount = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">static</span> <span class="keyword">int</span> n = <span class="number">0</span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mergeSort</span><span class="params">(<span class="keyword">int</span> *a,<span class="keyword">int</span> left,<span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (left &gt;= right) &#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (callCount == <span class="number">0</span>) &#123;</span><br><span class="line">        n = left + right + <span class="number">1</span>;</span><br><span class="line">        printMergeSort(a, n, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    callCount++;</span><br><span class="line">    <span class="keyword">int</span> mid = (left + right) / <span class="number">2</span>;</span><br><span class="line">    mergeSort(a, left, mid);</span><br><span class="line">    mergeSort(a, mid+<span class="number">1</span>, right);</span><br><span class="line">    merge(a, left, mid, right);</span><br><span class="line">    </span><br><span class="line">    printMergeSort(a, n, callCount);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printMergeSort</span><span class="params">(<span class="keyword">int</span> *arr, <span class="keyword">int</span> count, <span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"第%tu次打印:"</span>,n);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (i == count<span class="number">-1</span>) &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%tu\n"</span>,arr[i]);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%tu-"</span>,arr[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">第0次打印:5-9-7-4-10-12-3-6-1-8</span><br><span class="line">第4次打印:5-9-7-4-10-12-3-6-1-8</span><br><span class="line">第4次打印:5-7-9-4-10-12-3-6-1-8</span><br><span class="line">第5次打印:5-7-9-4-10-12-3-6-1-8</span><br><span class="line">第5次打印:4-5-7-9-10-12-3-6-1-8</span><br><span class="line">第8次打印:4-5-7-9-10-3-12-6-1-8</span><br><span class="line">第8次打印:4-5-7-9-10-3-6-12-1-8</span><br><span class="line">第9次打印:4-5-7-9-10-3-6-12-1-8</span><br><span class="line">第9次打印:4-5-7-9-10-1-3-6-8-12</span><br><span class="line">第9次打印:1-3-4-5-6-7-8-9-10-12</span><br></pre></td></tr></table></figure></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.cnblogs.com/maluning/p/7944809.html" target="_blank" rel="noopener">七大经典排序算法总结(C语言描述)</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/06/设计模式/" rel="next" title="设计模式">
+                <i class="fa fa-chevron-left"></i> 设计模式
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.png"
+                alt="Leoliu" />
+            
+              <p class="site-author-name" itemprop="name">Leoliu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/leoliuyt" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:leoliuyt@sina.cn" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://plus.google.com/u/0/113639913270953856300" target="_blank" title="Google">
+                      
+                        <i class="fa fa-fw fa-google"></i>Google</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/p/1005053266784037/home" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Weibo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#排序算法"><span class="nav-number">1.</span> <span class="nav-text">排序算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#交换排序"><span class="nav-number">1.1.</span> <span class="nav-text">交换排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#冒泡排序"><span class="nav-number">1.1.1.</span> <span class="nav-text">冒泡排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#快速排序"><span class="nav-number">1.1.2.</span> <span class="nav-text">快速排序</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入排序"><span class="nav-number">1.2.</span> <span class="nav-text">插入排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#直接插入排序"><span class="nav-number">1.2.1.</span> <span class="nav-text">直接插入排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#希尔-shell-排序"><span class="nav-number">1.2.2.</span> <span class="nav-text">希尔(shell)排序</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择排序"><span class="nav-number">1.3.</span> <span class="nav-text">选择排序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#直接选择排序"><span class="nav-number">1.3.1.</span> <span class="nav-text">直接选择排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#堆-Heap-排序"><span class="nav-number">1.3.2.</span> <span class="nav-text">堆(Heap)排序</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#归并排序"><span class="nav-number">1.4.</span> <span class="nav-text">归并排序</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">2.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Leoliu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
