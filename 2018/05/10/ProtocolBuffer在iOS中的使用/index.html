@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="环境搭建," />
+  <meta name="keywords" content="protobuf," />
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="搭建可在不同电脑写作和同步的Hexo博客 安装Node.js 和 git环境，具体参照Hexo文档 在Github上创建仓库 leoliuyt.github.io 创建两个分支：master 与 hexo 设置hexo为默认分支（因为我们只需要手动管理这个分支上的Hexo网站文件） 使用git clone https://github.com/leoliuyt/leoliuyt.github.io">
-<meta name="keywords" content="环境搭建">
+<meta name="description" content="Mac下环境搭建在Mac上安装protobuf有两种方式  Homebrew的方式安装 下载源文件自行编译  homebrew的方式很简单，就一条命令: 1brew install protobuf 验证是否成功 12protoc --versionlibprotoc 3.5.1 如果报错如下 1zsh: command not found: protoc 那么再执行如下命令 1brew link">
+<meta name="keywords" content="protobuf">
 <meta property="og:type" content="article">
-<meta property="og:title" content="搭建可在不同电脑写作和同步的Hexo博客">
-<meta property="og:url" content="http://leoliuyt.github.io/2013/04/03/搭建可在不同电脑写作和同步的Hexo博客/index.html">
+<meta property="og:title" content="ProtocolBuffer在iOS中的使用">
+<meta property="og:url" content="http://leoliuyt.github.io/2018/05/10/ProtocolBuffer在iOS中的使用/index.html">
 <meta property="og:site_name" content="Leoliu">
-<meta property="og:description" content="搭建可在不同电脑写作和同步的Hexo博客 安装Node.js 和 git环境，具体参照Hexo文档 在Github上创建仓库 leoliuyt.github.io 创建两个分支：master 与 hexo 设置hexo为默认分支（因为我们只需要手动管理这个分支上的Hexo网站文件） 使用git clone https://github.com/leoliuyt/leoliuyt.github.io">
+<meta property="og:description" content="Mac下环境搭建在Mac上安装protobuf有两种方式  Homebrew的方式安装 下载源文件自行编译  homebrew的方式很简单，就一条命令: 1brew install protobuf 验证是否成功 12protoc --versionlibprotoc 3.5.1 如果报错如下 1zsh: command not found: protoc 那么再执行如下命令 1brew link">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-25T10:38:41.746Z">
+<meta property="og:updated_time" content="2018-06-10T14:43:35.619Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="搭建可在不同电脑写作和同步的Hexo博客">
-<meta name="twitter:description" content="搭建可在不同电脑写作和同步的Hexo博客 安装Node.js 和 git环境，具体参照Hexo文档 在Github上创建仓库 leoliuyt.github.io 创建两个分支：master 与 hexo 设置hexo为默认分支（因为我们只需要手动管理这个分支上的Hexo网站文件） 使用git clone https://github.com/leoliuyt/leoliuyt.github.io">
+<meta name="twitter:title" content="ProtocolBuffer在iOS中的使用">
+<meta name="twitter:description" content="Mac下环境搭建在Mac上安装protobuf有两种方式  Homebrew的方式安装 下载源文件自行编译  homebrew的方式很简单，就一条命令: 1brew install protobuf 验证是否成功 12protoc --versionlibprotoc 3.5.1 如果报错如下 1zsh: command not found: protoc 那么再执行如下命令 1brew link">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://leoliuyt.github.io/2013/04/03/搭建可在不同电脑写作和同步的Hexo博客/"/>
+  <link rel="canonical" href="http://leoliuyt.github.io/2018/05/10/ProtocolBuffer在iOS中的使用/"/>
 
 
 
 
 
-  <title>搭建可在不同电脑写作和同步的Hexo博客 | Leoliu</title>
+  <title>ProtocolBuffer在iOS中的使用 | Leoliu</title>
   
 
 
@@ -313,7 +313,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://leoliuyt.github.io/2013/04/03/搭建可在不同电脑写作和同步的Hexo博客/">
+    <link itemprop="mainEntityOfPage" href="http://leoliuyt.github.io/2018/05/10/ProtocolBuffer在iOS中的使用/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Leoliu">
@@ -330,7 +330,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">搭建可在不同电脑写作和同步的Hexo博客</h1>
+          <h1 class="post-title" itemprop="name headline">ProtocolBuffer在iOS中的使用</h1>
         
 
         <div class="post-meta">
@@ -342,8 +342,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2013-04-03T14:16:04+08:00">
-                2013-04-03
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-10T18:44:07+08:00">
+                2018-05-10
               </time>
             
 
@@ -402,28 +402,35 @@
       
 
       
-        <h2 id="搭建可在不同电脑写作和同步的Hexo博客"><a href="#搭建可在不同电脑写作和同步的Hexo博客" class="headerlink" title="搭建可在不同电脑写作和同步的Hexo博客"></a>搭建可在不同电脑写作和同步的Hexo博客</h2><ol>
-<li>安装<code>Node.js</code> 和 <code>git</code>环境，具体参照<a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">Hexo文档</a></li>
-<li>在Github上创建仓库 <code>leoliuyt.github.io</code></li>
-<li>创建两个分支：<code>master</code> 与 <code>hexo</code></li>
-<li>设置<code>hexo</code>为默认分支（因为我们只需要手动管理这个分支上的Hexo网站文件）</li>
-<li>使用<code>git clone https://github.com/leoliuyt/leoliuyt.github.io.git</code>拷贝仓库</li>
-<li>在本地<code>leoliuyt.github.io</code>文件夹下通过 依次执行<code>hexo init Blog</code>、<code>cd Blog</code>、<code>npm install</code> 和 <code>npm install hexo-deployer-git --save</code>（此时当前分支应显示为hexo）</li>
-<li>修改<code>_config.yml</code>中的<code>deploy</code>参数，分支应为<code>master</code></li>
-<li>依次执行<code>git add .</code>、<code>git commit -m “…”</code>、<code>git push origin hexo</code>提交网站相关的文件；</li>
-<li>执行<code>hexo generate -d</code>生成网站并部署到GitHub上。</li>
-</ol>
-<p>这样一来，在GitHub上的<code>leoliuyt.github.io</code>仓库就有两个分支，一个hexo分支用来存放网站的原始文件，一个master分支用来存放生成的静态网页。</p>
-<h2 id="写博客及发布同步"><a href="#写博客及发布同步" class="headerlink" title="写博客及发布同步"></a>写博客及发布同步</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">//首先进入Blog 目录</span><br><span class="line">cd /Users/lbq/Documents/Code/LL_Workspace/leoliuyt.github.io/Blog</span><br><span class="line"></span><br><span class="line">//创建博客</span><br><span class="line">hexo new 搭建可在不同电脑写作和同步的Hexo博客</span><br><span class="line"></span><br><span class="line">//生成博客及发布</span><br><span class="line">hexo g -d</span><br><span class="line"></span><br><span class="line">//本地测试使用</span><br><span class="line">hexo g</span><br><span class="line">hexo s</span><br><span class="line"></span><br><span class="line">//发布成功后返回到git目录</span><br><span class="line">cd ..</span><br><span class="line"></span><br><span class="line">//git提交</span><br><span class="line">git add .</span><br><span class="line">git commit -m &quot;提交&quot;</span><br><span class="line">git push origin hexo</span><br><span class="line"></span><br><span class="line">//清除缓存使用</span><br><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
-<h2 id="主题配置"><a href="#主题配置" class="headerlink" title="主题配置"></a>主题配置</h2><p>修改站点目录下<code>_config.yml</code> 中的 <code>theme: next</code></p>
-<p><code>next</code>主题的配置参考<a href="https://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">NexT</a></p>
-<h2 id="hexo下新建页面下如何放多个文章？"><a href="#hexo下新建页面下如何放多个文章？" class="headerlink" title="hexo下新建页面下如何放多个文章？"></a>hexo下新建页面下如何放多个文章？</h2><ol>
-<li><code>hexo new page categories</code> //创建一个新的page</li>
-<li>在博客的markdown文件中添加 <code>categories: Objective-C</code> //会生成一个<code>/categories/Objective-C/</code>路径</li>
-<li>在主题配置文件<code>_config.yml</code>中的<code>menu</code> 添加 <code>Objective-C: /categories/Objective-C/ || th</code> 这个路径与上面的生成的要匹配</li>
-</ol>
-<p>设置分类图标可以从<a href="https://fontawesome.com" target="_blank" rel="noopener">Font Awesome</a>上查找</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">Hexo文档</a><br><a href="https://leroyli.github.io/2016/11/07/hexo-more-PC/" target="_blank" rel="noopener">在不同电脑上进行Hexo写作与同步</a><br><a href="http://crazymilk.github.io/2015/12/28/GitHub-Pages-Hexo搭建博客/#more" target="_blank" rel="noopener">GitHub Pages + Hexo搭建博客</a><br><a href="https://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener">NexT</a><br><a href="https://www.zhihu.com/question/33324071" target="_blank" rel="noopener">hexo下新建页面下如何放多个文章？</a></p>
+        <h2 id="Mac下环境搭建"><a href="#Mac下环境搭建" class="headerlink" title="Mac下环境搭建"></a>Mac下环境搭建</h2><p>在Mac上安装protobuf有两种方式</p>
+<ul>
+<li>Homebrew的方式安装</li>
+<li>下载源文件自行编译</li>
+</ul>
+<p>homebrew的方式很简单，就一条命令:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install protobuf</span><br></pre></td></tr></table></figure>
+<p>验证是否成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">protoc --version</span><br><span class="line">libprotoc 3.5.1</span><br></pre></td></tr></table></figure>
+<p>如果报错如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">zsh: command not found: protoc</span><br></pre></td></tr></table></figure>
+<p>那么再执行如下命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew link --overwrite protobuf</span><br></pre></td></tr></table></figure>
+<p>编译源文件的方式，先下载<a href="https://github.com/google/protobuf/releases" target="_blank" rel="noopener">源文件</a>，解压后进入文件目录</p>
+<p>执行<code>brew list</code>查看是否已安装过<code>automake</code>和<code>libtool</code>如果没有安装，需要先用brew来安装这两个工具<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">brew install automake</span><br><span class="line">brew install libtool</span><br></pre></td></tr></table></figure></p>
+<p>然后在解压后工程目录下，执行如下操作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">./autogen.sh</span><br><span class="line">./configure</span><br><span class="line">make check</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure></p>
+<p>这样就安装完成了</p>
+<h2 id="文件编写"><a href="#文件编写" class="headerlink" title="文件编写"></a>文件编写</h2><p>首先要创建一个以<code>.proto</code>结尾的文件，然后在文件中编写模型内容</p>
+<p>指定protobuf版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">syntax = &quot;proto3&quot;;</span><br></pre></td></tr></table></figure>
+<p>为消息添加统一的前缀</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">option objc_class_prefix = &quot;Art&quot;;</span><br></pre></td></tr></table></figure>
+<p>具体消息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">message TypeTest &#123;</span><br><span class="line">	enum State &#123;</span><br><span class="line">    	STATE_NONE 	=	0;</span><br><span class="line">    	// 按下</span><br><span class="line"> 	    DOWN 	= 	1;</span><br><span class="line"> 	    // 移动</span><br><span class="line">        MOVE 	= 	2;</span><br><span class="line">        // 抬起</span><br><span class="line">        UP 	= 	3;</span><br><span class="line">	&#125;</span><br><span class="line">    float float_value = 1;</span><br><span class="line">    double double_value = 2;</span><br><span class="line">    bool bool_value = 3;</span><br><span class="line">    int32 int32_value = 4;</span><br><span class="line">    string string_value = 5;</span><br><span class="line">    State state = 6;</span><br><span class="line">    bytes data = 7;//NSData</span><br><span class="line">    TestObject testObj = 8;// 缩放位置信息</span><br><span class="line">    repeated TestObject objList = 9; // NSMutableArray</span><br><span class="line">&#125;</span><br><span class="line">message TestObject &#123;</span><br><span class="line">    string name = 1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译后的文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">@interface ArtTypeTest : GPBMessage</span><br><span class="line"></span><br><span class="line">@property(nonatomic, readwrite) float floatValue;</span><br><span class="line"></span><br><span class="line">@property(nonatomic, readwrite) double doubleValue;</span><br><span class="line"></span><br><span class="line">@property(nonatomic, readwrite) BOOL boolValue;</span><br><span class="line"></span><br><span class="line">@property(nonatomic, readwrite) int32_t int32Value;</span><br><span class="line"></span><br><span class="line">@property(nonatomic, readwrite, copy, null_resettable) NSString *stringValue;</span><br><span class="line"></span><br><span class="line">@property(nonatomic, readwrite) ArtTypeTest_State state;</span><br><span class="line"></span><br><span class="line">/** NSData */</span><br><span class="line">@property(nonatomic, readwrite, copy, null_resettable) NSData *data_p;</span><br><span class="line"></span><br><span class="line">/** 缩放位置信息 */</span><br><span class="line">@property(nonatomic, readwrite, strong, null_resettable) ArtTestObject *testObj;</span><br><span class="line">/** Test to see if @c testObj has been set. */</span><br><span class="line">@property(nonatomic, readwrite) BOOL hasTestObj;</span><br><span class="line"></span><br><span class="line">/** NSMutableArray */</span><br><span class="line">@property(nonatomic, readwrite, strong, null_resettable) NSMutableArray&lt;ArtTestObject*&gt; *objListArray;</span><br><span class="line">/** The number of items in @c objListArray without causing the array to be created. */</span><br><span class="line">@property(nonatomic, readonly) NSUInteger objListArray_Count;</span><br><span class="line"></span><br><span class="line">@end</span><br><span class="line"></span><br><span class="line">#pragma mark - ArtTestObject</span><br><span class="line"></span><br><span class="line">@interface ArtTestObject : GPBMessage</span><br><span class="line"></span><br><span class="line">@property(nonatomic, readwrite, copy, null_resettable) NSString *name;</span><br><span class="line"></span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<h2 id="生成所需文件"><a href="#生成所需文件" class="headerlink" title="生成所需文件"></a>生成所需文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">protoc --plugin=/usr/local/bin/protoc-gen-objc message.proto --objc_out=&quot;./&quot;</span><br><span class="line">或简写成</span><br><span class="line">protoc message.proto --objc_out=&quot;./&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ArtSearchRequest *request = [ArtSearchRequest new];</span><br><span class="line">request.query = @&quot;aaa&quot;;</span><br><span class="line">request.pageNumber = 10;</span><br><span class="line">request.resultPerPage = 20;</span><br><span class="line">//编码</span><br><span class="line">NSData *data = [request data];</span><br><span class="line"></span><br><span class="line">//解码</span><br><span class="line">ArtSearchRequest *search = [ArtSearchRequest parseFromData:data error:nil];</span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://developers.google.com/protocol-buffers/docs/reference/objective-c-generated" target="_blank" rel="noopener">Objective C Generated Code</a></p>
 
       
     </div>
@@ -441,7 +448,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/环境搭建/" rel="tag"># 环境搭建</a>
+            <a href="/tags/protobuf/" rel="tag"># protobuf</a>
           
         </div>
       
@@ -454,14 +461,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/04/28/JS基本语法/" rel="next" title="JS基本语法">
+                <i class="fa fa-chevron-left"></i> JS基本语法
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/04/04/运行时之一：类与对象/" rel="prev" title="运行时之一：类与对象">
-                运行时之一：类与对象 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/05/20/运行时之二：分类/" rel="prev" title="运行时之二：分类">
+                运行时之二：分类 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -626,7 +637,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#搭建可在不同电脑写作和同步的Hexo博客"><span class="nav-number">1.</span> <span class="nav-text">搭建可在不同电脑写作和同步的Hexo博客</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写博客及发布同步"><span class="nav-number">2.</span> <span class="nav-text">写博客及发布同步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主题配置"><span class="nav-number">3.</span> <span class="nav-text">主题配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo下新建页面下如何放多个文章？"><span class="nav-number">4.</span> <span class="nav-text">hexo下新建页面下如何放多个文章？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Mac下环境搭建"><span class="nav-number">1.</span> <span class="nav-text">Mac下环境搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件编写"><span class="nav-number">2.</span> <span class="nav-text">文件编写</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成所需文件"><span class="nav-number">3.</span> <span class="nav-text">生成所需文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">4.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
             
 
           </div>
