@@ -79,21 +79,21 @@
 
 
 
-<meta name="description" content="KVOKVO（key-value-observing）  系统对观察者设计模式的一种实现 通过运行时的ISA-Swizzling技术实现   KVCKVC(key-value-coding) valueForKey执行流程  访问器方法是否存在的判断标准（假设valueForKey中传入的key为@”name”）  getName name isName  如果别观察对象中实现了上面三个方法，那么">
+<meta name="description" content="KVOKVO（key-value-observing）  系统对观察者设计模式的一种实现 通过运行时的ISA-Swizzling技术实现   使用到的主要方法有1234567891011//动态创建类objc_allocateClassPair//动态添加方法class_addMethod//注册类objc_registerClassPair//isa-swizzlingobject_setCla">
 <meta name="keywords" content="runtime">
 <meta property="og:type" content="article">
 <meta property="og:title" content="KVO与KVC">
 <meta property="og:url" content="http://leoliuyt.github.io/2018/06/04/KVO与KVC/index.html">
 <meta property="og:site_name" content="Leoliu">
-<meta property="og:description" content="KVOKVO（key-value-observing）  系统对观察者设计模式的一种实现 通过运行时的ISA-Swizzling技术实现   KVCKVC(key-value-coding) valueForKey执行流程  访问器方法是否存在的判断标准（假设valueForKey中传入的key为@”name”）  getName name isName  如果别观察对象中实现了上面三个方法，那么">
+<meta property="og:description" content="KVOKVO（key-value-observing）  系统对观察者设计模式的一种实现 通过运行时的ISA-Swizzling技术实现   使用到的主要方法有1234567891011//动态创建类objc_allocateClassPair//动态添加方法class_addMethod//注册类objc_registerClassPair//isa-swizzlingobject_setCla">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://leoliuyt.github.io/2018/06/04/KVO与KVC/kvo.png">
 <meta property="og:image" content="http://leoliuyt.github.io/2018/06/04/KVO与KVC/kvc_valueforkey.png">
 <meta property="og:image" content="http://leoliuyt.github.io/2018/06/04/KVO与KVC/kvc_setvalueforkey.png">
-<meta property="og:updated_time" content="2018-06-04T13:26:47.685Z">
+<meta property="og:updated_time" content="2018-06-12T14:07:24.476Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="KVO与KVC">
-<meta name="twitter:description" content="KVOKVO（key-value-observing）  系统对观察者设计模式的一种实现 通过运行时的ISA-Swizzling技术实现   KVCKVC(key-value-coding) valueForKey执行流程  访问器方法是否存在的判断标准（假设valueForKey中传入的key为@”name”）  getName name isName  如果别观察对象中实现了上面三个方法，那么">
+<meta name="twitter:description" content="KVOKVO（key-value-observing）  系统对观察者设计模式的一种实现 通过运行时的ISA-Swizzling技术实现   使用到的主要方法有1234567891011//动态创建类objc_allocateClassPair//动态添加方法class_addMethod//注册类objc_registerClassPair//isa-swizzlingobject_setCla">
 <meta name="twitter:image" content="http://leoliuyt.github.io/2018/06/04/KVO与KVC/kvo.png">
 
 
@@ -412,6 +412,7 @@
 <li>通过运行时的<code>ISA-Swizzling</code>技术实现</li>
 </ul>
 <img src="/2018/06/04/KVO与KVC/kvo.png" title="kvo流程">
+<p>使用到的主要方法有<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">//动态创建类</span><br><span class="line">objc_allocateClassPair</span><br><span class="line"></span><br><span class="line">//动态添加方法</span><br><span class="line">class_addMethod</span><br><span class="line"></span><br><span class="line">//注册类</span><br><span class="line">objc_registerClassPair</span><br><span class="line"></span><br><span class="line">//isa-swizzling</span><br><span class="line">object_setClass</span><br></pre></td></tr></table></figure></p>
 <h2 id="KVC"><a href="#KVC" class="headerlink" title="KVC"></a>KVC</h2><p>KVC(key-value-coding)</p>
 <p><code>valueForKey</code>执行流程</p>
 <img src="/2018/06/04/KVO与KVC/kvc_valueforkey.png" title="valueForKey调用流程">
