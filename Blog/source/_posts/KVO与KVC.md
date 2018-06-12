@@ -12,6 +12,21 @@ KVO（key-value-observing）
 
 {% asset_img kvo.png kvo流程 %}
 
+使用到的主要方法有
+```
+//动态创建类
+objc_allocateClassPair
+
+//动态添加方法
+class_addMethod
+
+//注册类
+objc_registerClassPair
+
+//isa-swizzling
+object_setClass
+```
+
 ## KVC
 
 KVC(key-value-coding)
