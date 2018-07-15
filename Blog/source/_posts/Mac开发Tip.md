@@ -167,3 +167,18 @@ Mac应用要想访问网络，必须要手动配置一下才可以，配置如�
 ```
 
 其中`NSView`的`wantsLayer`和 `NSAnimationContext`的`allowsImplicitAnimation`这两个属性是必须要设置的！
+
+## 设置阴影+圆角
+
+```Objective-C
+//设置阴影和圆角
+    self.baseView.layer.cornerRadius = 4;
+    self.baseView.layer.masksToBounds = YES;
+    NSShadow *shadow = [[NSShadow alloc] init];
+    //设置阴影为白色
+    [shadow setShadowColor:[NSColor colorWithWhite:0 alpha:0.4]];
+    //设置阴影为右下方
+    [shadow setShadowOffset:NSMakeSize(0, 4)];
+    [shadow setShadowBlurRadius:12];
+    [self.baseView setShadow:shadow];
+```
