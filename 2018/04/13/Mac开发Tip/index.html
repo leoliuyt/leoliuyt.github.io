@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://leoliuyt.github.io/2018/04/13/Mac开发Tip/Cocoa@2x.png">
 <meta property="og:image" content="http://leoliuyt.github.io/2018/04/13/Mac开发Tip/network@2x.png">
-<meta property="og:updated_time" content="2018-05-25T10:38:41.727Z">
+<meta property="og:updated_time" content="2018-07-18T13:01:00.739Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mac开发Tip">
 <meta name="twitter:description" content="删除Main.Storyboard,纯代码开发如果想纯代码开发Mac应用，删除Main.Storyboard,用代码构建初始化窗口，步骤如下： 1、删除Main.Storyboard,修改info.plist  2、修改main.m中代码如下： 12345678#import &quot;AppDelegate.h&quot;int main(int argc, const char * argv[]) &amp;#123">
@@ -432,6 +432,7 @@
 <h2 id="NSView的动画"><a href="#NSView的动画" class="headerlink" title="NSView的动画"></a>NSView的动画</h2><p>要实现NSView从底部出现的动画，要注意必须设置两个神奇属性，否则根本没有动画效果：</p>
 <figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">self</span>.oneView = [[CustomView alloc] init];</span><br><span class="line"><span class="keyword">self</span>.oneView.wantsLayer = <span class="literal">YES</span>;</span><br><span class="line">[<span class="keyword">self</span>.view addSubview:<span class="keyword">self</span>.oneView];</span><br><span class="line">__block MASConstraint *bottomContraint = <span class="literal">nil</span>;</span><br><span class="line">[<span class="keyword">self</span>.oneView mas_makeConstraints:^(MASConstraintMaker *make) &#123;</span><br><span class="line">    make.left.right.equalTo(<span class="keyword">self</span>.view);</span><br><span class="line">    bottomContraint=make.bottom.equalTo(<span class="keyword">self</span>.view).offset(<span class="number">60.</span>);</span><br><span class="line">    make.height.equalTo(@<span class="number">60.</span>);</span><br><span class="line">&#125;];</span><br><span class="line"><span class="comment">//保证初始状态正确</span></span><br><span class="line">[<span class="keyword">self</span>.view layoutSubtreeIfNeeded];</span><br><span class="line"></span><br><span class="line">bottomContraint.offset(<span class="number">0.</span>);</span><br><span class="line"></span><br><span class="line">[<span class="built_in">NSAnimationContext</span> runAnimationGroup:^(<span class="built_in">NSAnimationContext</span> * _Nonnull context) &#123;</span><br><span class="line">    context.duration = <span class="number">5</span>;</span><br><span class="line">    context.allowsImplicitAnimation=<span class="literal">YES</span>;</span><br><span class="line">    [<span class="keyword">self</span>.view layoutSubtreeIfNeeded];</span><br><span class="line">&#125; completionHandler:<span class="literal">nil</span>];</span><br></pre></td></tr></table></figure>
 <p>其中<code>NSView</code>的<code>wantsLayer</code>和 <code>NSAnimationContext</code>的<code>allowsImplicitAnimation</code>这两个属性是必须要设置的！</p>
+<h2 id="设置阴影-圆角"><a href="#设置阴影-圆角" class="headerlink" title="设置阴影+圆角"></a>设置阴影+圆角</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//设置阴影和圆角</span><br><span class="line">    self.baseView.layer.cornerRadius = 4;</span><br><span class="line">    self.baseView.layer.masksToBounds = YES;</span><br><span class="line">    NSShadow *shadow = [[NSShadow alloc] init];</span><br><span class="line">    //设置阴影为白色</span><br><span class="line">    [shadow setShadowColor:[NSColor colorWithWhite:0 alpha:0.4]];</span><br><span class="line">    //设置阴影为右下方</span><br><span class="line">    [shadow setShadowOffset:NSMakeSize(0, 4)];</span><br><span class="line">    [shadow setShadowBlurRadius:12];</span><br><span class="line">    [self.baseView setShadow:shadow];</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -555,7 +556,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -577,7 +578,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -638,7 +639,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#删除Main-Storyboard-纯代码开发"><span class="nav-number">1.</span> <span class="nav-text">删除Main.Storyboard,纯代码开发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#给NSView设置背景颜色"><span class="nav-number">2.</span> <span class="nav-text">给NSView设置背景颜色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#给NSScrollView设置背景颜色"><span class="nav-number">3.</span> <span class="nav-text">给NSScrollView设置背景颜色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#给NSCollectionView设置透明背景"><span class="nav-number">4.</span> <span class="nav-text">给NSCollectionView设置透明背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#访问网络"><span class="nav-number">5.</span> <span class="nav-text">访问网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#window被close后，点击Dock重新显示出来"><span class="nav-number">6.</span> <span class="nav-text">window被close后，点击Dock重新显示出来</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NSView的动画"><span class="nav-number">7.</span> <span class="nav-text">NSView的动画</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#删除Main-Storyboard-纯代码开发"><span class="nav-number">1.</span> <span class="nav-text">删除Main.Storyboard,纯代码开发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#给NSView设置背景颜色"><span class="nav-number">2.</span> <span class="nav-text">给NSView设置背景颜色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#给NSScrollView设置背景颜色"><span class="nav-number">3.</span> <span class="nav-text">给NSScrollView设置背景颜色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#给NSCollectionView设置透明背景"><span class="nav-number">4.</span> <span class="nav-text">给NSCollectionView设置透明背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#访问网络"><span class="nav-number">5.</span> <span class="nav-text">访问网络</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#window被close后，点击Dock重新显示出来"><span class="nav-number">6.</span> <span class="nav-text">window被close后，点击Dock重新显示出来</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#NSView的动画"><span class="nav-number">7.</span> <span class="nav-text">NSView的动画</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置阴影-圆角"><span class="nav-number">8.</span> <span class="nav-text">设置阴影+圆角</span></a></li></ol></div>
             
 
           </div>
