@@ -19,3 +19,10 @@ scp .vimrc root@47.94.18.56:/root/
 ```
 scp -r .vim root@47.94.18.56:/root/
 ```
+
+从远程复制到 本地 
+
+```
+scp root@47.94.18.56:/root/.vimrc /Users/liubaoqiu/Desktop/ 
+scp -r root@47.94.18.56:/root/www/ /Users/liubaoqiu/Desktop/
+```
