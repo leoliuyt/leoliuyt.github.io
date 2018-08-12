@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Python," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="安装pythonCentOS 6.8 中默认安装的python版本是2.6.6 首先我们将安装python2.7.10并设为默认版本 现在python2.7.101wget http://www.python.org/ftp/python/2.7.10/Python-2.7.10.tgz 解压1tar -zxvf Python-2.7.10.tgz 进入解压目录1cd Python-2.7.10">
+<meta name="keywords" content="Python">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python环境搭建（Nginx+Flup+spawn-fcgi+web.py）">
+<meta property="og:url" content="http://leoliuyt.github.io/2018/08/04/Python环境搭建（Nginx-Flup-spawn-cgi-web-py）/index.html">
+<meta property="og:site_name" content="Leoliu">
+<meta property="og:description" content="安装pythonCentOS 6.8 中默认安装的python版本是2.6.6 首先我们将安装python2.7.10并设为默认版本 现在python2.7.101wget http://www.python.org/ftp/python/2.7.10/Python-2.7.10.tgz 解压1tar -zxvf Python-2.7.10.tgz 进入解压目录1cd Python-2.7.10">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-08-11T09:52:36.999Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python环境搭建（Nginx+Flup+spawn-fcgi+web.py）">
+<meta name="twitter:description" content="安装pythonCentOS 6.8 中默认安装的python版本是2.6.6 首先我们将安装python2.7.10并设为默认版本 现在python2.7.101wget http://www.python.org/ftp/python/2.7.10/Python-2.7.10.tgz 解压1tar -zxvf Python-2.7.10.tgz 进入解压目录1cd Python-2.7.10">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://leoliuyt.github.io/2018/08/04/Python环境搭建（Nginx-Flup-spawn-cgi-web-py）/"/>
+
+
+
+
+
+  <title>Python环境搭建（Nginx+Flup+spawn-fcgi+web.py） | Leoliu</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?39278431666862f9e43bc023abb6c81b";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Leoliu</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-objective-c">
+          <a href="/categories/Objective-C/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Objective-C
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-shell">
+          <a href="/categories/shell/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-taxi"></i> <br />
+            
+            shell
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tool">
+          <a href="/categories/tool/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-wrench"></i> <br />
+            
+            工具
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-cocoa-touch">
+          <a href="/categories/Cocoa-Touch/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-apple"></i> <br />
+            
+            Cocoa Touch
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-cocoa">
+          <a href="/categories/Cocoa/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-apple"></i> <br />
+            
+            Cocoa
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-python">
+          <a href="/categories/Python/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-bar-chart"></i> <br />
+            
+            Python
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://leoliuyt.github.io/2018/08/04/Python环境搭建（Nginx-Flup-spawn-cgi-web-py）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Leoliu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leoliu">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Python环境搭建（Nginx+Flup+spawn-fcgi+web.py）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-04T23:23:06+08:00">
+                2018-08-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="安装python"><a href="#安装python" class="headerlink" title="安装python"></a>安装python</h2><p>CentOS 6.8 中默认安装的python版本是2.6.6</p>
+<p>首先我们将安装python2.7.10并设为默认版本</p>
+<p>现在python2.7.10<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://www.python.org/ftp/python/2.7.10/Python-2.7.10.tgz</span><br></pre></td></tr></table></figure></p>
+<p>解压<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf Python-2.7.10.tgz</span><br></pre></td></tr></table></figure></p>
+<p>进入解压目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd Python-2.7.10</span><br></pre></td></tr></table></figure></p>
+<p>编译<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./configure --prefix=/usr/local</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure></p>
+<p>配置软连接，让系统pyhon默认指向python2.7.10<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//备份原来的2.6.6版本</span><br><span class="line">mv /usr/bin/python /usr/bin/python2.6.6</span><br><span class="line">//创建新版本python的软连接</span><br><span class="line">ln -s /usr/local/bin/python2.7 /usr/bin/python</span><br></pre></td></tr></table></figure></p>
+<p>查看python版本</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -V</span><br></pre></td></tr></table></figure>
+<p>修复yum与python2.7不兼容的问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/bin/yum</span><br><span class="line">将第一行修改为</span><br><span class="line">#!/usr/bin/python2.6.6</span><br></pre></td></tr></table></figure>
+<h2 id="升级pip"><a href="#升级pip" class="headerlink" title="升级pip"></a>升级pip</h2><p>下载pip安装包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://bootstrap.pypa.io/get-pip.py</span><br></pre></td></tr></table></figure>
+<p>安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python get-pip.py</span><br></pre></td></tr></table></figure></p>
+<p>创建软连接</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ln -s /usr/local/python27/bin/pip2.7 /usr/bin/pip</span><br></pre></td></tr></table></figure>
+<p>如果上面那句提示已经存在pip，那么需要如下操作:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#备份原pip</span><br><span class="line">mv /usr/bin/pip /usr/bin/pip2.6.6</span><br><span class="line">#重新创建软连接</span><br><span class="line">ln -s /usr/local/python27/bin/pip2.7 /usr/bin/pip</span><br></pre></td></tr></table></figure>
+<h2 id="安装Flup"><a href="#安装Flup" class="headerlink" title="安装Flup"></a>安装Flup</h2><p>下载源码安装包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://www.saddi.com/software/flup/dist/flup-1.0.2.tar.gz</span><br></pre></td></tr></table></figure>
+<p>解压<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar xvzf flup-1.0.2.tar.gz</span><br></pre></td></tr></table></figure></p>
+<p>安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd flup-1.0.2</span><br><span class="line">python setup.py install</span><br></pre></td></tr></table></figure>
+<h2 id="安装spawn-fcgi"><a href="#安装spawn-fcgi" class="headerlink" title="安装spawn-fcgi"></a>安装spawn-fcgi</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://www.lighttpd.net/download/spawn-fcgi-1.6.3.tar.gz</span><br></pre></td></tr></table></figure>
+<p>解压<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tar xvzf spawn-fcgi-1.6.3.tar.gz</span><br></pre></td></tr></table></figure></p>
+<p>安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd spawn-fcgi-1.6.3</span><br><span class="line">./configure --prefix=/usr/bin/</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<p>关于<code>./configure</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">源码的安装一般由3个步骤组成：配置(configure)、编译(make)、安装(make install)。</span><br><span class="line"></span><br><span class="line">Configure是一个可执行脚本，它有很多选项，在待安装的源码路径下使用命令./configure –help输出详细的选项列表。</span><br><span class="line"></span><br><span class="line">其中--prefix选项是配置安装的路径，如果不配置该选项，安装后可执行文件默认放在/usr /local/bin，库文件默认放在/usr/local/lib，配置文件默认放在/usr/local/etc，其它的资源文件放在/usr /local/share，比较凌乱。</span><br><span class="line"></span><br><span class="line">如果配置--prefix，如：</span><br><span class="line"></span><br><span class="line">./configure --prefix=/usr/local/test</span><br><span class="line">可以把所有资源文件放在/usr/local/test的路径中，不会杂乱。</span><br><span class="line">用了—prefix选项的另一个好处是卸载软件或移植软件。当某个安装的软件不再需要时，只须简单的删除该安装目录，就可以把软件卸载得干干净净；移植软件只需拷贝整个目录到另外一个机器即可（相同的操作系统）。</span><br><span class="line"></span><br><span class="line">当然要卸载程序，也可以在原来的make目录下用一次make uninstall，但前提是make文件指定过uninstall。</span><br></pre></td></tr></table></figure>
+<h2 id="安装web-py"><a href="#安装web-py" class="headerlink" title="安装web.py"></a>安装web.py</h2><p>使用pip安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install web.py</span><br></pre></td></tr></table></figure>
+<h2 id="Nginx安装和配置"><a href="#Nginx安装和配置" class="headerlink" title="Nginx安装和配置"></a>Nginx安装和配置</h2><p>进入nginx 配置目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd /etc/nginx/conf.d/default.conf</span><br></pre></td></tr></table></figure>
+<p>编辑配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line"># The default server</span><br><span class="line">#</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">    listen       80 default_server;</span><br><span class="line">    #listen       [::]:80 default_server;</span><br><span class="line">    server_name  localhost;</span><br><span class="line">   # root         /usr/share/nginx/html;</span><br><span class="line">    root /root/www;#代码路径</span><br><span class="line">    # Load configuration files for the default server block.</span><br><span class="line">    include /etc/nginx/default.d/*.conf;</span><br><span class="line"></span><br><span class="line">    location / &#123;</span><br><span class="line">        #root /root/www;</span><br><span class="line">        #index index.html index.htm index.php;</span><br><span class="line">        include fastcgi_params;</span><br><span class="line">        #fastcgi_index app.py;</span><br><span class="line">        fastcgi_param SCRIPT_FILENAME $fastcgi_script_name;</span><br><span class="line">        fastcgi_param PATH_INFO $fastcgi_script_name;</span><br><span class="line">        fastcgi_pass 127.0.0.1:9002;</span><br><span class="line">    &#125;</span><br><span class="line">    location /static/ &#123;</span><br><span class="line">         if (-f $request_filename) &#123;</span><br><span class="line">             rewrite ^/static/(.*)$  /static/$1 break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    error_page 404 /404.html;</span><br><span class="line">        location = /40x.html &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    error_page 500 502 503 504 /50x.html;</span><br><span class="line">        location = /50x.html &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    #location ~ \.php$ &#123;</span><br><span class="line">    #        root           /www;</span><br><span class="line">    #        fastcgi_pass   127.0.0.1:9000;</span><br><span class="line">    #        fastcgi_index  index.php;</span><br><span class="line">    #        fastcgi_param  SCRIPT_FILENAME  $document_root$fastcgi_script_name;</span><br><span class="line">    #        include        fastcgi_params;</span><br><span class="line">    # &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="nginx相关命令"><a href="#nginx相关命令" class="headerlink" title="nginx相关命令"></a>nginx相关命令</h3><p>开启nginx<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx</span><br></pre></td></tr></table></figure></p>
+<p>重启nginx<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -s reload</span><br></pre></td></tr></table></figure></p>
+<p>停止nginx</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nginx -s stop</span><br></pre></td></tr></table></figure>
+<h2 id="启动一个spawn-fcgi"><a href="#启动一个spawn-fcgi" class="headerlink" title="启动一个spawn-fcgi"></a>启动一个spawn-fcgi</h2><p>运行脚本与app.py在同一目录下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#/bin/sh</span><br><span class="line"></span><br><span class="line">APP_NAME=app.py</span><br><span class="line">APP_PATH=&quot;`pwd`/$APP_NAME&quot;</span><br><span class="line"></span><br><span class="line">SPAWN_PATH=spawn-fcgi</span><br><span class="line"></span><br><span class="line">PID=`ps ax | grep $APP_NAME | grep python | awk &apos;&#123;print $1&#125;&apos;`</span><br><span class="line">if [ &quot;$PID&quot; != &quot;&quot; ]</span><br><span class="line">then</span><br><span class="line">	kill -9 $PID</span><br><span class="line">	sleep 1</span><br><span class="line">fi</span><br><span class="line"></span><br><span class="line"># -a 绑定的ip地址</span><br><span class="line"># -d 目录</span><br><span class="line"># -f fcgi应用文件目录</span><br><span class="line"># -p 绑定的端口号</span><br><span class="line"># spawn-fcgi -d /root/www -f /root/www/app.py -a 127.0.0.1 -p 9002 -n</span><br><span class="line">$SPAWN_PATH -a &quot;127.0.0.1&quot; -p 9090 -f $APP_PATH -n</span><br></pre></td></tr></table></figure></p>
+<h3 id="编写fcgi应用app-py"><a href="#编写fcgi应用app-py" class="headerlink" title="编写fcgi应用app.py"></a>编写fcgi应用app.py</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> web</span><br><span class="line">urls = (</span><br><span class="line">    <span class="string">'/.*'</span>,<span class="string">'index'</span></span><br><span class="line">)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">index</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">GET</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'Hello python!'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    app = web.application(urls,globals())</span><br><span class="line">    web.wsgi.runwsgi = <span class="keyword">lambda</span> func, addr=<span class="keyword">None</span>: web.wsgi.runfcgi(func, addr)</span><br><span class="line">    app.run()</span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://blog.csdn.net/u010856284/article/details/78049685" target="_blank" rel="noopener">centeros 升级 python 版本,以及添加pip</a></p>
+<p><a href="https://blog.csdn.net/wzm112/article/details/7922520" target="_blank" rel="noopener">nginx python spawn-fcgi Flup webpy搭建python的web环境</a></p>
+<p><a href="http://webpy.org/cookbook/fastcgi-nginx.zh-cn" target="_blank" rel="noopener">Webpy + Nginx with FastCGI搭建Web.py</a></p>
+<p><a href="https://www.cnblogs.com/LD-linux/p/4089205.html" target="_blank" rel="noopener">webpy + nginx + fastcgi 构建python应用</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/09/算法/" rel="next" title="算法">
+                <i class="fa fa-chevron-left"></i> 算法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/08/12/VSCode调试Python/" rel="prev" title="VSCode调试Python">
+                VSCode调试Python <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar.png"
+                alt="Leoliu" />
+            
+              <p class="site-author-name" itemprop="name">Leoliu</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/leoliuyt" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:leoliuyt@sina.cn" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://plus.google.com/u/0/113639913270953856300" target="_blank" title="Google">
+                      
+                        <i class="fa fa-fw fa-google"></i>Google</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/p/1005053266784037/home" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Weibo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装python"><span class="nav-number">1.</span> <span class="nav-text">安装python</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#升级pip"><span class="nav-number">2.</span> <span class="nav-text">升级pip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装Flup"><span class="nav-number">3.</span> <span class="nav-text">安装Flup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装spawn-fcgi"><span class="nav-number">4.</span> <span class="nav-text">安装spawn-fcgi</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装web-py"><span class="nav-number">5.</span> <span class="nav-text">安装web.py</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx安装和配置"><span class="nav-number">6.</span> <span class="nav-text">Nginx安装和配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#nginx相关命令"><span class="nav-number">6.1.</span> <span class="nav-text">nginx相关命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动一个spawn-fcgi"><span class="nav-number">7.</span> <span class="nav-text">启动一个spawn-fcgi</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编写fcgi应用app-py"><span class="nav-number">7.1.</span> <span class="nav-text">编写fcgi应用app.py</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">8.</span> <span class="nav-text">参考</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Leoliu</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
